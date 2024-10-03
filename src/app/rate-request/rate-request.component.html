@@ -1,0 +1,24 @@
+<div class="container">
+  <app-header [title]="title"></app-header>
+  <div class="content">
+    <app-rate-request-form
+      [parcel]="parcel$ | async"
+      [domestic]="domestic$ | async"
+      [rateResponse]="rateResponse$ | async"
+      (submitForm)="onSubmit($event)"
+      (resetForm)="onReset()"
+    ></app-rate-request-form>
+    <div class="rate text-center" *ngIf="rateResponse$ | async">
+      <div>
+        <img class="logo_dhl" src="assets/images/dhl-log.svg" />
+      </div>
+      <div class="rate-details" (click)="createShipment()">
+        <h4>Express Worldwide</h4>
+        <h1>{{ (rateResponse$ | async)?.rate }}</h1>
+        <p>Estimated Transit Time</p>
+        <h5>{{ (rateResponse$ | async)?.estimatedTransitDays }} days</h5>
+        <h4>Tap here to Accept & Continue</h4>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,184 @@
+<form class="row" [formGroup]="form" (ngSubmit)="onSubmit()">
+	<div class="col-md-6">
+		<app-destination-header prefix="From" [domestic]="true"></app-destination-header>
+		<div class="row g-3" formGroupName="shipperDetails">
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="fullName"
+					placeholder="Customer Name"
+					aria-label="Customer Name"
+					maxlength="70"
+          required
+					appTrimText
+				/>
+			</div>
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="companyName"
+					placeholder="Company Name"
+					aria-label="Company Name"
+					maxlength="70"
+					appTrimText
+				/>
+			</div>
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="addressLine1"
+					placeholder="Address Line 1"
+					aria-label="Address Line 1"
+          maxlength="45"
+          required
+					appTrimText
+				/>
+			</div>
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="addressLine2"
+					placeholder="Address Line 2"
+					aria-label="Address Line 2"
+					maxlength="45"
+					appTrimText
+				/>
+			</div>
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="addressLine3"
+					placeholder="Address Line 3"
+					aria-label="Address Line 3"
+          required
+          readonly
+				/>
+			</div>
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="phone"
+					placeholder="Phone"
+					aria-label="Phone"
+					required
+					pattern="^[0-9]*$"
+					maxlength="15"
+					appTrimText
+				/>
+			</div>
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="email"
+					placeholder="Email"
+					aria-label="Email"
+					maxlength="70"
+					appTrimText
+				/>
+			</div>
+		</div>
+	</div>
+  <div class="col-md-6">
+		<app-destination-header prefix="To" [domestic]="domestic"></app-destination-header>
+		<div class="row g-3" formGroupName="receiverDetails">
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="fullName"
+					placeholder="Customer Name"
+					aria-label="Customer Name"
+          maxlength="70"
+          required
+					appTrimText
+				/>
+			</div>
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="companyName"
+					placeholder="Company Name"
+					aria-label="Company Name"
+					maxlength="70"
+					appTrimText
+				/>
+			</div>
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="addressLine1"
+					placeholder="Address Line 1"
+					aria-label="Address Line 1"
+          required
+					maxlength="45"
+					appTrimText
+				/>
+			</div>
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="addressLine2"
+					placeholder="Address Line 2"
+					aria-label="Address Line 2"
+					maxlength="45"
+					appTrimText
+				/>
+			</div>
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="addressLine3"
+					placeholder="Address Line 3"
+					aria-label="Address Line 3"
+          required="true"
+          readonly
+				/>
+			</div>
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="phone"
+					placeholder="Phone"
+					aria-label="Phone"
+          required
+					pattern="^[0-9]*$"
+					maxlength="45"
+					appTrimText
+				/>
+			</div>
+      <div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="email"
+					placeholder="Email"
+					aria-label="Email"
+					maxlength="70"
+					appTrimText
+				/>
+			</div>
+		</div>
+	</div>
+
+	<div class="text-center col-12 p-3">
+		<button
+			type="submit"
+			class="btn btn-danger btn-lg"
+			[disabled]="!form.valid"
+		>
+			Confirm
+		</button>
+	</div>
+</form>

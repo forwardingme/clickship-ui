@@ -1,0 +1,193 @@
+<form class="row" [formGroup]="form" (ngSubmit)="onSubmit()">
+	<div class="col-md-6">
+		<app-destination-header prefix="From" [domestic]="true"></app-destination-header>
+		<div class="row g-3" formGroupName="shipperDetails">
+			<div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="postalCode"
+					placeholder="Postal Code"
+					aria-label="Postal Code"
+          maxlength="12"
+					required
+					appTrimText
+				/>
+			</div>
+			<div class="col-md-6">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="cityName"
+					placeholder="City"
+					aria-label="City"
+          maxlength="45"
+					required
+					appTrimText
+				/>
+			</div>
+			<div class="col-md-6">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="provinceCode"
+					placeholder="Province"
+					aria-label="Province"
+          maxlength="35"
+					appTrimText
+				/>
+			</div>
+			<div class="col-12">
+				<select
+					formControlName="countryCode"
+					class="form-select"
+					required
+				>
+					<option value="" disabled selected>Choose a Country</option>
+					<option value="CA">Canada</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6" formGroupName="receiverDetails">
+		<app-destination-header prefix="To" [domestic]="domestic"></app-destination-header>
+		<div class="row g-3">
+			<div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="postalCode"
+					placeholder="Postal Code"
+					aria-label="Postal Code"
+          maxlength="12"
+					required
+					appTrimText
+				/>
+			</div>
+			<div class="col-md-6">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="cityName"
+					placeholder="City"
+					aria-label="City"
+          maxlength="45"
+					required
+					appTrimText
+				/>
+			</div>
+			<div class="col-md-6">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="provinceCode"
+					placeholder="Province"
+					aria-label="Province"
+          maxlength="35"
+					appTrimText
+				/>
+			</div>
+			<div class="col-12">
+				<select
+					formControlName="countryCode"
+					class="form-select"
+					required
+				>
+					<option value="" disabled selected>Choose a Country</option>
+					<option
+						*ngFor="let c of countries; trackBy: trackByFn"
+						[ngValue]="c.alpha2Code"
+					>
+						{{ c.englishShortName }}
+					</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 p-3" *ngIf="isParcelPackage" formArrayName="packages">
+    <div class="row g-3 p-1">
+      <div class="col-md-2">
+        <label class="form-label text-center"
+          >Length(ln)
+        </label>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Width(ln) </label>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Height(ln) </label>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Weight(LB) </label>
+      </div>
+    </div>
+    <div class="row g-3 p-1" *ngFor="let item of packages; let i = index; let isLast=last; trackBy: trackByIndex" formGroupName="{{i}}">
+      <div class="col-md-2">
+        <input
+          class="form-control"
+          type="text"
+          formControlName="length"
+          placeholder="Length"
+          pattern="^[1-9][0-9]*$"
+          maxlength="6"
+          aria-label="Length"
+        />
+      </div>
+      <div class="col-md-2">
+        <input
+          class="form-control"
+          type="text" 
+          formControlName="width"
+          placeholder="Width"
+          pattern="^[1-9][0-9]*$"
+          maxlength="6"
+          aria-label="Width"
+        />
+      </div>
+      <div class="col-md-2">
+        <input
+          class="form-control"
+          type="text"
+          formControlName="height"
+          pattern="^[1-9][0-9]*$"
+          maxlength="6"
+          placeholder="Height"
+          aria-label="Height"
+        />
+      </div>
+      <div class="col-md-2">
+        <input
+          class="form-control"
+          type="text"
+          formControlName="weight"
+          pattern="^[1-9][0-9]*$"
+          maxlength="8"
+          placeholder="Weight"
+          aria-label="Weight"
+        />
+      </div>
+			<div class="col-md-2" *ngIf="!rateResponse">
+				<div class="col-md-6" *ngIf="!isLast">
+					<div class="text-center fs-4" role="button" (click)="removePackage(i)">-</div>
+				</div>
+				<div class="col-md-6" *ngIf="isLast">
+					<div class="text-center fs-4" role="button" (click)="addPackage()">+</div>
+				</div>
+			</div>
+    </div>
+	</div>
+	<div class="text-center col-12 p-3" *ngIf="!rateResponse">
+		<button
+			type="submit"
+			class="btn btn-danger btn-lg "
+			[disabled]="!form.valid"
+		>
+			Get Rates
+		</button>
+	</div>
+	<div class="text-center col-12 p-3" *ngIf="!!rateResponse">
+		<button type="button" class="btn btn-danger btn-lg" (click)="onReset()">
+			Reset
+		</button>
+	</div>
+</form>

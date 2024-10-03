@@ -1,0 +1,10 @@
+<div class="container">
+  <app-header title="Shipping Details"></app-header>
+  <div class="content">
+    <app-shipping-details-form
+      [parcel]="parcel$ | async"
+      [domestic]="domestic$ | async"
+      (submitForm)="onSubmit($event)"
+    ></app-shipping-details-form>
+  </div>
+</div>
