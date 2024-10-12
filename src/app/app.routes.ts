@@ -5,8 +5,9 @@ import { DestinationComponent } from "./destination/destination.component";
 import { RateRequestComponent } from "./rate-request/rate-request.component";
 import { ShippingDetailsComponent } from "./shipping-details/shipping-details.component";
 import { PaymentComponent } from "./payment/payment.component";
-import { PickupAddressComponent } from "./pickup-address/pickup-address.component";
+import { SettingsComponent } from "./settings/settings.component";
 import { ShipmentComponent } from "./shipment/shipment.component";
+import { checkMachineGuard } from "./state/check-machine.guard";
 
 export const routes: Routes = [
 	{ path: "", component: HomeComponent, title: "Set Language" },
@@ -14,32 +15,36 @@ export const routes: Routes = [
 		path: "shipment-type",
 		component: ShipmentTypeComponent,
 		title: "Set Shipment Type",
+		canActivate: [checkMachineGuard()]
 	},
 	{
 		path: "destination",
 		component: DestinationComponent,
 		title: "Set Destination",
+		canActivate: [checkMachineGuard()]
 	},
 	{
 		path: "rate-request",
 		component: RateRequestComponent,
 		title: "Rate Request",
-		// providers: [provideEffects(ParcelEffects)],
+		canActivate: [checkMachineGuard()]
 	},
 	{
     path: 'shipping-details',
-    component: ShippingDetailsComponent
+    component: ShippingDetailsComponent,
+		canActivate: [checkMachineGuard()]
   },
 	{
     path: 'payment',
-    component: PaymentComponent
+    component: PaymentComponent,
+		canActivate: [checkMachineGuard()]
   },
 	{
     path: 'shipments/:trackingNumber',
     component: ShipmentComponent
   },
 	{
-    path: 'pickup-address',
-    component: PickupAddressComponent
+    path: 'settings',
+    component: SettingsComponent
   }
 ];

@@ -1,1504 +1,1409 @@
 export interface ISO_Country {
-  englishShortName: string,
-	frenchShortName: string,
-	alpha2Code: string,
+  // englishShortName: string,
+	// frenchShortName: string,
+	// alpha2Code: string,
+	code2: string,
+	isoCode: string,
+	name: string,
+	phoneCode: string,
 }
 
 export const ISO3166_Countries: ISO_Country[] = [
 	{
-		englishShortName: "Afghanistan",
-		frenchShortName: "Afghanistan (l')",
-		alpha2Code: "AF",
-		// numeric: 4,
+			"code2": "AF",
+			"isoCode": "AF",
+			"name": "AFGHANISTAN",
+			"phoneCode": "93"
 	},
 	{
-		englishShortName: "Albania",
-		frenchShortName: "Albanie (l')",
-		alpha2Code: "AL",
-		// numeric: 8,
+			"code2": "AL",
+			"isoCode": "AL",
+			"name": "ALBANIA",
+			"phoneCode": "355"
 	},
 	{
-		englishShortName: "Algeria",
-		frenchShortName: "Algérie (l')",
-		alpha2Code: "DZ",
-		// numeric: 12,
+			"code2": "DZ",
+			"isoCode": "DZ",
+			"name": "ALGERIA",
+			"phoneCode": "213"
 	},
 	{
-		englishShortName: "American Samoa",
-		frenchShortName: "Samoa américaines (les)",
-		alpha2Code: "AS",
-		// numeric: 16,
+			"code2": "AS",
+			"isoCode": "AS",
+			"name": "AMERICAN SAMOA",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Andorra",
-		frenchShortName: "Andorre (l')",
-		alpha2Code: "AD",
-		// numeric: 20,
+			"code2": "AD",
+			"isoCode": "AD",
+			"name": "ANDORRA",
+			"phoneCode": "376"
 	},
 	{
-		englishShortName: "Angola",
-		frenchShortName: "Angola (l')",
-		alpha2Code: "AO",
-		// numeric: 24,
+			"code2": "AO",
+			"isoCode": "AO",
+			"name": "ANGOLA",
+			"phoneCode": "244"
 	},
 	{
-		englishShortName: "Anguilla",
-		frenchShortName: "Anguilla",
-		alpha2Code: "AI",
-		// numeric: 660,
+			"code2": "AI",
+			"isoCode": "AI",
+			"name": "ANGUILLA",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Antarctica",
-		frenchShortName: "Antarctique (l')",
-		alpha2Code: "AQ",
-		// numeric: 10,
+			"code2": "AG",
+			"isoCode": "AG",
+			"name": "ANTIGUA",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Antigua and Barbuda",
-		frenchShortName: "Antigua-et-Barbuda",
-		alpha2Code: "AG",
-		// numeric: 28,
+			"code2": "AR",
+			"isoCode": "AR",
+			"name": "ARGENTINA",
+			"phoneCode": "54"
 	},
 	{
-		englishShortName: "Argentina",
-		frenchShortName: "Argentine (l')",
-		alpha2Code: "AR",
-		// numeric: 32,
+			"code2": "AM",
+			"isoCode": "AM",
+			"name": "ARMENIA",
+			"phoneCode": "374"
 	},
 	{
-		englishShortName: "Armenia",
-		frenchShortName: "Arménie (l')",
-		alpha2Code: "AM",
-		// numeric: 51,
+			"code2": "AW",
+			"isoCode": "AW",
+			"name": "ARUBA",
+			"phoneCode": "297"
 	},
 	{
-		englishShortName: "Aruba",
-		frenchShortName: "Aruba",
-		alpha2Code: "AW",
-		// numeric: 533,
+			"code2": "AU",
+			"isoCode": "AU",
+			"name": "AUSTRALIA",
+			"phoneCode": "61"
 	},
 	{
-		englishShortName: "Australia",
-		frenchShortName: "Australie (l')",
-		alpha2Code: "AU",
-		// numeric: 36,
+			"code2": "AT",
+			"isoCode": "AT",
+			"name": "AUSTRIA",
+			"phoneCode": "43"
 	},
 	{
-		englishShortName: "Austria",
-		frenchShortName: "Autriche (l')",
-		alpha2Code: "AT",
-		// numeric: 40,
+			"code2": "AZ",
+			"isoCode": "AZ",
+			"name": "AZERBAIJAN",
+			"phoneCode": "994"
 	},
 	{
-		englishShortName: "Azerbaijan",
-		frenchShortName: "Azerbaïdjan (l')",
-		alpha2Code: "AZ",
-		// numeric: 31,
+			"code2": "BS",
+			"isoCode": "BS",
+			"name": "BAHAMAS",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Bahamas (the)",
-		frenchShortName: "Bahamas (les)",
-		alpha2Code: "BS",
-		// numeric: 44,
+			"code2": "BH",
+			"isoCode": "BH",
+			"name": "BAHRAIN",
+			"phoneCode": "973"
 	},
 	{
-		englishShortName: "Bahrain",
-		frenchShortName: "Bahreïn",
-		alpha2Code: "BH",
-		// numeric: 48,
+			"code2": "BD",
+			"isoCode": "BD",
+			"name": "BANGLADESH",
+			"phoneCode": "880"
 	},
 	{
-		englishShortName: "Bangladesh",
-		frenchShortName: "Bangladesh (le)",
-		alpha2Code: "BD",
-		// numeric: 50,
+			"code2": "BB",
+			"isoCode": "BB",
+			"name": "BARBADOS",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Barbados",
-		frenchShortName: "Barbade (la)",
-		alpha2Code: "BB",
-		// numeric: 52,
+			"code2": "BY",
+			"isoCode": "BY",
+			"name": "BELARUS",
+			"phoneCode": "375"
 	},
 	{
-		englishShortName: "Belarus",
-		frenchShortName: "Bélarus (le)",
-		alpha2Code: "BY",
-		// numeric: 112,
+			"code2": "BE",
+			"isoCode": "BE",
+			"name": "BELGIUM",
+			"phoneCode": "32"
 	},
 	{
-		englishShortName: "Belgium",
-		frenchShortName: "Belgique (la)",
-		alpha2Code: "BE",
-		// numeric: 56,
+			"code2": "BZ",
+			"isoCode": "BZ",
+			"name": "BELIZE",
+			"phoneCode": "501"
 	},
 	{
-		englishShortName: "Belize",
-		frenchShortName: "Belize (le)",
-		alpha2Code: "BZ",
-		// numeric: 84,
+			"code2": "BJ",
+			"isoCode": "BJ",
+			"name": "BENIN",
+			"phoneCode": "229"
 	},
 	{
-		englishShortName: "Benin",
-		frenchShortName: "Bénin (le)",
-		alpha2Code: "BJ",
-		// numeric: 204,
+			"code2": "BM",
+			"isoCode": "BM",
+			"name": "BERMUDA",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Bermuda",
-		frenchShortName: "Bermudes (les)",
-		alpha2Code: "BM",
-		// numeric: 60,
+			"code2": "BT",
+			"isoCode": "BT",
+			"name": "BHUTAN",
+			"phoneCode": "975"
 	},
 	{
-		englishShortName: "Bhutan",
-		frenchShortName: "Bhoutan (le)",
-		alpha2Code: "BT",
-		// numeric: 64,
+			"code2": "BO",
+			"isoCode": "BO",
+			"name": "BOLIVIA",
+			"phoneCode": "591"
 	},
 	{
-		englishShortName: "Bolivia (Plurinational State of)",
-		frenchShortName: "Bolivie (État plurinational de)",
-		alpha2Code: "BO",
-		// numeric: 68,
+			"code2": "XB",	"isoCode": "BQ",
+			"name": "BONAIRE",
+			"phoneCode": "599"
 	},
 	{
-		englishShortName: "Bonaire, Sint Eustatius and Saba",
-		frenchShortName: "Bonaire, Saint-Eustache et Saba",
-		alpha2Code: "BQ",
-		// numeric: 535,
+			"code2": "BA",
+			"isoCode": "BA",
+			"name": "BOSNIA AND HERZEGOVINA",
+			"phoneCode": "387"
 	},
 	{
-		englishShortName: "Bosnia and Herzegovina",
-		frenchShortName: "Bosnie-Herzégovine (la)",
-		alpha2Code: "BA",
-		// numeric: 70,
+			"code2": "BW",
+			"isoCode": "BW",
+			"name": "BOTSWANA",
+			"phoneCode": "267"
 	},
 	{
-		englishShortName: "Botswana",
-		frenchShortName: "Botswana (le)",
-		alpha2Code: "BW",
-		// numeric: 72,
+			"code2": "BR",
+			"isoCode": "BR",
+			"name": "BRAZIL",
+			"phoneCode": "55"
 	},
 	{
-		englishShortName: "Bouvet Island",
-		frenchShortName: "Bouvet (l'Île)",
-		alpha2Code: "BV",
-		// numeric: 74,
+			"code2": "BN",
+			"isoCode": "BN",
+			"name": "BRUNEI",
+			"phoneCode": "673"
 	},
 	{
-		englishShortName: "Brazil",
-		frenchShortName: "Brésil (le)",
-		alpha2Code: "BR",
-		// numeric: 76,
+			"code2": "BG",
+			"isoCode": "BG",
+			"name": "BULGARIA",
+			"phoneCode": "359"
 	},
 	{
-		englishShortName: "British Indian Ocean Territory (the)",
-		frenchShortName: "Indien (le Territoire britannique de l'océan)",
-		alpha2Code: "IO",
-		// numeric: 86,
+			"code2": "BF",
+			"isoCode": "BF",
+			"name": "BURKINA FASO",
+			"phoneCode": "226"
 	},
 	{
-		englishShortName: "Brunei Darussalam",
-		frenchShortName: "Brunéi Darussalam (le)",
-		alpha2Code: "BN",
-		// numeric: 96,
+			"code2": "BI",
+			"isoCode": "BI",
+			"name": "BURUNDI",
+			"phoneCode": "257"
 	},
 	{
-		englishShortName: "Bulgaria",
-		frenchShortName: "Bulgarie (la)",
-		alpha2Code: "BG",
-		// numeric: 100,
+			"code2": "KH",
+			"isoCode": "KH",
+			"name": "CAMBODIA",
+			"phoneCode": "855"
 	},
 	{
-		englishShortName: "Burkina Faso",
-		frenchShortName: "Burkina Faso (le)",
-		alpha2Code: "BF",
-		// numeric: 854,
+			"code2": "CM",
+			"isoCode": "CM",
+			"name": "CAMEROON",
+			"phoneCode": "237"
 	},
 	{
-		englishShortName: "Burundi",
-		frenchShortName: "Burundi (le)",
-		alpha2Code: "BI",
-		// numeric: 108,
+			"code2": "CA",
+			"isoCode": "CA",
+			"name": "CANADA",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Cabo Verde",
-		frenchShortName: "Cabo Verde",
-		alpha2Code: "CV",
-		// numeric: 132,
+			"code2": "IC",	"isoCode": "IC",
+			"name": "CANARY ISLANDS, THE",
+			"phoneCode": "34"
 	},
 	{
-		englishShortName: "Cambodia",
-		frenchShortName: "Cambodge (le)",
-		alpha2Code: "KH",
-		// numeric: 116,
+			"code2": "CV",
+			"isoCode": "CV",
+			"name": "CAPE VERDE",
+			"phoneCode": "238"
 	},
 	{
-		englishShortName: "Cameroon",
-		frenchShortName: "Cameroun (le)",
-		alpha2Code: "CM",
-		// numeric: 120,
+			"code2": "KY",
+			"isoCode": "KY",
+			"name": "CAYMAN ISLANDS",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Canada",
-		frenchShortName: "Canada (le)",
-		alpha2Code: "CA",
-		// numeric: 124,
+			"code2": "CF",
+			"isoCode": "CF",
+			"name": "CENTRAL AFRICAN REPUBLIC",
+			"phoneCode": "236"
 	},
 	{
-		englishShortName: "Cayman Islands (the)",
-		frenchShortName: "Caïmans (les Îles)",
-		alpha2Code: "KY",
-		// numeric: 136,
+			"code2": "TD",
+			"isoCode": "TD",
+			"name": "CHAD",
+			"phoneCode": "235"
 	},
 	{
-		englishShortName: "Central African Republic (the)",
-		frenchShortName: "République centrafricaine (la)",
-		alpha2Code: "CF",
-		// numeric: 140,
+			"code2": "CL",
+			"isoCode": "CL",
+			"name": "CHILE",
+			"phoneCode": "56"
 	},
 	{
-		englishShortName: "Chad",
-		frenchShortName: "Tchad (le)",
-		alpha2Code: "TD",
-		// numeric: 148,
+			"code2": "CN",
+			"isoCode": "CN",
+			"name": "CHINA, PEOPLES REPUBLIC",
+			"phoneCode": "86"
 	},
 	{
-		englishShortName: "Chile",
-		frenchShortName: "Chili (le)",
-		alpha2Code: "CL",
-		// numeric: 152,
+			"code2": "CO",
+			"isoCode": "CO",
+			"name": "COLOMBIA",
+			"phoneCode": "57"
 	},
 	{
-		englishShortName: "China",
-		frenchShortName: "Chine (la)",
-		alpha2Code: "CN",
-		// numeric: 156,
+			"code2": "MP",
+			"isoCode": "MP",
+			"name": "COMMONWEALTH NO. MARIANA ISLANDS",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Christmas Island",
-		frenchShortName: "Christmas (l'Île)",
-		alpha2Code: "CX",
-		// numeric: 162,
+			"code2": "KM",
+			"isoCode": "KM",
+			"name": "COMOROS",
+			"phoneCode": "269"
 	},
 	{
-		englishShortName: "Cocos (Keeling) Islands (the)",
-		frenchShortName: "Cocos (les Îles)/ Keeling (les Îles)",
-		alpha2Code: "CC",
-		// numeric: 166,
+			"code2": "CG",
+			"isoCode": "CG",
+			"name": "CONGO",
+			"phoneCode": "242"
 	},
 	{
-		englishShortName: "Colombia",
-		frenchShortName: "Colombie (la)",
-		alpha2Code: "CO",
-		// numeric: 170,
+			"code2": "CD",
+			"isoCode": "CD",
+			"name": "CONGO, THE DEMOCRATIC REPUBLIC OF",
+			"phoneCode": "243"
 	},
 	{
-		englishShortName: "Comoros (the)",
-		frenchShortName: "Comores (les)",
-		alpha2Code: "KM",
-		// numeric: 174,
+			"code2": "CK",
+			"isoCode": "CK",
+			"name": "COOK ISLANDS",
+			"phoneCode": "682"
 	},
 	{
-		englishShortName: "Congo (the Democratic Republic of the)",
-		frenchShortName: "Congo (la République démocratique du)",
-		alpha2Code: "CD",
-		// numeric: 180,
+			"code2": "CR",
+			"isoCode": "CR",
+			"name": "COSTA RICA",
+			"phoneCode": "506"
 	},
 	{
-		englishShortName: "Congo (the)",
-		frenchShortName: "Congo (le)",
-		alpha2Code: "CG",
-		// numeric: 178,
+			"code2": "CI",
+			"isoCode": "CI",
+			"name": "COTE D IVOIRE",
+			"phoneCode": "225"
 	},
 	{
-		englishShortName: "Cook Islands (the)",
-		frenchShortName: "Cook (les Îles)",
-		alpha2Code: "CK",
-		// numeric: 184,
+			"code2": "HR",
+			"isoCode": "HR",
+			"name": "CROATIA",
+			"phoneCode": "385"
 	},
 	{
-		englishShortName: "Costa Rica",
-		frenchShortName: "Costa Rica (le)",
-		alpha2Code: "CR",
-		// numeric: 188,
+			"code2": "CU",
+			"isoCode": "CU",
+			"name": "CUBA",
+			"phoneCode": "53"
 	},
 	{
-		englishShortName: "Croatia",
-		frenchShortName: "Croatie (la)",
-		alpha2Code: "HR",
-		// numeric: 191,
+			"code2": "XC",	"isoCode": "CW",
+			"name": "CURACAO",
+			"phoneCode": "599"
 	},
 	{
-		englishShortName: "Cuba",
-		frenchShortName: "Cuba",
-		alpha2Code: "CU",
-		// numeric: 192,
+			"code2": "CY",
+			"isoCode": "CY",
+			"name": "CYPRUS",
+			"phoneCode": "357"
 	},
 	{
-		englishShortName: "Curaçao",
-		frenchShortName: "Curaçao",
-		alpha2Code: "CW",
-		// numeric: 531,
+			"code2": "CZ",
+			"isoCode": "CZ",
+			"name": "CZECH REPUBLIC, THE",
+			"phoneCode": "420"
 	},
 	{
-		englishShortName: "Cyprus",
-		frenchShortName: "Chypre",
-		alpha2Code: "CY",
-		// numeric: 196,
+			"code2": "DK",
+			"isoCode": "DK",
+			"name": "DENMARK",
+			"phoneCode": "45"
 	},
 	{
-		englishShortName: "Czechia",
-		frenchShortName: "Tchéquie (la)",
-		alpha2Code: "CZ",
-		// numeric: 203,
+			"code2": "DJ",
+			"isoCode": "DJ",
+			"name": "DJIBOUTI",
+			"phoneCode": "253"
 	},
 	{
-		englishShortName: "Côte d'Ivoire",
-		frenchShortName: "Côte d'Ivoire (la)",
-		alpha2Code: "CI",
-		// numeric: 384,
+			"code2": "DM",
+			"isoCode": "DM",
+			"name": "DOMINICA",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Denmark",
-		frenchShortName: "Danemark (le)",
-		alpha2Code: "DK",
-		// numeric: 208,
+			"code2": "DO",
+			"isoCode": "DO",
+			"name": "DOMINICAN REPUBLIC",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Djibouti",
-		frenchShortName: "Djibouti",
-		alpha2Code: "DJ",
-		// numeric: 262,
+			"code2": "EC",
+			"isoCode": "EC",
+			"name": "ECUADOR",
+			"phoneCode": "593"
 	},
 	{
-		englishShortName: "Dominica",
-		frenchShortName: "Dominique (la)",
-		alpha2Code: "DM",
-		// numeric: 212,
+			"code2": "EG",
+			"isoCode": "EG",
+			"name": "EGYPT",
+			"phoneCode": "20"
 	},
 	{
-		englishShortName: "Dominican Republic (the)",
-		frenchShortName: "dominicaine (la République)",
-		alpha2Code: "DO",
-		// numeric: 214,
+			"code2": "SV",
+			"isoCode": "SV",
+			"name": "EL SALVADOR",
+			"phoneCode": "503"
 	},
 	{
-		englishShortName: "Ecuador",
-		frenchShortName: "Équateur (l')",
-		alpha2Code: "EC",
-		// numeric: 218,
+			"code2": "ER",
+			"isoCode": "ER",
+			"name": "ERITREA",
+			"phoneCode": "291"
 	},
 	{
-		englishShortName: "Egypt",
-		frenchShortName: "Égypte (l')",
-		alpha2Code: "EG",
-		// numeric: 818,
+			"code2": "EE",
+			"isoCode": "EE",
+			"name": "ESTONIA",
+			"phoneCode": "372"
 	},
 	{
-		englishShortName: "El Salvador",
-		frenchShortName: "El Salvador",
-		alpha2Code: "SV",
-		// numeric: 222,
+			"code2": "ET",
+			"isoCode": "ET",
+			"name": "ETHIOPIA",
+			"phoneCode": "251"
 	},
 	{
-		englishShortName: "Equatorial Guinea",
-		frenchShortName: "Guinée équatoriale (la)",
-		alpha2Code: "GQ",
-		// numeric: 226,
+			"code2": "FK",
+			"isoCode": "FK",
+			"name": "FALKLAND ISLANDS",
+			"phoneCode": "500"
 	},
 	{
-		englishShortName: "Eritrea",
-		frenchShortName: "Érythrée (l')",
-		alpha2Code: "ER",
-		// numeric: 232,
+			"code2": "FO",
+			"isoCode": "FO",
+			"name": "FAROE ISLANDS",
+			"phoneCode": "298"
 	},
 	{
-		englishShortName: "Estonia",
-		frenchShortName: "Estonie (l')",
-		alpha2Code: "EE",
-		// numeric: 233,
+			"code2": "FJ",
+			"isoCode": "FJ",
+			"name": "FIJI",
+			"phoneCode": "679"
 	},
 	{
-		englishShortName: "Eswatini",
-		frenchShortName: "Eswatini (l')",
-		alpha2Code: "SZ",
-		// numeric: 748,
+			"code2": "FI",
+			"isoCode": "FI",
+			"name": "FINLAND",
+			"phoneCode": "358"
 	},
 	{
-		englishShortName: "Ethiopia",
-		frenchShortName: "Éthiopie (l')",
-		alpha2Code: "ET",
-		// numeric: 231,
+			"code2": "FR",
+			"isoCode": "FR",
+			"name": "FRANCE",
+			"phoneCode": "33"
 	},
 	{
-		englishShortName: "Falkland Islands (the) [Malvinas]",
-		frenchShortName: "Falkland (les Îles)/Malouines (les Îles)",
-		alpha2Code: "FK",
-		// numeric: 238,
+			"code2": "GF",
+			"isoCode": "GF",
+			"name": "FRENCH GUYANA",
+			"phoneCode": "594"
 	},
 	{
-		englishShortName: "Faroe Islands (the)",
-		frenchShortName: "Féroé (les Îles)",
-		alpha2Code: "FO",
-		// numeric: 234,
+			"code2": "GA",
+			"isoCode": "GA",
+			"name": "GABON",
+			"phoneCode": "241"
 	},
 	{
-		englishShortName: "Fiji",
-		frenchShortName: "Fidji (les)",
-		alpha2Code: "FJ",
-		// numeric: 242,
+			"code2": "GM",
+			"isoCode": "GM",
+			"name": "GAMBIA",
+			"phoneCode": "220"
 	},
 	{
-		englishShortName: "Finland",
-		frenchShortName: "Finlande (la)",
-		alpha2Code: "FI",
-		// numeric: 246,
+			"code2": "GE",
+			"isoCode": "GE",
+			"name": "GEORGIA",
+			"phoneCode": "995"
 	},
 	{
-		englishShortName: "France",
-		frenchShortName: "France (la)",
-		alpha2Code: "FR",
-		// numeric: 250,
+			"code2": "DE",
+			"isoCode": "DE",
+			"name": "GERMANY",
+			"phoneCode": "49"
 	},
 	{
-		englishShortName: "French Guiana",
-		frenchShortName: "Guyane française (la )",
-		alpha2Code: "GF",
-		// numeric: 254,
+			"code2": "GH",
+			"isoCode": "GH",
+			"name": "GHANA",
+			"phoneCode": "233"
 	},
 	{
-		englishShortName: "French Polynesia",
-		frenchShortName: "Polynésie française (la)",
-		alpha2Code: "PF",
-		// numeric: 258,
+			"code2": "GI",
+			"isoCode": "GI",
+			"name": "GIBRALTAR",
+			"phoneCode": "350"
 	},
 	{
-		englishShortName: "French Southern Territories (the)",
-		frenchShortName: "Terres australes françaises (les)",
-		alpha2Code: "TF",
-		// numeric: 260,
+			"code2": "GR",
+			"isoCode": "GR",
+			"name": "GREECE",
+			"phoneCode": "30"
 	},
 	{
-		englishShortName: "Gabon",
-		frenchShortName: "Gabon (le)",
-		alpha2Code: "GA",
-		// numeric: 266,
+			"code2": "GL",
+			"isoCode": "GL",
+			"name": "GREENLAND",
+			"phoneCode": "299"
 	},
 	{
-		englishShortName: "Gambia (the)",
-		frenchShortName: "Gambie (la)",
-		alpha2Code: "GM",
-		// numeric: 270,
+			"code2": "GD",
+			"isoCode": "GD",
+			"name": "GRENADA",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Georgia",
-		frenchShortName: "Géorgie (la)",
-		alpha2Code: "GE",
-		// numeric: 268,
+			"code2": "GP",
+			"isoCode": "GP",
+			"name": "GUADELOUPE",
+			"phoneCode": "590"
 	},
 	{
-		englishShortName: "Germany",
-		frenchShortName: "Allemagne (l')",
-		alpha2Code: "DE",
-		// numeric: 276,
+			"code2": "GU",
+			"isoCode": "GU",
+			"name": "GUAM",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Ghana",
-		frenchShortName: "Ghana (le)",
-		alpha2Code: "GH",
-		// numeric: 288,
+			"code2": "GT",
+			"isoCode": "GT",
+			"name": "GUATEMALA",
+			"phoneCode": "502"
 	},
 	{
-		englishShortName: "Gibraltar",
-		frenchShortName: "Gibraltar",
-		alpha2Code: "GI",
-		// numeric: 292,
+			"code2": "GG",
+			"isoCode": "GG",
+			"name": "GUERNSEY",
+			"phoneCode": "44"
 	},
 	{
-		englishShortName: "Greece",
-		frenchShortName: "Grèce (la)",
-		alpha2Code: "GR",
-		// numeric: 300,
+			"code2": "GN",
+			"isoCode": "GN",
+			"name": "GUINEA REPUBLIC",
+			"phoneCode": "224"
 	},
 	{
-		englishShortName: "Greenland",
-		frenchShortName: "Groenland (le)",
-		alpha2Code: "GL",
-		// numeric: 304,
+			"code2": "GW",
+			"isoCode": "GW",
+			"name": "GUINEA-BISSAU",
+			"phoneCode": "245"
 	},
 	{
-		englishShortName: "Grenada",
-		frenchShortName: "Grenade (la)",
-		alpha2Code: "GD",
-		// numeric: 308,
+			"code2": "GQ",
+			"isoCode": "GQ",
+			"name": "GUINEA-EQUATORIAL",
+			"phoneCode": "240"
 	},
 	{
-		englishShortName: "Guadeloupe",
-		frenchShortName: "Guadeloupe (la)",
-		alpha2Code: "GP",
-		// numeric: 312,
+			"code2": "GY",
+			"isoCode": "GY",
+			"name": "GUYANA (BRITISH)",
+			"phoneCode": "592"
 	},
 	{
-		englishShortName: "Guam",
-		frenchShortName: "Guam",
-		alpha2Code: "GU",
-		// numeric: 316,
+			"code2": "HT",
+			"isoCode": "HT",
+			"name": "HAITI",
+			"phoneCode": "509"
 	},
 	{
-		englishShortName: "Guatemala",
-		frenchShortName: "Guatemala (le)",
-		alpha2Code: "GT",
-		// numeric: 320,
+			"code2": "HN",
+			"isoCode": "HN",
+			"name": "HONDURAS",
+			"phoneCode": "504"
 	},
 	{
-		englishShortName: "Guernsey",
-		frenchShortName: "Guernesey",
-		alpha2Code: "GG",
-		// numeric: 831,
+			"code2": "HK",
+			"isoCode": "HK",
+			"name": "HONG KONG SAR, CHINA",
+			"phoneCode": "852"
 	},
 	{
-		englishShortName: "Guinea",
-		frenchShortName: "Guinée (la)",
-		alpha2Code: "GN",
-		// numeric: 324,
+			"code2": "HU",
+			"isoCode": "HU",
+			"name": "HUNGARY",
+			"phoneCode": "36"
 	},
 	{
-		englishShortName: "Guinea-Bissau",
-		frenchShortName: "Guinée-Bissau (la)",
-		alpha2Code: "GW",
-		// numeric: 624,
+			"code2": "IS",
+			"isoCode": "IS",
+			"name": "ICELAND",
+			"phoneCode": "354"
 	},
 	{
-		englishShortName: "Guyana",
-		frenchShortName: "Guyana (le)",
-		alpha2Code: "GY",
-		// numeric: 328,
+			"code2": "IN",
+			"isoCode": "IN",
+			"name": "INDIA",
+			"phoneCode": "91"
 	},
 	{
-		englishShortName: "Haiti",
-		frenchShortName: "Haïti",
-		alpha2Code: "HT",
-		// numeric: 332,
+			"code2": "ID",
+			"isoCode": "ID",
+			"name": "INDONESIA",
+			"phoneCode": "62"
 	},
 	{
-		englishShortName: "Heard Island and McDonald Islands",
-		frenchShortName: "Heard-et-Îles MacDonald (l'Île)",
-		alpha2Code: "HM",
-		// numeric: 334,
+			"code2": "IR",
+			"isoCode": "IR",
+			"name": "IRAN (ISLAMIC REPUBLIC OF)",
+			"phoneCode": "98"
 	},
 	{
-		englishShortName: "Holy See (the)",
-		frenchShortName: "Saint-Siège (le)",
-		alpha2Code: "VA",
-		// numeric: 336,
+			"code2": "IQ",
+			"isoCode": "IQ",
+			"name": "IRAQ",
+			"phoneCode": "964"
 	},
 	{
-		englishShortName: "Honduras",
-		frenchShortName: "Honduras (le)",
-		alpha2Code: "HN",
-		// numeric: 340,
+			"code2": "IE",
+			"isoCode": "IE",
+			"name": "IRELAND, REPUBLIC OF",
+			"phoneCode": "353"
 	},
 	{
-		englishShortName: "Hong Kong",
-		frenchShortName: "Hong Kong",
-		alpha2Code: "HK",
-		// numeric: 344,
+			"code2": "IL",
+			"isoCode": "IL",
+			"name": "ISRAEL",
+			"phoneCode": "972"
 	},
 	{
-		englishShortName: "Hungary",
-		frenchShortName: "Hongrie (la)",
-		alpha2Code: "HU",
-		// numeric: 348,
+			"code2": "IT",
+			"isoCode": "IT",
+			"name": "ITALY",
+			"phoneCode": "39"
 	},
 	{
-		englishShortName: "Iceland",
-		frenchShortName: "Islande (l')",
-		alpha2Code: "IS",
-		// numeric: 352,
+			"code2": "JM",
+			"isoCode": "JM",
+			"name": "JAMAICA",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "India",
-		frenchShortName: "Inde (l')",
-		alpha2Code: "IN",
-		// numeric: 356,
+			"code2": "JP",
+			"isoCode": "JP",
+			"name": "JAPAN",
+			"phoneCode": "81"
 	},
 	{
-		englishShortName: "Indonesia",
-		frenchShortName: "Indonésie (l')",
-		alpha2Code: "ID",
-		// numeric: 360,
+			"code2": "JE",
+			"isoCode": "JE",
+			"name": "JERSEY",
+			"phoneCode": "44"
 	},
 	{
-		englishShortName: "Iran (Islamic Republic of)",
-		frenchShortName: "Iran (République Islamique d')",
-		alpha2Code: "IR",
-		// numeric: 364,
+			"code2": "JO",
+			"isoCode": "JO",
+			"name": "JORDAN",
+			"phoneCode": "962"
 	},
 	{
-		englishShortName: "Iraq",
-		frenchShortName: "Iraq (l')",
-		alpha2Code: "IQ",
-		// numeric: 368,
+			"code2": "KZ",
+			"isoCode": "KZ",
+			"name": "KAZAKHSTAN",
+			"phoneCode": "7"
 	},
 	{
-		englishShortName: "Ireland",
-		frenchShortName: "Irlande (l')",
-		alpha2Code: "IE",
-		// numeric: 372,
+			"code2": "KE",
+			"isoCode": "KE",
+			"name": "KENYA",
+			"phoneCode": "254"
 	},
 	{
-		englishShortName: "Isle of Man",
-		frenchShortName: "Île de Man",
-		alpha2Code: "IM",
-		// numeric: 833,
+			"code2": "KI",
+			"isoCode": "KI",
+			"name": "KIRIBATI",
+			"phoneCode": "686"
 	},
 	{
-		englishShortName: "Israel",
-		frenchShortName: "Israël",
-		alpha2Code: "IL",
-		// numeric: 376,
+			"code2": "KR",
+			"isoCode": "KR",
+			"name": "KOREA, REPUBLIC OF (SOUTH K.)",
+			"phoneCode": "82"
 	},
 	{
-		englishShortName: "Italy",
-		frenchShortName: "Italie (l')",
-		alpha2Code: "IT",
-		// numeric: 380,
+			"code2": "KP",
+			"isoCode": "KP",
+			"name": "KOREA, THE D.P.R OF (NORTH K.)",
+			"phoneCode": "850"
 	},
 	{
-		englishShortName: "Jamaica",
-		frenchShortName: "Jamaïque (la)",
-		alpha2Code: "JM",
-		// numeric: 388,
+			"code2": "KV",	"isoCode": "KV",
+			"name": "KOSOVO",
+			"phoneCode": "383"
 	},
 	{
-		englishShortName: "Japan",
-		frenchShortName: "Japon (le)",
-		alpha2Code: "JP",
-		// numeric: 392,
+			"code2": "KW",
+			"isoCode": "KW",
+			"name": "KUWAIT",
+			"phoneCode": "965"
 	},
 	{
-		englishShortName: "Jersey",
-		frenchShortName: "Jersey",
-		alpha2Code: "JE",
-		// numeric: 832,
+			"code2": "KG",
+			"isoCode": "KG",
+			"name": "KYRGYZSTAN",
+			"phoneCode": "996"
 	},
 	{
-		englishShortName: "Jordan",
-		frenchShortName: "Jordanie (la)",
-		alpha2Code: "JO",
-		// numeric: 400,
+			"code2": "LA",
+			"isoCode": "LA",
+			"name": "LAO PEOPLES DEMOCRATIC REPUBLIC",
+			"phoneCode": "856"
 	},
 	{
-		englishShortName: "Kazakhstan",
-		frenchShortName: "Kazakhstan (le)",
-		alpha2Code: "KZ",
-		// numeric: 398,
+			"code2": "LV",
+			"isoCode": "LV",
+			"name": "LATVIA",
+			"phoneCode": "371"
 	},
 	{
-		englishShortName: "Kenya",
-		frenchShortName: "Kenya (le)",
-		alpha2Code: "KE",
-		// numeric: 404,
+			"code2": "LB",
+			"isoCode": "LB",
+			"name": "LEBANON",
+			"phoneCode": "961"
 	},
 	{
-		englishShortName: "Kiribati",
-		frenchShortName: "Kiribati",
-		alpha2Code: "KI",
-		// numeric: 296,
+			"code2": "LS",
+			"isoCode": "LS",
+			"name": "LESOTHO",
+			"phoneCode": "266"
 	},
 	{
-		englishShortName: "Korea (the Democratic People's Republic of)",
-		frenchShortName: "Corée (la République populaire démocratique de)",
-		alpha2Code: "KP",
-		// numeric: 408,
+			"code2": "LR",
+			"isoCode": "LR",
+			"name": "LIBERIA",
+			"phoneCode": "231"
 	},
 	{
-		englishShortName: "Korea (the Republic of)",
-		frenchShortName: "Corée (la République de)",
-		alpha2Code: "KR",
-		// numeric: 410,
+			"code2": "LY",
+			"isoCode": "LY",
+			"name": "LIBYA",
+			"phoneCode": "218"
 	},
 	{
-		englishShortName: "Kuwait",
-		frenchShortName: "Koweït (le)",
-		alpha2Code: "KW",
-		// numeric: 414,
+			"code2": "LI",
+			"isoCode": "LI",
+			"name": "LIECHTENSTEIN",
+			"phoneCode": "423"
 	},
 	{
-		englishShortName: "Kyrgyzstan",
-		frenchShortName: "Kirghizistan (le)",
-		alpha2Code: "KG",
-		// numeric: 417,
+			"code2": "LT",
+			"isoCode": "LT",
+			"name": "LITHUANIA",
+			"phoneCode": "370"
 	},
 	{
-		englishShortName: "Lao People's Democratic Republic (the)",
-		frenchShortName: "Lao (la République démocratique populaire)",
-		alpha2Code: "LA",
-		// numeric: 418,
+			"code2": "LU",
+			"isoCode": "LU",
+			"name": "LUXEMBOURG",
+			"phoneCode": "352"
 	},
 	{
-		englishShortName: "Latvia",
-		frenchShortName: "Lettonie (la)",
-		alpha2Code: "LV",
-		// numeric: 428,
+			"code2": "MO",
+			"isoCode": "MO",
+			"name": "MACAO SAR, CHINA",
+			"phoneCode": "853"
 	},
 	{
-		englishShortName: "Lebanon",
-		frenchShortName: "Liban (le)",
-		alpha2Code: "LB",
-		// numeric: 422,
+			"code2": "MG",
+			"isoCode": "MG",
+			"name": "MADAGASCAR",
+			"phoneCode": "261"
 	},
 	{
-		englishShortName: "Lesotho",
-		frenchShortName: "Lesotho (le)",
-		alpha2Code: "LS",
-		// numeric: 426,
+			"code2": "MW",
+			"isoCode": "MW",
+			"name": "MALAWI",
+			"phoneCode": "265"
 	},
 	{
-		englishShortName: "Liberia",
-		frenchShortName: "Libéria (le)",
-		alpha2Code: "LR",
-		// numeric: 430,
+			"code2": "MY",
+			"isoCode": "MY",
+			"name": "MALAYSIA",
+			"phoneCode": "60"
 	},
 	{
-		englishShortName: "Libya",
-		frenchShortName: "Libye (la)",
-		alpha2Code: "LY",
-		// numeric: 434,
+			"code2": "MV",
+			"isoCode": "MV",
+			"name": "MALDIVES",
+			"phoneCode": "960"
 	},
 	{
-		englishShortName: "Liechtenstein",
-		frenchShortName: "Liechtenstein (le)",
-		alpha2Code: "LI",
-		// numeric: 438,
+			"code2": "ML",
+			"isoCode": "ML",
+			"name": "MALI",
+			"phoneCode": "223"
 	},
 	{
-		englishShortName: "Lithuania",
-		frenchShortName: "Lituanie (la)",
-		alpha2Code: "LT",
-		// numeric: 440,
+			"code2": "MT",
+			"isoCode": "MT",
+			"name": "MALTA",
+			"phoneCode": "356"
 	},
 	{
-		englishShortName: "Luxembourg",
-		frenchShortName: "Luxembourg (le)",
-		alpha2Code: "LU",
-		// numeric: 442,
+			"code2": "MH",
+			"isoCode": "MH",
+			"name": "MARSHALL ISLANDS",
+			"phoneCode": "692"
 	},
 	{
-		englishShortName: "Macao",
-		frenchShortName: "Macao",
-		alpha2Code: "MO",
-		// numeric: 446,
+			"code2": "MQ",
+			"isoCode": "MQ",
+			"name": "MARTINIQUE",
+			"phoneCode": "596"
 	},
 	{
-		englishShortName: "Madagascar",
-		frenchShortName: "Madagascar",
-		alpha2Code: "MG",
-		// numeric: 450,
+			"code2": "MR",
+			"isoCode": "MR",
+			"name": "MAURITANIA",
+			"phoneCode": "222"
 	},
 	{
-		englishShortName: "Malawi",
-		frenchShortName: "Malawi (le)",
-		alpha2Code: "MW",
-		// numeric: 454,
+			"code2": "MU",
+			"isoCode": "MU",
+			"name": "MAURITIUS",
+			"phoneCode": "230"
 	},
 	{
-		englishShortName: "Malaysia",
-		frenchShortName: "Malaisie (la)",
-		alpha2Code: "MY",
-		// numeric: 458,
+			"code2": "YT",
+			"isoCode": "YT",
+			"name": "MAYOTTE",
+			"phoneCode": "262"
 	},
 	{
-		englishShortName: "Maldives",
-		frenchShortName: "Maldives (les)",
-		alpha2Code: "MV",
-		// numeric: 462,
+			"code2": "MX",
+			"isoCode": "MX",
+			"name": "MEXICO",
+			"phoneCode": "52"
 	},
 	{
-		englishShortName: "Mali",
-		frenchShortName: "Mali (le)",
-		alpha2Code: "ML",
-		// numeric: 466,
+			"code2": "FM",
+			"isoCode": "FM",
+			"name": "MICRONESIA, FEDERATED STATES OF",
+			"phoneCode": "691"
 	},
 	{
-		englishShortName: "Malta",
-		frenchShortName: "Malte",
-		alpha2Code: "MT",
-		// numeric: 470,
+			"code2": "MD",
+			"isoCode": "MD",
+			"name": "MOLDOVA, REPUBLIC OF",
+			"phoneCode": "373"
 	},
 	{
-		englishShortName: "Marshall Islands (the)",
-		frenchShortName: "Marshall (les Îles)",
-		alpha2Code: "MH",
-		// numeric: 584,
+			"code2": "MC",
+			"isoCode": "MC",
+			"name": "MONACO",
+			"phoneCode": "377"
 	},
 	{
-		englishShortName: "Martinique",
-		frenchShortName: "Martinique (la)",
-		alpha2Code: "MQ",
-		// numeric: 474,
+			"code2": "MN",
+			"isoCode": "MN",
+			"name": "MONGOLIA",
+			"phoneCode": "976"
 	},
 	{
-		englishShortName: "Mauritania",
-		frenchShortName: "Mauritanie (la)",
-		alpha2Code: "MR",
-		// numeric: 478,
+			"code2": "ME",
+			"isoCode": "ME",
+			"name": "MONTENEGRO, REPUBLIC OF",
+			"phoneCode": "382"
 	},
 	{
-		englishShortName: "Mauritius",
-		frenchShortName: "Maurice",
-		alpha2Code: "MU",
-		// numeric: 480,
+			"code2": "MS",
+			"isoCode": "MS",
+			"name": "MONTSERRAT",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Mayotte",
-		frenchShortName: "Mayotte",
-		alpha2Code: "YT",
-		// numeric: 175,
+			"code2": "MA",
+			"isoCode": "MA",
+			"name": "MOROCCO",
+			"phoneCode": "212"
 	},
 	{
-		englishShortName: "Mexico",
-		frenchShortName: "Mexique (le)",
-		alpha2Code: "MX",
-		// numeric: 484,
+			"code2": "MZ",
+			"isoCode": "MZ",
+			"name": "MOZAMBIQUE",
+			"phoneCode": "258"
 	},
 	{
-		englishShortName: "Micronesia (Federated States of)",
-		frenchShortName: "Micronésie (États fédérés de)",
-		alpha2Code: "FM",
-		// numeric: 583,
+			"code2": "MM",
+			"isoCode": "MM",
+			"name": "MYANMAR",
+			"phoneCode": "95"
 	},
 	{
-		englishShortName: "Moldova (the Republic of)",
-		frenchShortName: "Moldova (la République de)",
-		alpha2Code: "MD",
-		// numeric: 498,
+			"code2": "NA",
+			"isoCode": "NA",
+			"name": "NAMIBIA",
+			"phoneCode": "264"
 	},
 	{
-		englishShortName: "Monaco",
-		frenchShortName: "Monaco",
-		alpha2Code: "MC",
-		// numeric: 492,
+			"code2": "NR",
+			"isoCode": "NR",
+			"name": "NAURU, REPUBLIC OF",
+			"phoneCode": "674"
 	},
 	{
-		englishShortName: "Mongolia",
-		frenchShortName: "Mongolie (la)",
-		alpha2Code: "MN",
-		// numeric: 496,
+			"code2": "NP",
+			"isoCode": "NP",
+			"name": "NEPAL",
+			"phoneCode": "977"
 	},
 	{
-		englishShortName: "Montenegro",
-		frenchShortName: "Monténégro (le)",
-		alpha2Code: "ME",
-		// numeric: 499,
+			"code2": "NL",
+			"isoCode": "NL",
+			"name": "NETHERLANDS, THE",
+			"phoneCode": "31"
 	},
 	{
-		englishShortName: "Montserrat",
-		frenchShortName: "Montserrat",
-		alpha2Code: "MS",
-		// numeric: 500,
+			"code2": "XN",	"isoCode": "KN",
+			"name": "NEVIS",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Morocco",
-		frenchShortName: "Maroc (le)",
-		alpha2Code: "MA",
-		// numeric: 504,
+			"code2": "NC",
+			"isoCode": "NC",
+			"name": "NEW CALEDONIA",
+			"phoneCode": "687"
 	},
 	{
-		englishShortName: "Mozambique",
-		frenchShortName: "Mozambique (le)",
-		alpha2Code: "MZ",
-		// numeric: 508,
+			"code2": "NZ",
+			"isoCode": "NZ",
+			"name": "NEW ZEALAND",
+			"phoneCode": "64"
 	},
 	{
-		englishShortName: "Myanmar",
-		frenchShortName: "Myanmar (le)",
-		alpha2Code: "MM",
-		// numeric: 104,
+			"code2": "NI",
+			"isoCode": "NI",
+			"name": "NICARAGUA",
+			"phoneCode": "505"
 	},
 	{
-		englishShortName: "Namibia",
-		frenchShortName: "Namibie (la)",
-		alpha2Code: "NA",
-		// numeric: 516,
+			"code2": "NE",
+			"isoCode": "NE",
+			"name": "NIGER",
+			"phoneCode": "227"
 	},
 	{
-		englishShortName: "Nauru",
-		frenchShortName: "Nauru",
-		alpha2Code: "NR",
-		// numeric: 520,
+			"code2": "NG",
+			"isoCode": "NG",
+			"name": "NIGERIA",
+			"phoneCode": "234"
 	},
 	{
-		englishShortName: "Nepal",
-		frenchShortName: "Népal (le)",
-		alpha2Code: "NP",
-		// numeric: 524,
+			"code2": "NU",
+			"isoCode": "NU",
+			"name": "NIUE",
+			"phoneCode": "683"
 	},
 	{
-		englishShortName: "Netherlands (the)",
-		frenchShortName: "Pays-Bas (les)",
-		alpha2Code: "NL",
-		// numeric: 528,
+			"code2": "MK",
+			"isoCode": "MK",
+			"name": "NORTH MACEDONIA",
+			"phoneCode": "389"
 	},
 	{
-		englishShortName: "New Caledonia",
-		frenchShortName: "Nouvelle-Calédonie (la)",
-		alpha2Code: "NC",
-		// numeric: 540,
+			"code2": "NO",
+			"isoCode": "NO",
+			"name": "NORWAY",
+			"phoneCode": "47"
 	},
 	{
-		englishShortName: "New Zealand",
-		frenchShortName: "Nouvelle-Zélande (la)",
-		alpha2Code: "NZ",
-		// numeric: 554,
+			"code2": "OM",
+			"isoCode": "OM",
+			"name": "OMAN",
+			"phoneCode": "968"
 	},
 	{
-		englishShortName: "Nicaragua",
-		frenchShortName: "Nicaragua (le)",
-		alpha2Code: "NI",
-		// numeric: 558,
+			"code2": "PK",
+			"isoCode": "PK",
+			"name": "PAKISTAN",
+			"phoneCode": "92"
 	},
 	{
-		englishShortName: "Niger (the)",
-		frenchShortName: "Niger (le)",
-		alpha2Code: "NE",
-		// numeric: 562,
+			"code2": "PW",
+			"isoCode": "PW",
+			"name": "PALAU",
+			"phoneCode": "680"
 	},
 	{
-		englishShortName: "Nigeria",
-		frenchShortName: "Nigéria (le)",
-		alpha2Code: "NG",
-		// numeric: 566,
+			"code2": "PA",
+			"isoCode": "PA",
+			"name": "PANAMA",
+			"phoneCode": "507"
 	},
 	{
-		englishShortName: "Niue",
-		frenchShortName: "Niue",
-		alpha2Code: "NU",
-		// numeric: 570,
+			"code2": "PG",
+			"isoCode": "PG",
+			"name": "PAPUA NEW GUINEA",
+			"phoneCode": "675"
 	},
 	{
-		englishShortName: "Norfolk Island",
-		frenchShortName: "Norfolk (l'Île)",
-		alpha2Code: "NF",
-		// numeric: 574,
+			"code2": "PY",
+			"isoCode": "PY",
+			"name": "PARAGUAY",
+			"phoneCode": "595"
 	},
 	{
-		englishShortName: "North Macedonia",
-		frenchShortName: "Macédoine du Nord (la)",
-		alpha2Code: "MK",
-		// numeric: 807,
+			"code2": "PE",
+			"isoCode": "PE",
+			"name": "PERU",
+			"phoneCode": "51"
 	},
 	{
-		englishShortName: "Northern Mariana Islands (the)",
-		frenchShortName: "Mariannes du Nord (les Îles)",
-		alpha2Code: "MP",
-		// numeric: 580,
+			"code2": "PH",
+			"isoCode": "PH",
+			"name": "PHILIPPINES, THE",
+			"phoneCode": "63"
 	},
 	{
-		englishShortName: "Norway",
-		frenchShortName: "Norvège (la)",
-		alpha2Code: "NO",
-		// numeric: 578,
+			"code2": "PL",
+			"isoCode": "PL",
+			"name": "POLAND",
+			"phoneCode": "48"
 	},
 	{
-		englishShortName: "Oman",
-		frenchShortName: "Oman",
-		alpha2Code: "OM",
-		// numeric: 512,
+			"code2": "PT",
+			"isoCode": "PT",
+			"name": "PORTUGAL",
+			"phoneCode": "351"
 	},
 	{
-		englishShortName: "Pakistan",
-		frenchShortName: "Pakistan (le)",
-		alpha2Code: "PK",
-		// numeric: 586,
+			"code2": "PR",
+			"isoCode": "PR",
+			"name": "PUERTO RICO",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Palau",
-		frenchShortName: "Palaos (les)",
-		alpha2Code: "PW",
-		// numeric: 585,
+			"code2": "QA",
+			"isoCode": "QA",
+			"name": "QATAR",
+			"phoneCode": "974"
 	},
 	{
-		englishShortName: "Palestine, State of",
-		frenchShortName: "Palestine, État de",
-		alpha2Code: "PS",
-		// numeric: 275,
+			"code2": "RE",
+			"isoCode": "RE",
+			"name": "REUNION, ISLAND OF",
+			"phoneCode": "262"
 	},
 	{
-		englishShortName: "Panama",
-		frenchShortName: "Panama (le)",
-		alpha2Code: "PA",
-		// numeric: 591,
+			"code2": "RO",
+			"isoCode": "RO",
+			"name": "ROMANIA",
+			"phoneCode": "40"
 	},
 	{
-		englishShortName: "Papua New Guinea",
-		frenchShortName: "Papouasie-Nouvelle-Guinée (la)",
-		alpha2Code: "PG",
-		// numeric: 598,
+			"code2": "RU",
+			"isoCode": "RU",
+			"name": "RUSSIAN FEDERATION, THE",
+			"phoneCode": "7"
 	},
 	{
-		englishShortName: "Paraguay",
-		frenchShortName: "Paraguay (le)",
-		alpha2Code: "PY",
-		// numeric: 600,
+			"code2": "RW",
+			"isoCode": "RW",
+			"name": "RWANDA",
+			"phoneCode": "250"
 	},
 	{
-		englishShortName: "Peru",
-		frenchShortName: "Pérou (le)",
-		alpha2Code: "PE",
-		// numeric: 604,
+			"code2": "SH",
+			"isoCode": "SH",
+			"name": "SAINT HELENA",
+			"phoneCode": "290"
 	},
 	{
-		englishShortName: "Philippines (the)",
-		frenchShortName: "Philippines (les)",
-		alpha2Code: "PH",
-		// numeric: 608,
+			"code2": "WS",
+			"isoCode": "WS",
+			"name": "SAMOA",
+			"phoneCode": "685"
 	},
 	{
-		englishShortName: "Pitcairn",
-		frenchShortName: "Pitcairn",
-		alpha2Code: "PN",
-		// numeric: 612,
+			"code2": "SM",
+			"isoCode": "SM",
+			"name": "SAN MARINO",
+			"phoneCode": "378"
 	},
 	{
-		englishShortName: "Poland",
-		frenchShortName: "Pologne (la)",
-		alpha2Code: "PL",
-		// numeric: 616,
+			"code2": "ST",
+			"isoCode": "ST",
+			"name": "SAO TOME AND PRINCIPE",
+			"phoneCode": "239"
 	},
 	{
-		englishShortName: "Portugal",
-		frenchShortName: "Portugal (le)",
-		alpha2Code: "PT",
-		// numeric: 620,
+			"code2": "SA",
+			"isoCode": "SA",
+			"name": "SAUDI ARABIA",
+			"phoneCode": "966"
 	},
 	{
-		englishShortName: "Puerto Rico",
-		frenchShortName: "Porto Rico",
-		alpha2Code: "PR",
-		// numeric: 630,
+			"code2": "SN",
+			"isoCode": "SN",
+			"name": "SENEGAL",
+			"phoneCode": "221"
 	},
 	{
-		englishShortName: "Qatar",
-		frenchShortName: "Qatar (le)",
-		alpha2Code: "QA",
-		// numeric: 634,
+			"code2": "RS",
+			"isoCode": "RS",
+			"name": "SERBIA, REPUBLIC OF",
+			"phoneCode": "381"
 	},
 	{
-		englishShortName: "Romania",
-		frenchShortName: "Roumanie (la)",
-		alpha2Code: "RO",
-		// numeric: 642,
+			"code2": "SC",
+			"isoCode": "SC",
+			"name": "SEYCHELLES",
+			"phoneCode": "248"
 	},
 	{
-		englishShortName: "Russian Federation (the)",
-		frenchShortName: "Russie (la Fédération de)",
-		alpha2Code: "RU",
-		// numeric: 643,
+			"code2": "SL",
+			"isoCode": "SL",
+			"name": "SIERRA LEONE",
+			"phoneCode": "232"
 	},
 	{
-		englishShortName: "Rwanda",
-		frenchShortName: "Rwanda (le)",
-		alpha2Code: "RW",
-		// numeric: 646,
+			"code2": "SG",
+			"isoCode": "SG",
+			"name": "SINGAPORE",
+			"phoneCode": "65"
 	},
 	{
-		englishShortName: "Réunion",
-		frenchShortName: "Réunion (La)",
-		alpha2Code: "RE",
-		// numeric: 638,
+			"code2": "SK",
+			"isoCode": "SK",
+			"name": "SLOVAKIA",
+			"phoneCode": "421"
 	},
 	{
-		englishShortName: "Saint Barthélemy",
-		frenchShortName: "Saint-Barthélemy",
-		alpha2Code: "BL",
-		// numeric: 652,
+			"code2": "SI",
+			"isoCode": "SI",
+			"name": "SLOVENIA",
+			"phoneCode": "386"
 	},
 	{
-		englishShortName: "Saint Helena, Ascension and Tristan da Cunha",
-		frenchShortName: "Sainte-Hélène, Ascension et Tristan da Cunha",
-		alpha2Code: "SH",
-		// numeric: 654,
+			"code2": "SB",
+			"isoCode": "SB",
+			"name": "SOLOMON ISLANDS",
+			"phoneCode": "677"
 	},
 	{
-		englishShortName: "Saint Kitts and Nevis",
-		frenchShortName: "Saint-Kitts-et-Nevis",
-		alpha2Code: "KN",
-		// numeric: 659,
+			"code2": "SO",
+			"isoCode": "SO",
+			"name": "SOMALIA",
+			"phoneCode": "252"
 	},
 	{
-		englishShortName: "Saint Lucia",
-		frenchShortName: "Sainte-Lucie",
-		alpha2Code: "LC",
-		// numeric: 662,
+			"code2": "XS",	"isoCode": "XS",
+			"name": "SOMALILAND, REP OF (NORTH SOMALIA)",
+			"phoneCode": "252"
 	},
 	{
-		englishShortName: "Saint Martin (French part)",
-		frenchShortName: "Saint-Martin (partie française)",
-		alpha2Code: "MF",
-		// numeric: 663,
+			"code2": "ZA",
+			"isoCode": "ZA",
+			"name": "SOUTH AFRICA",
+			"phoneCode": "27"
 	},
 	{
-		englishShortName: "Saint Pierre and Miquelon",
-		frenchShortName: "Saint-Pierre-et-Miquelon",
-		alpha2Code: "PM",
-		// numeric: 666,
+			"code2": "SS",
+			"isoCode": "SS",
+			"name": "SOUTH SUDAN",
+			"phoneCode": "211"
 	},
 	{
-		englishShortName: "Saint Vincent and the Grenadines",
-		frenchShortName: "Saint-Vincent-et-les Grenadines",
-		alpha2Code: "VC",
-		// numeric: 670,
+			"code2": "ES",
+			"isoCode": "ES",
+			"name": "SPAIN",
+			"phoneCode": "34"
 	},
 	{
-		englishShortName: "Samoa",
-		frenchShortName: "Samoa (le)",
-		alpha2Code: "WS",
-		// numeric: 882,
+			"code2": "LK",
+			"isoCode": "LK",
+			"name": "SRI LANKA",
+			"phoneCode": "94"
 	},
 	{
-		englishShortName: "San Marino",
-		frenchShortName: "Saint-Marin",
-		alpha2Code: "SM",
-		// numeric: 674,
+			"code2": "XY",	"isoCode": "BL",
+			"name": "ST. BARTHELEMY",
+			"phoneCode": "590"
 	},
 	{
-		englishShortName: "Sao Tome and Principe",
-		frenchShortName: "Sao Tomé-et-Principe",
-		alpha2Code: "ST",
-		// numeric: 678,
+			"code2": "XE",	"isoCode": "BQ",
+			"name": "ST. EUSTATIUS",
+			"phoneCode": "599"
 	},
 	{
-		englishShortName: "Saudi Arabia",
-		frenchShortName: "Arabie saoudite (l')",
-		alpha2Code: "SA",
-		// numeric: 682,
+			"code2": "KN",
+			"isoCode": "KN",
+			"name": "ST. KITTS",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Senegal",
-		frenchShortName: "Sénégal (le)",
-		alpha2Code: "SN",
-		// numeric: 686,
+			"code2": "LC",
+			"isoCode": "LC",
+			"name": "ST. LUCIA",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Serbia",
-		frenchShortName: "Serbie (la)",
-		alpha2Code: "RS",
-		// numeric: 688,
+			"code2": "XM",	"isoCode": "MF",
+			"name": "ST. MAARTEN",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Seychelles",
-		frenchShortName: "Seychelles (les)",
-		alpha2Code: "SC",
-		// numeric: 690,
+			"code2": "VC",
+			"isoCode": "VC",
+			"name": "ST. VINCENT",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Sierra Leone",
-		frenchShortName: "Sierra Leone (la)",
-		alpha2Code: "SL",
-		// numeric: 694,
+			"code2": "SD",
+			"isoCode": "SD",
+			"name": "SUDAN",
+			"phoneCode": "249"
 	},
 	{
-		englishShortName: "Singapore",
-		frenchShortName: "Singapour",
-		alpha2Code: "SG",
-		// numeric: 702,
+			"code2": "SR",
+			"isoCode": "SR",
+			"name": "SURINAME",
+			"phoneCode": "597"
 	},
 	{
-		englishShortName: "Sint Maarten (Dutch part)",
-		frenchShortName: "Saint-Martin (partie néerlandaise)",
-		alpha2Code: "SX",
-		// numeric: 534,
+			"code2": "SZ",
+			"isoCode": "SZ",
+			"name": "SWAZILAND",
+			"phoneCode": "268"
 	},
 	{
-		englishShortName: "Slovakia",
-		frenchShortName: "Slovaquie (la)",
-		alpha2Code: "SK",
-		// numeric: 703,
+			"code2": "SE",
+			"isoCode": "SE",
+			"name": "SWEDEN",
+			"phoneCode": "46"
 	},
 	{
-		englishShortName: "Slovenia",
-		frenchShortName: "Slovénie (la)",
-		alpha2Code: "SI",
-		// numeric: 705,
+			"code2": "CH",
+			"isoCode": "CH",
+			"name": "SWITZERLAND",
+			"phoneCode": "41"
 	},
 	{
-		englishShortName: "Solomon Islands",
-		frenchShortName: "Salomon (les Îles)",
-		alpha2Code: "SB",
-		// numeric: 90,
+			"code2": "SY",
+			"isoCode": "SY",
+			"name": "SYRIA",
+			"phoneCode": "963"
 	},
 	{
-		englishShortName: "Somalia",
-		frenchShortName: "Somalie (la)",
-		alpha2Code: "SO",
-		// numeric: 706,
+			"code2": "PF",
+			"isoCode": "PF",
+			"name": "TAHITI",
+			"phoneCode": "689"
 	},
 	{
-		englishShortName: "South Africa",
-		frenchShortName: "Afrique du Sud (l')",
-		alpha2Code: "ZA",
-		// numeric: 710,
+			"code2": "TW",
+			"isoCode": "TW",
+			"name": "TAIWAN",
+			"phoneCode": "886"
 	},
 	{
-		englishShortName: "South Georgia and the South Sandwich Islands",
-		frenchShortName: "Géorgie du Sud-et-les Îles Sandwich du Sud (la)",
-		alpha2Code: "GS",
-		// numeric: 239,
+			"code2": "TJ",
+			"isoCode": "TJ",
+			"name": "TAJIKISTAN",
+			"phoneCode": "992"
 	},
 	{
-		englishShortName: "South Sudan",
-		frenchShortName: "Soudan du Sud (le)",
-		alpha2Code: "SS",
-		// numeric: 728,
+			"code2": "TZ",
+			"isoCode": "TZ",
+			"name": "TANZANIA",
+			"phoneCode": "255"
 	},
 	{
-		englishShortName: "Spain",
-		frenchShortName: "Espagne (l')",
-		alpha2Code: "ES",
-		// numeric: 724,
+			"code2": "TH",
+			"isoCode": "TH",
+			"name": "THAILAND",
+			"phoneCode": "66"
 	},
 	{
-		englishShortName: "Sri Lanka",
-		frenchShortName: "Sri Lanka",
-		alpha2Code: "LK",
-		// numeric: 144,
+			"code2": "TL",
+			"isoCode": "TL",
+			"name": "TIMOR LESTE",
+			"phoneCode": "670"
 	},
 	{
-		englishShortName: "Sudan (the)",
-		frenchShortName: "Soudan (le)",
-		alpha2Code: "SD",
-		// numeric: 729,
+			"code2": "TG",
+			"isoCode": "TG",
+			"name": "TOGO",
+			"phoneCode": "228"
 	},
 	{
-		englishShortName: "Suriname",
-		frenchShortName: "Suriname (le)",
-		alpha2Code: "SR",
-		// numeric: 740,
+			"code2": "TO",
+			"isoCode": "TO",
+			"name": "TONGA",
+			"phoneCode": "676"
 	},
 	{
-		englishShortName: "Svalbard and Jan Mayen",
-		frenchShortName: "Svalbard et l'Île Jan Mayen (le)",
-		alpha2Code: "SJ",
-		// numeric: 744,
+			"code2": "TT",
+			"isoCode": "TT",
+			"name": "TRINIDAD AND TOBAGO",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Sweden",
-		frenchShortName: "Suède (la)",
-		alpha2Code: "SE",
-		// numeric: 752,
+			"code2": "TN",
+			"isoCode": "TN",
+			"name": "TUNISIA",
+			"phoneCode": "216"
 	},
 	{
-		englishShortName: "Switzerland",
-		frenchShortName: "Suisse (la)",
-		alpha2Code: "CH",
-		// numeric: 756,
+			"code2": "TR",
+			"isoCode": "TR",
+			"name": "TURKEY",
+			"phoneCode": "90"
 	},
 	{
-		englishShortName: "Syrian Arab Republic (the)",
-		frenchShortName: "République arabe syrienne (la)",
-		alpha2Code: "SY",
-		// numeric: 760,
+			"code2": "TM",
+			"isoCode": "TM",
+			"name": "TURKMENISTAN",
+			"phoneCode": "993"
 	},
 	{
-		englishShortName: "Taiwan (Province of China)",
-		frenchShortName: "Taïwan (Province de Chine)",
-		alpha2Code: "TW",
-		// numeric: 158,
+			"code2": "TC",
+			"isoCode": "TC",
+			"name": "TURKS AND CAICOS ISLANDS",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Tajikistan",
-		frenchShortName: "Tadjikistan (le)",
-		alpha2Code: "TJ",
-		// numeric: 762,
+			"code2": "TV",
+			"isoCode": "TV",
+			"name": "TUVALU",
+			"phoneCode": "688"
 	},
 	{
-		englishShortName: "Tanzania, the United Republic of",
-		frenchShortName: "Tanzanie (la République-Unie de)",
-		alpha2Code: "TZ",
-		// numeric: 834,
+			"code2": "UG",
+			"isoCode": "UG",
+			"name": "UGANDA",
+			"phoneCode": "256"
 	},
 	{
-		englishShortName: "Thailand",
-		frenchShortName: "Thaïlande (la)",
-		alpha2Code: "TH",
-		// numeric: 764,
+			"code2": "UA",
+			"isoCode": "UA",
+			"name": "UKRAINE",
+			"phoneCode": "380"
 	},
 	{
-		englishShortName: "Timor-Leste",
-		frenchShortName: "Timor-Leste (le)",
-		alpha2Code: "TL",
-		// numeric: 626,
+			"code2": "AE",
+			"isoCode": "AE",
+			"name": "UNITED ARAB EMIRATES",
+			"phoneCode": "971"
 	},
 	{
-		englishShortName: "Togo",
-		frenchShortName: "Togo (le)",
-		alpha2Code: "TG",
-		// numeric: 768,
+			"code2": "GB",
+			"isoCode": "GB",
+			"name": "UNITED KINGDOM",
+			"phoneCode": "44"
 	},
 	{
-		englishShortName: "Tokelau",
-		frenchShortName: "Tokelau (les)",
-		alpha2Code: "TK",
-		// numeric: 772,
+			"code2": "US",
+			"isoCode": "US",
+			"name": "UNITED STATES OF AMERICA",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Tonga",
-		frenchShortName: "Tonga (les)",
-		alpha2Code: "TO",
-		// numeric: 776,
+			"code2": "UY",
+			"isoCode": "UY",
+			"name": "URUGUAY",
+			"phoneCode": "598"
 	},
 	{
-		englishShortName: "Trinidad and Tobago",
-		frenchShortName: "Trinité-et-Tobago (la)",
-		alpha2Code: "TT",
-		// numeric: 780,
+			"code2": "UZ",
+			"isoCode": "UZ",
+			"name": "UZBEKISTAN",
+			"phoneCode": "998"
 	},
 	{
-		englishShortName: "Tunisia",
-		frenchShortName: "Tunisie (la)",
-		alpha2Code: "TN",
-		// numeric: 788,
+			"code2": "VU",
+			"isoCode": "VU",
+			"name": "VANUATU",
+			"phoneCode": "678"
 	},
 	{
-		englishShortName: "Turkey",
-		frenchShortName: "Turquie (la)",
-		alpha2Code: "TR",
-		// numeric: 792,
+			"code2": "VA",
+			"isoCode": "VA",
+			"name": "VATICAN CITY STATE",
+			"phoneCode": "379"
 	},
 	{
-		englishShortName: "Turkmenistan",
-		frenchShortName: "Turkménistan (le)",
-		alpha2Code: "TM",
-		// numeric: 795,
+			"code2": "VE",
+			"isoCode": "VE",
+			"name": "VENEZUELA",
+			"phoneCode": "58"
 	},
 	{
-		englishShortName: "Turks and Caicos Islands (the)",
-		frenchShortName: "Turks-et-Caïcos (les Îles)",
-		alpha2Code: "TC",
-		// numeric: 796,
+			"code2": "VN",
+			"isoCode": "VN",
+			"name": "VIETNAM",
+			"phoneCode": "84"
 	},
 	{
-		englishShortName: "Tuvalu",
-		frenchShortName: "Tuvalu (les)",
-		alpha2Code: "TV",
-		// numeric: 798,
+			"code2": "VG",
+			"isoCode": "VG",
+			"name": "VIRGIN ISLANDS (BRITISH)",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Uganda",
-		frenchShortName: "Ouganda (l')",
-		alpha2Code: "UG",
-		// numeric: 800,
+			"code2": "VI",
+			"isoCode": "VI",
+			"name": "VIRGIN ISLANDS (US)",
+			"phoneCode": "1"
 	},
 	{
-		englishShortName: "Ukraine",
-		frenchShortName: "Ukraine (l')",
-		alpha2Code: "UA",
-		// numeric: 804,
+			"code2": "YE",
+			"isoCode": "YE",
+			"name": "YEMEN, REPUBLIC OF",
+			"phoneCode": "967"
 	},
 	{
-		englishShortName: "United Arab Emirates (the)",
-		frenchShortName: "Émirats arabes unis (les)",
-		alpha2Code: "AE",
-		// numeric: 784,
+			"code2": "ZM",
+			"isoCode": "ZM",
+			"name": "ZAMBIA",
+			"phoneCode": "260"
 	},
 	{
-		englishShortName:
-			"United Kingdom of Great Britain and Northern Ireland (the)",
-		frenchShortName:
-			"Royaume-Uni de Grande-Bretagne et d'Irlande du Nord (le)",
-		alpha2Code: "GB",
-		// numeric: 826,
-	},
-	{
-		englishShortName: "United States Minor Outlying Islands (the)",
-		frenchShortName: "Îles mineures éloignées des États-Unis (les)",
-		alpha2Code: "UM",
-		// numeric: 581,
-	},
-	{
-		englishShortName: "United States of America (the)",
-		frenchShortName: "États-Unis d'Amérique (les)",
-		alpha2Code: "US",
-		// numeric: 840,
-	},
-	{
-		englishShortName: "Uruguay",
-		frenchShortName: "Uruguay (l')",
-		alpha2Code: "UY",
-		// numeric: 858,
-	},
-	{
-		englishShortName: "Uzbekistan",
-		frenchShortName: "Ouzbékistan (l')",
-		alpha2Code: "UZ",
-		// numeric: 860,
-	},
-	{
-		englishShortName: "Vanuatu",
-		frenchShortName: "Vanuatu (le)",
-		alpha2Code: "VU",
-		// numeric: 548,
-	},
-	{
-		englishShortName: "Venezuela (Bolivarian Republic of)",
-		frenchShortName: "Venezuela (République bolivarienne du)",
-		alpha2Code: "VE",
-		// numeric: 862,
-	},
-	{
-		englishShortName: "Viet Nam",
-		frenchShortName: "Viet Nam (le)",
-		alpha2Code: "VN",
-		// numeric: 704,
-	},
-	{
-		englishShortName: "Virgin Islands (British)",
-		frenchShortName: "Vierges britanniques (les Îles)",
-		alpha2Code: "VG",
-		// numeric: 92,
-	},
-	{
-		englishShortName: "Virgin Islands (U.S.)",
-		frenchShortName: "Vierges des États-Unis (les Îles)",
-		alpha2Code: "VI",
-		// numeric: 850,
-	},
-	{
-		englishShortName: "Wallis and Futuna",
-		frenchShortName: "Wallis-et-Futuna",
-		alpha2Code: "WF",
-		// numeric: 876,
-	},
-	{
-		englishShortName: "Western Sahara*",
-		frenchShortName: "Sahara occidental (le)*",
-		alpha2Code: "EH",
-		// numeric: 732,
-	},
-	{
-		englishShortName: "Yemen",
-		frenchShortName: "Yémen (le)",
-		alpha2Code: "YE",
-		// numeric: 887,
-	},
-	{
-		englishShortName: "Zambia",
-		frenchShortName: "Zambie (la)",
-		alpha2Code: "ZM",
-		// numeric: 894,
-	},
-	{
-		englishShortName: "Zimbabwe",
-		frenchShortName: "Zimbabwe (le)",
-		alpha2Code: "ZW",
-		// numeric: 716,
-	},
-	{
-		englishShortName: "Åland Islands",
-		frenchShortName: "Åland(les Îles)",
-		alpha2Code: "AX",
-		// numeric: 248,
-	},
+			"code2": "ZW",
+			"isoCode": "ZW",
+			"name": "ZIMBABWE",
+			"phoneCode": "263"
+	}
 ];
+
+export const countryOptions = ISO3166_Countries.map(c => ({value: c.code2, name: c.name}));

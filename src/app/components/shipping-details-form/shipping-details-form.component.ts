@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import {
 	FormBuilder,
 	FormControl,
@@ -16,6 +16,7 @@ import { TrimTextDirective } from "../trim-text.directive";
 	imports: [ReactiveFormsModule, NgFor, NgIf, DestinationHeaderComponent, TrimTextDirective],
 	selector: "app-shipping-details-form",
 	templateUrl: "./shipping-details-form.component.html",
+	changeDetection: ChangeDetectionStrategy.OnPush
 	// styleUrls: ["./shipping-details-form.component.scss"],
 })
 export class ShipperDetailsFormComponent implements OnInit {

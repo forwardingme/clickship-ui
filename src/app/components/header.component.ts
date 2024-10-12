@@ -1,10 +1,11 @@
 import { NgIf, Location } from '@angular/common';
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [NgIf],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
       <div class="col-md-3 mb-2 mb-md-0">
@@ -21,7 +22,7 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
         <a class="me-2" (click)="openInfo()">
           <img src="assets/images/info.svg" alt="Infomation" />
         </a>
-        <a class="me-2" *ngIf="showClose" (click)="close()">
+        <a class="me-2" *ngIf="showClose" (click)="exit()">
           <img src="assets/images/x.svg" alt="Close" />
         </a>
       </div>
@@ -46,7 +47,7 @@ export class HeaderComponent {
   @Input() title = '';
   @Input() showClose = false;
   @Input() showPrev = true;
-  @Output() cloase = new EventEmitter();
+  @Output() close = new EventEmitter();
   private location = inject(Location);
 
   constructor() {}
@@ -59,7 +60,7 @@ export class HeaderComponent {
     console.log('info');
   }
 
-  close() {
-    this.cloase.emit();
+  exit() {
+    this.close.emit();
   }
 }

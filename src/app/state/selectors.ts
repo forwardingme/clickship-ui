@@ -55,7 +55,7 @@ export const parcelSelector = createSelector(
   (feature): Parcel => {
     const { isCustomsDeclarable, shipperDetails, receiverDetails, packages, unitOfMeasurement, pickupDetails, parcelType, shipmentTrackingNumber } = feature;
     return {
-      pickupDetailsId: pickupDetails?.id ?? null,
+      pickupDetailsId: pickupDetails?._id ?? null,
       shipperDetails: {
         ...shipperDetails,
         postalCode: !shipperDetails.postalCode && !!pickupDetails?.postalCode ? pickupDetails?.postalCode : shipperDetails.postalCode,

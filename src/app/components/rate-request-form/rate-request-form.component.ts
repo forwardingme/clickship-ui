@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
 	FormArray,
 	FormBuilder,
@@ -7,7 +7,7 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
-import { ISO3166_Countries, ISO_Country } from '../../models/country';
+import { countryOptions } from '../../models/country';
 import { NgFor, NgIf } from '@angular/common';
 import { Parcel } from '../../models/parcel';
 import { CANADA_CODE, ParcelType } from '../../models/shared.models';
@@ -16,12 +16,14 @@ import { RateResponse } from '../../models/rateResponse';
 import { initialPackage } from '../../state/reducer';
 import { DestinationHeaderComponent } from '../destination-header.component';
 import { TrimTextDirective } from '../trim-text.directive';
+import { DropdownComponent } from '../dropdown.component';
 
 @Component({
 	standalone: true,
-	imports: [ReactiveFormsModule, NgFor, NgIf, DestinationHeaderComponent, TrimTextDirective],
+	imports: [ReactiveFormsModule, NgFor, NgIf, DestinationHeaderComponent, TrimTextDirective, DropdownComponent],
 	selector: 'app-rate-request-form',
 	templateUrl: './rate-request-form.component.html',
+	changeDetection: ChangeDetectionStrategy.OnPush
 	// styleUrls: ["./rate-request-form.component.scss"],
 })
 export class RateRequestFormComponent implements OnInit {
@@ -49,24 +51,25 @@ export class RateRequestFormComponent implements OnInit {
 	@Input() domestic: boolean | null = false;
 	@Output() submitForm = new EventEmitter<Parcel>();
 	@Output() resetForm = new EventEmitter();
-	parcelType: ParcelType | null = null;
+	countries = countryOptions;
+	private parcelType: ParcelType | null = null;
 	private _rateResponse: RateResponse | null = null;
 
 	constructor(private formBuilder: FormBuilder) {
 		this.form = formBuilder.group({
 			pickupDetailsId: new FormControl(''),
-			parcelType: new FormControl(''),
+			// parcelType: new FormControl(''),
 			shipperDetails: new FormGroup({
 				cityName: new FormControl(''),
 				postalCode: new FormControl(''),
 				provinceCode: new FormControl('', Validators.minLength(2)),
-				countryCode: new FormControl('', Validators.minLength(2)),
+				countryCode: new FormControl('', [Validators.minLength(2), Validators.maxLength(2)]),
 			}),
 			receiverDetails: new FormGroup({
 				cityName: new FormControl(''),
 				postalCode: new FormControl(''),
 				provinceCode: new FormControl('', Validators.minLength(2)),
-				countryCode: new FormControl('', Validators.minLength(2)),
+				countryCode: new FormControl('', [Validators.minLength(2), Validators.maxLength(2)]),
 			}),
 			packages: formBuilder.array([]),
 		});
@@ -79,14 +82,6 @@ export class RateRequestFormComponent implements OnInit {
 
 	get packages(): Package[] {
 		return this.form.controls['packages'].value;
-	}
-
-	get countries(): ISO_Country[] {
-		if (this.domestic)
-			return ISO3166_Countries.filter(
-				(c) => c.alpha2Code === CANADA_CODE
-			);
-		return ISO3166_Countries;
 	}
 
 	createPackageFormGroup(packages: Package[]) {
@@ -130,16 +125,12 @@ export class RateRequestFormComponent implements OnInit {
 		// this.appRef.tick();
 	}
 
-	trackByFn(index: number, item: ISO_Country) {
-		return item.alpha2Code;
-	}
-
 	trackByIndex(index: number, item: Package) {
 		return index;
 	}
 
 	onSubmit() {
-		this.submitForm.emit(this.form.value);
+		this.submitForm.emit({...this.form.value, parcelType: this.parcelType});
 	}
 	onReset() {
 		this.resetForm.emit();

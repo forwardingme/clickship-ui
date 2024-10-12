@@ -33,5 +33,17 @@ export enum Tab {
 }
 
 export interface PickupDetails extends CustomerDetails {
-	id: string | null;
+	_id: string | null;
+}
+
+export interface Option {
+	value: string;
+	name: string;
+}
+
+export interface AddressBookRequest {
+	countryCode: string;
+	zipCode?: string;
+	city?: string;
+	stateName?: string;
 }

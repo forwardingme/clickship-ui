@@ -2,7 +2,16 @@
 	<div class="col-md-6">
 		<app-destination-header prefix="From" [domestic]="true"></app-destination-header>
 		<div class="row g-3" formGroupName="shipperDetails">
-			<div class="col-12">
+			<div class="col-12 d-none">
+				<select
+					formControlName="countryCode"
+					class="form-select"
+					required
+				>
+					<option value="CA">Canada</option>
+				</select>
+			</div>
+			<div class="col-6">
 				<input
 					class="form-control"
 					type="text"
@@ -26,7 +35,7 @@
 					appTrimText
 				/>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<input
 					class="form-control"
 					type="text"
@@ -36,16 +45,6 @@
           maxlength="35"
 					appTrimText
 				/>
-			</div>
-			<div class="col-12">
-				<select
-					formControlName="countryCode"
-					class="form-select"
-					required
-				>
-					<option value="" disabled selected>Choose a Country</option>
-					<option value="CA">Canada</option>
-				</select>
 			</div>
 		</div>
 	</div>
@@ -53,6 +52,13 @@
 		<app-destination-header prefix="To" [domestic]="domestic"></app-destination-header>
 		<div class="row g-3">
 			<div class="col-12">
+				<app-dropdown placeholder="Country" 
+					[options]="countries"	
+					formControlName="countryCode" 
+					[required]="true"
+				/>
+			</div>
+			<div class="col-6">
 				<input
 					class="form-control"
 					type="text"
@@ -76,7 +82,7 @@
 					appTrimText
 				/>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<input
 					class="form-control"
 					type="text"
@@ -86,21 +92,6 @@
           maxlength="35"
 					appTrimText
 				/>
-			</div>
-			<div class="col-12">
-				<select
-					formControlName="countryCode"
-					class="form-select"
-					required
-				>
-					<option value="" disabled selected>Choose a Country</option>
-					<option
-						*ngFor="let c of countries; trackBy: trackByFn"
-						[ngValue]="c.alpha2Code"
-					>
-						{{ c.englishShortName }}
-					</option>
-				</select>
 			</div>
 		</div>
 	</div>

@@ -7,7 +7,7 @@ import { ParcelActions } from './actions';
 import { Store } from '@ngrx/store';
 import { createShipmentRequestSelector, isValidPickupAddressSelector, parcelSelector } from './selectors';
 import { Router } from '@angular/router';
-const PICKUP_ADDRESS = 'pickup-address';
+export const PICKUP_ADDRESS = 'pickup-address';
 
 @Injectable()
 export class ParcelEffects {
@@ -26,11 +26,14 @@ export class ParcelEffects {
 							return ParcelActions.setError({ error: { message: 'No matched product'}});
 						}
 
-						const rate = res.products[0]?.totalPrice[0]?.price;
+						const rate = res.products[0]?.totalPriceBreakdown[0]?.priceBreakdown?.find((pb: any) => pb?.typeCode ==='STDIS');
+						if (!rate?.price) {
+							return ParcelActions.setError({ error: { message: 'No Rate found'}});
+						}
 						const estimatedTransitDays = res.products[0]?.deliveryCapabilities?.totalTransitDays;
 						return ParcelActions.setRateRequest({
 							rateResponse: {
-								rate,
+								rate: rate?.price,
 								estimatedTransitDays,
 							},
 						})
@@ -86,13 +89,13 @@ export class ParcelEffects {
 		)
 	);
 
-	savePickupAddress$ = createEffect(() =>
+	searchMachineById = createEffect(() =>
 		this.actions$.pipe(
-			ofType(ParcelActions.savePickupDetails),
+			ofType(ParcelActions.seachMachine),
 			switchMap((action) => {
-				return this.parcelService.savePickupAddress(action.pickupDetails).pipe(
+				return this.parcelService.searchMichineById(action.id).pipe(
 					mergeMap((res) => {
-						const pickupDetails = {...action.pickupDetails, id: res._id};
+						const pickupDetails = { ...res.address, _id: res._id };
 						localStorage.setItem(PICKUP_ADDRESS, JSON.stringify(pickupDetails));
 						return from([
 							ParcelActions.setPickupDetails({pickupDetails}),
@@ -103,6 +106,24 @@ export class ParcelEffects {
 			})
 		)
 	);
+
+	// savePickupAddress$ = createEffect(() =>
+	// 	this.actions$.pipe(
+	// 		ofType(ParcelActions.savePickupDetails),
+	// 		switchMap((action) => {
+	// 			return this.parcelService.savePickupAddress(action.pickupDetails).pipe(
+	// 				mergeMap((res) => {
+	// 					const pickupDetails = {...action.pickupDetails, id: res._id};
+	// 					localStorage.setItem(PICKUP_ADDRESS, JSON.stringify(pickupDetails));
+	// 					return from([
+	// 						ParcelActions.setPickupDetails({pickupDetails}),
+	// 					]);
+	// 				}),
+	// 				catchError(() => EMPTY)
+	// 			);
+	// 		})
+	// 	)
+	// );
 
 	constructor() {}
 }

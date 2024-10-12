@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { HeaderComponent } from '../components/header.component';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
@@ -15,7 +15,8 @@ import { RateResponse } from '../models/rateResponse';
   standalone: true,
   imports: [HeaderComponent, CommonModule, RateRequestFormComponent],
   templateUrl: './rate-request.component.html',
-  styleUrls: ['./rate-request.component.scss']
+  styleUrls: ['./rate-request.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RateRequestComponent implements OnInit{
   title = 'Get a Shipping Rate';

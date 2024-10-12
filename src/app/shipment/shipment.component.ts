@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ParcelActions } from '../state/actions';
@@ -13,9 +13,10 @@ import { SafePipe } from '../components/safe.pipe';
   selector: 'app-shipment',
   standalone: true,
   imports: [HeaderComponent, FooterComponent, CommonModule, SafePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">
-      <app-header title="Shipment" [showClose]="true" [showPrev]="false"></app-header>
+      <app-header title="Shipment" [showClose]="true" [showPrev]="false" (close)="reset()"></app-header>
       <div class="content">
         <ng-container *ngIf="!!shipmentTrackingNumber">
           <div>Shipment Tracking Number: {{shipmentTrackingNumber}}</div>
@@ -61,5 +62,10 @@ export class ShipmentComponent {
   constructor() {
     this.documents$ = this.store.select(documentsSelector);
     this.shipmentTrackingNumber = this.route.snapshot.params['trackingNumber'];
+  }
+
+  reset() {
+    this.store.dispatch(ParcelActions.reset());
+    this.router.navigateByUrl('');
   }
 }

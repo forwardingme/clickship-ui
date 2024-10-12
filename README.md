@@ -1,5 +1,9 @@
 # Client
+node -v
+v20.16.0
 
+npm -v 
+10.8.1
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.4.
 
 ## Development server

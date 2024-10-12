@@ -1,36 +1,28 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { HeaderComponent } from '../components/header.component';
-import { FooterComponent } from '../components/footer.component';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { CustomerDetails } from '../models/customerDetails';
 import { pickupAddressSelector } from '../state/selectors';
 import { PickupAddressFormComponent } from '../components/pickup-address-form.component';
 import { ParcelActions } from '../state/actions';
+import { NavbarComponent } from '../components/navbar/navbar.component';
 
 @Component({
 	selector: 'app-pickup-address',
 	standalone: true,
 	imports: [
 		PickupAddressFormComponent,
-		HeaderComponent,
-		FooterComponent,
+		NavbarComponent,
+		// FooterComponent,
 		CommonModule,
 	],
-	template: `
-		<div class="container">
-			<app-header title="Pickup Address"></app-header>
-			<div class="content">
-				<app-pickup-address-form [address]="pickupAddress$ | async" (submitForm)="onSubmit($event)">
-				</app-pickup-address-form>
-			</div>
-			<app-footer></app-footer>
-		</div>
-	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	templateUrl: './settings.component.html',
 })
-export class PickupAddressComponent {
+export class SettingsComponent {
 	pickupAddress$: Observable<CustomerDetails | null>;
+	accordion = [true, false];
 
 	private store = inject(Store);
 	constructor() {
@@ -38,6 +30,17 @@ export class PickupAddressComponent {
 	}
 
 	onSubmit(pickupDetails: CustomerDetails) {
-		this.store.dispatch(ParcelActions.savePickupDetails({ pickupDetails }));
+		// this.store.dispatch(ParcelActions.savePickupDetails({ pickupDetails }));
+	}
+
+	onSearch(id: string) {
+		this.store.dispatch(ParcelActions.seachMachine({ id }));
+	}
+
+	toggle(idx: number) {
+		this.accordion = this.accordion.map((v, i) => {
+			if (i === idx) return !v;
+			return false;
+		})
 	}
 }

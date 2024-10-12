@@ -55,7 +55,7 @@ export const initState: State = {
   receiverDetails: initialCustomerDetails,
   pickupDetails: {
     ...initialCustomerDetails,
-    id: null,
+    _id: null,
     countryCode: CANADA_CODE,
     provinceCode: 'QC',
   },
@@ -71,6 +71,7 @@ export const initState: State = {
 }
 
 export const parcelReducer = createReducer(initState,
+  on(ParcelActions.reset, (state) => ({...initState, pickupDetails: state.pickupDetails})),
   on(ParcelActions.setLanguage, (state, { language }) => ({...state, language, step: 2, rateResponse: null })),
   on(ParcelActions.setParcelType, (state, { parcelType }) => ({...state, parcelType, step: 3, rateResponse: null })),
   on(ParcelActions.setDestination, (state, { destination }) => {
@@ -89,7 +90,7 @@ export const parcelReducer = createReducer(initState,
   on(ParcelActions.setRateRequest, (state, { rateResponse }) => ({...state, loading: false, rateResponse})),
   on(ParcelActions.confirmDetails, (state, { parcel}) => ({ ...state, ...parcel, confirmed: true })),
   on(ParcelActions.createShipment, (state) => ({...state, loading: true })),
-  on(ParcelActions.savePickupDetails, (state) => ({...state, loading: true })),
+  on(ParcelActions.seachMachine, (state) => ({...state, loading: true })),
   on(ParcelActions.setPickupDetails, (state, { pickupDetails }) => ({...state, pickupDetails, loading: false })),
   on(ParcelActions.setError, (state, { error }) => ({...state, loading: false })),
   on(ParcelActions.createShipemntSuccess, (state, { documents, shipmentTrackingNumber }) => ({...state, documents, shipmentTrackingNumber, loading: false })),

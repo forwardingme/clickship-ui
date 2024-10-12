@@ -1,14 +1,19 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ParcelActions } from '../state/actions';
 // import { stepSelector } from '../state/selectors';
 import { Router } from '@angular/router';
 import { FooterComponent } from "../components/footer.component";
+import { Observable } from 'rxjs';
+import { isValidPickupAddressSelector } from '../state/selectors';
+import { CommonModule } from '@angular/common';
+import { ModalComponent } from '../components/modal/modal.component';
 
 @Component({
   selector: 'app-start',
   standalone: true,
-  imports: [FooterComponent],
+  imports: [FooterComponent, ModalComponent, CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
   <div class="container text-center">
     <div class="header">
@@ -35,13 +40,20 @@ import { FooterComponent } from "../components/footer.component";
     </div>
     <app-footer></app-footer>
   </div>
+  <app-modal title="Machine ID Not Set" [allowClose]="false" *ngIf="!(isValidPickAddress$ | async)">
+    <div body>Please contact the owner</div>
+    <div footer><button type="button" class="btn btn-secondary" data-bs-dismiss="modal" disabled>Close</button></div>
+  </app-modal>
   `,
  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
   private store = inject(Store);
   private router = inject(Router);
-  constructor() {}
+  isValidPickAddress$: Observable<boolean>;
+  constructor() {
+    this.isValidPickAddress$ = this.store.select(isValidPickupAddressSelector);
+  }
 
   selectLang(language: string) {
     this.store.dispatch(ParcelActions.setLanguage({language}));

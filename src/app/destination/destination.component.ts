@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { DestinationEnum } from '../models/shared.models';
@@ -11,6 +11,7 @@ import { IconsComponent } from '../components/icons.component';
   selector: 'app-destination',
   standalone: true,
   imports: [HeaderComponent, FooterComponent, IconsComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
    <div class="container">
     <app-header title="Select Destination"></app-header>

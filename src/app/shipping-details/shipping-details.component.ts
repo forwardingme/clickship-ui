@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { HeaderComponent } from '../components/header.component';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
@@ -14,7 +14,8 @@ import { ParcelActions } from '../state/actions';
   standalone: true,
   imports: [HeaderComponent, CommonModule, ShipperDetailsFormComponent],
   templateUrl: './shipping-details.component.html',
-  styleUrls: ['./shipping-details.component.scss']
+  styleUrls: ['./shipping-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShippingDetailsComponent implements OnInit{
   parcel$: Observable<Parcel | null>;

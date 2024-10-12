@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { loadingSelector } from './state/selectors';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ParcelActions } from './state/actions';
 
 @Component({

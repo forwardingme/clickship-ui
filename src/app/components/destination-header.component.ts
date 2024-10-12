@@ -1,10 +1,11 @@
 import { NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-destination-header',
   standalone: true,
   imports: [NgIf],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="d-flex flex-wrap align-items-center p-2 mb-2 title">
       <img *ngIf="domestic" src="assets/images/canada.svg" width="45" height="45" alt="Canada">
