@@ -1,9 +1,10 @@
 import { createReducer, on } from "@ngrx/store";
-import { CANADA_CODE, DestinationEnum, LanguageEnum, ParcelType, PickupDetails, Tab, UnitOfMeasurement } from "../models/shared.models";
+import { AddressBook, CANADA_CODE, DestinationEnum, LanguageEnum, ParcelType, PickupDetails, Tab } from "../models/shared.models";
 import { ParcelActions } from "./actions";
 import { CustomerDetails } from "../models/customerDetails";
 import { Package } from "../models/package";
 import { RateResponse } from "../models/rateResponse";
+import { LineItem } from "../models/invoice";
 
 export interface State {
   step: Tab;
@@ -14,14 +15,17 @@ export interface State {
   receiverDetails: CustomerDetails;
   pickupDetails: PickupDetails | null;
   packages: Package[];
-  isCustomsDeclarable: boolean;
-  unitOfMeasurement: UnitOfMeasurement;
+  lineItems: LineItem[]; // only for international package
+  // unitOfMeasurement: UnitOfMeasurement;
   rateResponse: RateResponse | null;
   confirmed: boolean;
   paid: boolean;
   shipmentTrackingNumber: string | null;
   loading: boolean;
   documents: string[];
+  error: string | null;
+  addressBooks: AddressBook[];
+  shipperAddressBooks: AddressBook[];
 }
 const initialCustomerDetails: CustomerDetails = {
   fullName: '',
@@ -42,10 +46,18 @@ export const initialPackage: Package = {
   length: 1,
   width: 1,
 }
+export const initLineItem: LineItem = {
+  price: 10,
+	description: '',
+	quantity: 1,
+	manufacturerCountry: null,
+	exportReasonType: '',
+}
+
 export const initState: State = {
   step: Tab.LANGUAGE,
   languange: LanguageEnum.FR,
-  parcelType: null,
+  parcelType: ParcelType.PACKAGE,
   destination: null,
   shipperDetails: {
     ...initialCustomerDetails,
@@ -60,20 +72,28 @@ export const initState: State = {
     provinceCode: 'QC',
   },
   packages: [initialPackage],
-  isCustomsDeclarable: false,
-  unitOfMeasurement: UnitOfMeasurement.IMPERIAL,
+  lineItems: [initLineItem],
+  // unitOfMeasurement: UnitOfMeasurement.IMPERIAL,
   rateResponse: null,
   confirmed: false,
   paid: false,
   shipmentTrackingNumber: null,
   loading: false,
   documents: [],
+  error: null,
+  addressBooks: [],
+  shipperAddressBooks: [],
 }
 
 export const parcelReducer = createReducer(initState,
   on(ParcelActions.reset, (state) => ({...initState, pickupDetails: state.pickupDetails})),
   on(ParcelActions.setLanguage, (state, { language }) => ({...state, language, step: 2, rateResponse: null })),
-  on(ParcelActions.setParcelType, (state, { parcelType }) => ({...state, parcelType, step: 3, rateResponse: null })),
+  on(ParcelActions.setParcelType, (state, { parcelType }) => {
+    const newState = {...state, parcelType, step: 3, rateResponse: null };
+    if (parcelType === ParcelType.PACKAGE) return newState;
+    newState.packages = [{weight: 1, length: 13.8, width: 10.8, height: 1}];
+    return newState;
+  }),
   on(ParcelActions.setDestination, (state, { destination }) => {
     const receiverDetails = destination === state.destination ? state.receiverDetails : initialCustomerDetails;
     return {
@@ -92,6 +112,9 @@ export const parcelReducer = createReducer(initState,
   on(ParcelActions.createShipment, (state) => ({...state, loading: true })),
   on(ParcelActions.seachMachine, (state) => ({...state, loading: true })),
   on(ParcelActions.setPickupDetails, (state, { pickupDetails }) => ({...state, pickupDetails, loading: false })),
-  on(ParcelActions.setError, (state, { error }) => ({...state, loading: false })),
+  on(ParcelActions.setError, (state, { error }) => ({...state, loading: false, error })),
   on(ParcelActions.createShipemntSuccess, (state, { documents, shipmentTrackingNumber }) => ({...state, documents, shipmentTrackingNumber, loading: false })),
+  on(ParcelActions.setAddressBooks, (state, { addressBooks }) => ({...state, addressBooks })),
+  on(ParcelActions.setShipperAddressBooks, (state, { shipperAddressBooks }) => ({...state, shipperAddressBooks })),
+  on(ParcelActions.setLineItems, (state, { lineItems }) => ({...state, lineItems })),
 );

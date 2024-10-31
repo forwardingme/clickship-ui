@@ -12,27 +12,23 @@
 				</select>
 			</div>
 			<div class="col-6">
-				<input
-					class="form-control"
-					type="text"
+				<app-dropdown placeholder="Postal Code" 
+					[options]="shipperPostalCodes"	
 					formControlName="postalCode"
-					placeholder="Postal Code"
-					aria-label="Postal Code"
-          maxlength="12"
-					required
-					appTrimText
+					[debounce]="600"
+					[required]="true"
+					(valueChange)="onPostalCodeChanged($event, FromEnum.SHIPPER)"
+					(select)="onAddressSelect($event, 'postalCode', FromEnum.SHIPPER)"
 				/>
 			</div>
 			<div class="col-md-6">
-				<input
-					class="form-control"
-					type="text"
+				<app-dropdown placeholder="City"
 					formControlName="cityName"
-					placeholder="City"
-					aria-label="City"
-          maxlength="45"
-					required
-					appTrimText
+					[options]="shipperCities"	
+					[required]="true"
+					[debounce]="600"
+					(valueChange)="onCityNameChanged($event, FromEnum.SHIPPER)"
+					(select)="onAddressSelect($event, 'cityName', FromEnum.SHIPPER)"
 				/>
 			</div>
 			<div class="col-md-12">
@@ -45,6 +41,9 @@
           maxlength="35"
 					appTrimText
 				/>
+			</div>
+			<div class="col-md-12">
+				<label>* Required Information</label>
 			</div>
 		</div>
 	</div>
@@ -56,30 +55,27 @@
 					[options]="countries"	
 					formControlName="countryCode" 
 					[required]="true"
+					(select)="onCountrySelect($event)"
 				/>
 			</div>
 			<div class="col-6">
-				<input
-					class="form-control"
-					type="text"
+				<app-dropdown placeholder="Postal Code" 
+					[options]="postalCodes"	
 					formControlName="postalCode"
-					placeholder="Postal Code"
-					aria-label="Postal Code"
-          maxlength="12"
-					required
-					appTrimText
+					[debounce]="600"
+					[required]="requirePostalCode"
+					(valueChange)="onPostalCodeChanged($event, FromEnum.RECEIVER)"
+					(select)="onAddressSelect($event, 'postalCode', FromEnum.RECEIVER)"
 				/>
 			</div>
 			<div class="col-md-6">
-				<input
-					class="form-control"
-					type="text"
+				<app-dropdown placeholder="City"
 					formControlName="cityName"
-					placeholder="City"
-					aria-label="City"
-          maxlength="45"
-					required
-					appTrimText
+					[options]="cities"	
+					[required]="true"
+					[debounce]="600"
+					(valueChange)="onCityNameChanged($event, FromEnum.RECEIVER)"
+					(select)="onAddressSelect($event, 'cityName', FromEnum.RECEIVER)"
 				/>
 			</div>
 			<div class="col-md-12">
@@ -95,78 +91,104 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6 p-3" *ngIf="isParcelPackage" formArrayName="packages">
-    <div class="row g-3 p-1">
-      <div class="col-md-2">
-        <label class="form-label text-center"
-          >Length(ln)
-        </label>
-      </div>
-      <div class="col-md-2">
-        <label class="form-label">Width(ln) </label>
-      </div>
-      <div class="col-md-2">
-        <label class="form-label">Height(ln) </label>
-      </div>
-      <div class="col-md-2">
-        <label class="form-label">Weight(LB) </label>
-      </div>
-    </div>
-    <div class="row g-3 p-1" *ngFor="let item of packages; let i = index; let isLast=last; trackBy: trackByIndex" formGroupName="{{i}}">
-      <div class="col-md-2">
-        <input
-          class="form-control"
-          type="text"
-          formControlName="length"
-          placeholder="Length"
-          pattern="^[1-9][0-9]*$"
-          maxlength="6"
-          aria-label="Length"
-        />
-      </div>
-      <div class="col-md-2">
-        <input
-          class="form-control"
-          type="text" 
-          formControlName="width"
-          placeholder="Width"
-          pattern="^[1-9][0-9]*$"
-          maxlength="6"
-          aria-label="Width"
-        />
-      </div>
-      <div class="col-md-2">
-        <input
-          class="form-control"
-          type="text"
-          formControlName="height"
-          pattern="^[1-9][0-9]*$"
-          maxlength="6"
-          placeholder="Height"
-          aria-label="Height"
-        />
-      </div>
-      <div class="col-md-2">
-        <input
-          class="form-control"
-          type="text"
-          formControlName="weight"
-          pattern="^[1-9][0-9]*$"
-          maxlength="8"
-          placeholder="Weight"
-          aria-label="Weight"
-        />
-      </div>
-			<div class="col-md-2" *ngIf="!rateResponse">
-				<div class="col-md-6" *ngIf="!isLast">
-					<div class="text-center fs-4" role="button" (click)="removePackage(i)">-</div>
+	<ng-container *ngIf="isParcelPackage">
+		<div class="col-md-6">
+			<img src="assets/images/package.svg" width="90%" alt="Package dimension">
+		</div>
+		<div class="col-md-6 packages">
+			<!-- <div class="row g-3 p-1">
+				<div class="col-md-2">
+					<label class="form-label text-center"
+						>Length(ln)
+					</label>
 				</div>
-				<div class="col-md-6" *ngIf="isLast">
-					<div class="text-center fs-4" role="button" (click)="addPackage()">+</div>
+				<div class="col-md-2">
+					<label class="form-label">Width(ln) </label>
+				</div>
+				<div class="col-md-2">
+					<label class="form-label">Height(ln) </label>
+				</div>
+				<div class="col-md-2">
+					<label class="form-label">Weight(LB) </label>
+				</div>
+			</div> -->
+			<div formArrayName="packages">
+				<div class="row g-3 p-2 mt-3 package"
+					*ngFor="let item of packages; let i = index; let isLast=last; trackBy: trackByIndex"
+					formGroupName="{{i}}">
+				<div class="col-md-5">
+					<label class="form-label d-block h5">Weight *</label>
+					<input
+						class="form-control d-inline w-75"
+						type="number"
+						formControlName="weight"
+						min="1"
+						max="9999"
+						placeholder="Weight"
+						aria-label="Weight"
+					/><div class="px-1 d-inline h5">lbs</div>
+				</div>
+				<div class="col-md-5">
+					<label class="form-label d-block h5"
+						>Length *
+					</label>
+					<input
+						class="form-control d-inline w-75"
+						type="number"
+						formControlName="length"
+						placeholder="Length"
+						min="1"
+						max="9999"
+						aria-label="Length"
+					/><div class="px-1 d-inline h5">ln</div>
+				</div>
+				<div class="col-md-5">
+					<label class="form-label d-block h5">Width *</label>
+					<input
+						class="form-control d-inline w-75"
+						type="number" 
+						formControlName="width"
+						placeholder="Width"
+						min="1"
+						max="9999"
+						aria-label="Width"
+					/><div class="px-1 d-inline h5">ln</div>
+				</div>
+				<div class="col-md-5">
+					<label class="form-label d-block h5">Height *</label>
+					<input
+						class="form-control d-inline w-75"
+						type="number"
+						formControlName="height"
+						min="1"
+						max="9999"
+						placeholder="Height"
+						aria-label="Height"
+					/><div class="px-1 d-inline h5">ln</div>
+				</div>
+				<div class="col-md-2" *ngIf="!rateResponse">
+					<div class="col-md-6" *ngIf="!isLast">
+						<div class="text-center fs-4" role="button" (click)="removePackage(i)">-</div>
+					</div>
+					<div class="col-md-6" *ngIf="isLast">
+						<div class="text-center fs-4" role="button" (click)="addPackage()">+</div>
+					</div>
 				</div>
 			</div>
-    </div>
-	</div>
+			</div>
+			<div class="col-md-12 p-2 w-75 d-none" *ngIf="!!rateResponse">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="verification"
+					placeholder="Verification Code (Ask the Clerk)"
+					aria-label="Verification"
+					pattern="test_123"
+					[required]="!!rateResponse"
+				/>
+			</div>
+		</div>
+	</ng-container>
 	<div class="text-center col-12 p-3" *ngIf="!rateResponse">
 		<button
 			type="submit"

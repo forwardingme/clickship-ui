@@ -1,9 +1,9 @@
 import { CustomerDetails } from "./customerDetails";
 
-export enum UnitOfMeasurement {
-  METRIC = 'metric',
-	IMPERIAL = 'imperial',
-}
+// export enum UnitOfMeasurement {
+//   METRIC = 'metric',
+// 	IMPERIAL = 'imperial',
+// }
 
 export enum LanguageEnum {
 	EN = 'en',
@@ -39,11 +39,23 @@ export interface PickupDetails extends CustomerDetails {
 export interface Option {
 	value: string;
 	name: string;
+	description?: string;
+	item?: any;
 }
 
-export interface AddressBookRequest {
+export interface AddressBook {
+	city: string;
+	country: string;
+	postalCode?: string;
+	countryDivisionCode?: string;
+}
+export enum FromEnum {
+	RECEIVER = 'receiver',
+	SHIPPER = 'shipper',
+}
+export interface AddressSearchRequest {
+	control: 'postalCode' | 'city' | 'state';
+	value: string;
 	countryCode: string;
-	zipCode?: string;
-	city?: string;
-	stateName?: string;
+	from: FromEnum;
 }

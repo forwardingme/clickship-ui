@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { Option } from '../models/shared.models';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
@@ -24,20 +24,20 @@ import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 	template: `
 		<div class="group" [ngClass]="{listOpen: listOpen}">
 			<input
-        id="input"
+        #input
 				class="form-control"
 				type="text"
-				[placeholder]="placeholder"
+				[placeholder]="placeholderValue"
         [attr.aria-label]="placeholder"
 				[attr.maxlength]="maxlength"
-        [value]="name"
 				[required]="required"
-        [disabled]="disabled"
+        [disabled]="disabled || !required"
         (input)="onInputChange($event)"
+        (focus)="onFocus()"
 			/>
 			<ul class="dropdown-menu" *ngIf="filteredOptions.length > 0">
 				<li *ngFor="let o of filteredOptions; trackBy: trackByFn">
-					<div class="dropdown-item" (click)="onSelect($event, o)">{{ o.name }}</div>
+					<div class="dropdown-item" (click)="onSelect($event, o)">{{ o.description || o.name }}</div>
 				</li>
 			</ul>
 		</div>
@@ -62,6 +62,7 @@ import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
   `,
 })
 export class DropdownComponent implements ControlValueAccessor, Validator, OnInit, OnDestroy {
+  @ViewChild('input') input: ElementRef | undefined;
   @Input()
   set options(_options: Option[] | null) {
     this.allOptions = _options ?? [];
@@ -72,7 +73,7 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
   @Input() placeholder = '';
   @Input() maxlength = 100;
   @Output() select = new EventEmitter<Option>();
-  name: string = '';
+  @Output() valueChange = new EventEmitter<string>();
   disabled = false;
   listOpen = false;
   private value: string = '';
@@ -80,7 +81,7 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
   private touched = false;
   private inputChange$ = new Subject<string>();
   private unsubscribe$ = new Subject<string>();
-
+  private ref = inject(ElementRef);
   ngOnInit(): void {
     this.inputChange$.pipe(
       debounceTime(this.debounce),
@@ -90,6 +91,7 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
       // this.value = v;
       // this.validate({} as AbstractControl);
       this.onChange(v);
+      this.valueChange.emit(v);
     });
   }
   ngOnDestroy(): void {
@@ -102,6 +104,9 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
       const filter = this.value.replaceAll('', '(.*)');
       return new RegExp(filter, 'gi').test(opt.name);
     });
+  }
+  get placeholderValue() {
+    return `${this.placeholder} ${this.required ? '*':''}`;
   }
   // ControlValueAccessor methods
   writeValue(value: string) {
@@ -121,6 +126,7 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
   }
   // Validator method
   validate(control: AbstractControl): ValidationErrors | null {
+    // if (this.allowEmptyOptions) return null;
     if (control.value === undefined) {
       return {
         notExists: 'Control Value',
@@ -134,12 +140,17 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
       const v = (event.target as HTMLInputElement).value
       this.value = v;
       this.inputChange$.next(v);
+      this.listOpen = true;
     }
   }
-
+  onFocus() {
+    this.listOpen = true;
+  }
   @HostListener("document:click", ['$event', '$event.target']) 
   clicked(event: MouseEvent | TouchEvent, targetElement: HTMLElement) { 
-    this.listOpen = targetElement.id === 'input';
+    if (!this.ref.nativeElement.contains(event.target)) {
+      this.listOpen = false;
+    }
   } 
   onSelect(event: Event, opt: Option) {
     this.listOpen = false;
@@ -148,7 +159,7 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
     this.markAsTouched();
     if (!this.disabled) {
       this.onChange(opt.value);
-      this.name = opt.name;
+      this.setInputValue(opt.name);
       this.select.emit(opt);
     }
   }
@@ -164,10 +175,17 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
     }
   }
   private setName() {
+    let name: string;
     if (!this.value || this.allOptions.length === 0) {
-      this.name = this.value;
+      name = this.value;
     } else {
-      this.name = this.allOptions.find(opt => opt.value.toLowerCase() === this.value.toLowerCase())?.name ?? this.value;
+      name = this.allOptions.find(opt => opt.value === this.value)?.name ?? this.value;
+    }
+    this.setInputValue(name);
+  }
+  private setInputValue(v: string) {
+    if (this.input) {
+      this.input.nativeElement.value = v
     }
   }
 }

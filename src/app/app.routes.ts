@@ -8,6 +8,7 @@ import { PaymentComponent } from "./payment/payment.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { ShipmentComponent } from "./shipment/shipment.component";
 import { checkMachineGuard } from "./state/check-machine.guard";
+import { CustomsInvoiceComponent } from "./customs-invoice/customs-invoice.component";
 
 export const routes: Routes = [
 	{ path: "", component: HomeComponent, title: "Set Language" },
@@ -32,6 +33,11 @@ export const routes: Routes = [
 	{
     path: 'shipping-details',
     component: ShippingDetailsComponent,
+		canActivate: [checkMachineGuard()]
+  },
+	{
+    path: 'customs-invoice',
+    component: CustomsInvoiceComponent,
 		canActivate: [checkMachineGuard()]
   },
 	{

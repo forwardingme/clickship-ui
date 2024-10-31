@@ -8,6 +8,7 @@ import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { ShipperDetailsFormComponent } from '../components/shipping-details-form/shipping-details-form.component';
 import { ParcelActions } from '../state/actions';
+import { ParcelType } from '../models/shared.models';
 
 @Component({
   selector: 'app-rate-request',
@@ -34,6 +35,10 @@ export class ShippingDetailsComponent implements OnInit{
 
   onSubmit(parcel: Parcel) {
     this.store.dispatch(ParcelActions.confirmDetails({ parcel }));
-    this.router.navigateByUrl('payment');
+    if (parcel.parcelType === ParcelType.ENVELOPE) {
+      this.router.navigateByUrl('payment');
+    } else {
+      this.router.navigateByUrl('customs-invoice');
+    }
   }
 }

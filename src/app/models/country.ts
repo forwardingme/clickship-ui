@@ -1,7 +1,4 @@
 export interface ISO_Country {
-  // englishShortName: string,
-	// frenchShortName: string,
-	// alpha2Code: string,
 	code2: string,
 	isoCode: string,
 	name: string,
@@ -1407,3 +1404,5 @@ export const ISO3166_Countries: ISO_Country[] = [
 ];
 
 export const countryOptions = ISO3166_Countries.map(c => ({value: c.code2, name: c.name}));
+
+export const countriesWithoutPostalCode = ['AF', 'HT'];

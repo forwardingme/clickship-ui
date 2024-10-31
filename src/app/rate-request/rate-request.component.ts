@@ -2,13 +2,14 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { HeaderComponent } from '../components/header.component';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { parcelSelector, rateResponseSelector, isDomesticSelector } from '../state/selectors';
+import { parcelSelector, rateResponseSelector, isDomesticSelector, addressbooksSelector, shipperAddressbooksSelector } from '../state/selectors';
 import { RateRequestFormComponent } from '../components/rate-request-form/rate-request-form.component';
 import { Parcel } from '../models/parcel';
 import { Observable } from 'rxjs';
 import { ParcelActions } from '../state/actions';
 import { Router } from '@angular/router';
 import { RateResponse } from '../models/rateResponse';
+import { AddressBook, AddressSearchRequest } from '../models/shared.models';
 
 @Component({
   selector: 'app-rate-request',
@@ -23,6 +24,8 @@ export class RateRequestComponent implements OnInit{
   parcel$: Observable<Parcel | null>;
   domestic$: Observable<boolean>;
   rateResponse$: Observable<RateResponse | null>;
+  addressbooks$: Observable<AddressBook[]>;
+  shipperAddressbooks$: Observable<AddressBook[]>;
   private store = inject(Store);
   private router = inject(Router);
 
@@ -30,11 +33,16 @@ export class RateRequestComponent implements OnInit{
     this.parcel$ = this.store.select(parcelSelector);
     this.domestic$ = this.store.select(isDomesticSelector);
     this.rateResponse$ = this.store.select(rateResponseSelector);
+    this.addressbooks$ = this.store.select(addressbooksSelector);
+    this.shipperAddressbooks$ = this.store.select(shipperAddressbooksSelector);
   }
 
   ngOnInit(): void {
   }
 
+  goback() {
+    this.store.dispatch(ParcelActions.reset());
+  }
   onSubmit(parcel: Parcel) {
     this.store.dispatch(ParcelActions.rateRequest({ parcel }));
     this.title = 'Shipping Rate';
@@ -45,5 +53,11 @@ export class RateRequestComponent implements OnInit{
   }
   createShipment() {
     this.router.navigateByUrl('shipping-details');
+  }
+  onAddressChange(request: AddressSearchRequest) {
+    this.store.dispatch(ParcelActions.addressSearch({ request }));
+  }
+  onCountryChange() {
+    this.store.dispatch(ParcelActions.setAddressBooks({addressBooks: []}));
   }
 }

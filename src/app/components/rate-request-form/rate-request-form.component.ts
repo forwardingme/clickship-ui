@@ -7,10 +7,10 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
-import { countryOptions } from '../../models/country';
+import { countriesWithoutPostalCode, countryOptions } from '../../models/country';
 import { NgFor, NgIf } from '@angular/common';
 import { Parcel } from '../../models/parcel';
-import { CANADA_CODE, ParcelType } from '../../models/shared.models';
+import { ParcelType, Option, AddressSearchRequest, AddressBook, FromEnum} from '../../models/shared.models';
 import { Package } from '../../models/package';
 import { RateResponse } from '../../models/rateResponse';
 import { initialPackage } from '../../state/reducer';
@@ -28,13 +28,20 @@ import { DropdownComponent } from '../dropdown.component';
 })
 export class RateRequestFormComponent implements OnInit {
 	form: FormGroup;
-
+	countries = countryOptions;
+	postalCodes: Option[] = [];
+	cities: Option[] = [];
+	shipperPostalCodes: Option[] = [];
+	shipperCities: Option[] = [];
+	requirePostalCode = true;
+	FromEnum = FromEnum;
 	@Input()
 	set parcel(data: Parcel | null) {
-		if (!!data) {
+		if (!!data && !this.hasParcel) {
 			this.form.patchValue(data);
 			this.createPackageFormGroup(data.packages);
 			this.parcelType = data.parcelType;
+			this.hasParcel = true;
 		}
 	}
 	@Input()
@@ -42,37 +49,54 @@ export class RateRequestFormComponent implements OnInit {
 		this._rateResponse = r;
 		if (!!r) {
 			this.form.disable();
+			this.form.controls['verification'].enable();
 		}
 	}
 	get rateResponse(): RateResponse | null {
 		return this._rateResponse;
 	}
-
+	@Input()
+	set shipperAddressbooks(data: AddressBook[] | null) {
+		[this.shipperPostalCodes, this.shipperCities] = this.generateAddresses(data);
+	}
+	@Input()
+	set addressbooks(data: AddressBook[] | null) {
+		[this.postalCodes, this.cities] = this.generateAddresses(data);
+	} 
 	@Input() domestic: boolean | null = false;
 	@Output() submitForm = new EventEmitter<Parcel>();
 	@Output() resetForm = new EventEmitter();
-	countries = countryOptions;
+	@Output() addressChange = new EventEmitter<AddressSearchRequest>();
+	@Output() countryChange = new EventEmitter();
+
 	private parcelType: ParcelType | null = null;
 	private _rateResponse: RateResponse | null = null;
+	private hasParcel = false;
+	private shipperFG: FormGroup;
+	private receiverFG: FormGroup;
 
 	constructor(private formBuilder: FormBuilder) {
 		this.form = formBuilder.group({
 			pickupDetailsId: new FormControl(''),
 			// parcelType: new FormControl(''),
 			shipperDetails: new FormGroup({
-				cityName: new FormControl(''),
-				postalCode: new FormControl(''),
+				cityName: new FormControl('', [Validators.minLength(2), Validators.maxLength(45)]),
+				postalCode: new FormControl('', [Validators.minLength(6), Validators.maxLength(8),
+					 Validators.pattern(/^[a-zA-Z][0-9][a-zA-Z](\s){0,1}[0-9][a-zA-Z][0-9]$/)]),
 				provinceCode: new FormControl('', Validators.minLength(2)),
-				countryCode: new FormControl('', [Validators.minLength(2), Validators.maxLength(2)]),
+				countryCode: new FormControl('CA'),
 			}),
 			receiverDetails: new FormGroup({
-				cityName: new FormControl(''),
+				cityName: new FormControl('', [Validators.minLength(2), Validators.maxLength(45)]),
 				postalCode: new FormControl(''),
 				provinceCode: new FormControl('', Validators.minLength(2)),
 				countryCode: new FormControl('', [Validators.minLength(2), Validators.maxLength(2)]),
 			}),
 			packages: formBuilder.array([]),
+			verification: new FormControl('')
 		});
+		this.receiverFG = this.form.controls['receiverDetails'] as FormGroup;
+		this.shipperFG = this.form.controls['shipperDetails'] as FormGroup;
 	}
 	ngOnInit(): void {}
 
@@ -128,12 +152,79 @@ export class RateRequestFormComponent implements OnInit {
 	trackByIndex(index: number, item: Package) {
 		return index;
 	}
-
+	onPostalCodeChanged(v: string, from: FromEnum) {
+		const isShipper = from === FromEnum.SHIPPER;
+		const fg = isShipper ? this.shipperFG : this.receiverFG;
+		if (isShipper || this.requirePostalCode && !!fg.value.countryCode) {
+			this.addressChange.emit({control: 'postalCode', value: v, countryCode: fg.value.countryCode, from});
+		}
+	}
+	onCityNameChanged(v: string, from: FromEnum) {
+		const fg = from === FromEnum.SHIPPER ? this.shipperFG : this.receiverFG;
+		if (!!fg.value.countryCode) {
+			this.addressChange.emit({control: 'city', value: v, countryCode: fg.value.countryCode, from});
+		}
+	}
+	onAddressSelect(opt: Option, control: string, from: FromEnum) {
+		if (!opt.item) return;
+		const fg = from === FromEnum.SHIPPER ? this.shipperFG : this.receiverFG;
+		if (control === 'postalCode') {
+			fg.controls['cityName'].setValue(opt.item.city)
+		} else if (!!opt.item.postalCode) {
+			fg.controls['postalCode'].setValue(opt.item.postalCode);
+		}
+		if (!!opt.item.countryDivisionCode) {
+			fg.controls['provinceCode'].setValue(opt.item.countryDivisionCode);
+		} else {
+			fg.controls['provinceCode'].setValue('');
+		}
+	}
+	onCountrySelect(opt: Option) {
+		this.requirePostalCode = !countriesWithoutPostalCode.includes(opt.value?.toUpperCase());
+		this.receiverFG.patchValue({
+			cityName: '',
+			postalCode: !this.requirePostalCode ? 'N/A' : '',
+			provinceCode: '',
+		})
+		this.countryChange.emit();
+	}
 	onSubmit() {
 		this.submitForm.emit({...this.form.value, parcelType: this.parcelType});
 	}
 	onReset() {
 		this.resetForm.emit();
 		this.form.enable();
+	}
+
+	private generateAddresses(addressbooks: AddressBook[] | null) {
+		const postalCodes: Option[] = [];
+		const cities: Option[] = [];
+		if (!addressbooks || !addressbooks.length) {
+			return [postalCodes, cities];
+		}
+		const citySet = new Set();
+		for (const address of addressbooks) {
+			const city: Option = {
+				value: address.city,
+				name: address.city,
+				description: !address.postalCode ? address.city : `${address.city} ${address.postalCode}`,
+				item: address,
+			};
+
+			if (!!address.postalCode) {
+				const code: Option = {
+					value: address.postalCode,
+					name: address.postalCode,
+					description: `${address.postalCode} ${address.city}`,
+					item: address,
+				};
+				postalCodes.push(code);
+			} else if (citySet.has(address.city)) {
+				continue;
+			}
+			citySet.add(address.city);
+			cities.push(city);
+		}
+		return [postalCodes, cities];
 	}
 }

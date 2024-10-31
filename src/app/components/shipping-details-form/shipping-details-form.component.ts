@@ -10,10 +10,11 @@ import { NgFor, NgIf } from "@angular/common";
 import { Parcel } from "../../models/parcel";
 import { DestinationHeaderComponent } from "../destination-header.component";
 import { TrimTextDirective } from "../trim-text.directive";
+import { MaskDirective } from "../mask.directive";
 
 @Component({
 	standalone: true,
-	imports: [ReactiveFormsModule, NgFor, NgIf, DestinationHeaderComponent, TrimTextDirective],
+	imports: [ReactiveFormsModule, NgFor, NgIf, DestinationHeaderComponent, TrimTextDirective, MaskDirective],
 	selector: "app-shipping-details-form",
 	templateUrl: "./shipping-details-form.component.html",
 	changeDetection: ChangeDetectionStrategy.OnPush
@@ -21,13 +22,14 @@ import { TrimTextDirective } from "../trim-text.directive";
 })
 export class ShipperDetailsFormComponent implements OnInit {
 	form: FormGroup;
-
+	isUsOrCa = false;
 	@Input() domestic: boolean | null = false;
 	@Input()
 	set parcel(data: Parcel | null) {
 		this._parcel = data;
 		if (!!data) {
       const {shipperDetails, receiverDetails} = data;
+			this.isUsOrCa = ['US', 'CA'].includes(receiverDetails.countryCode);
 			this.form.patchValue({
         shipperDetails: {
           ...shipperDetails,
@@ -38,6 +40,10 @@ export class ShipperDetailsFormComponent implements OnInit {
           addressLine3: `${receiverDetails.cityName}, ${receiverDetails.postalCode}, ${receiverDetails.countryCode}`
         }
       });
+			if(this.isUsOrCa) {
+				const phoneCtrl = (this.form.controls['receiverDetails'] as FormGroup).controls['phone'];
+				phoneCtrl.addValidators([Validators.minLength(10), Validators.maxLength(10)]);
+			}
 		}
 	}
 	get parcel(): Parcel | null {
@@ -52,7 +58,7 @@ export class ShipperDetailsFormComponent implements OnInit {
 			shipperDetails: new FormGroup({
         fullName: new FormControl('', [Validators.required, Validators.maxLength(70)]),
         companyName: new FormControl('', [Validators.maxLength(70)]),
-        phone: new FormControl('', [Validators.required, Validators.maxLength(70)]),
+        phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
         email: new FormControl('', [Validators.maxLength(70)]),
         addressLine1: new FormControl('', [Validators.required, Validators.maxLength(45)]),
         addressLine2: new FormControl('', [Validators.maxLength(45)]),

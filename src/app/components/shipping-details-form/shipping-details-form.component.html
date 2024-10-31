@@ -7,7 +7,7 @@
 					class="form-control"
 					type="text"
 					formControlName="fullName"
-					placeholder="Customer Name"
+					placeholder="Customer Name *"
 					aria-label="Customer Name"
 					maxlength="70"
           required
@@ -30,7 +30,7 @@
 					class="form-control"
 					type="text"
 					formControlName="addressLine1"
-					placeholder="Address Line 1"
+					placeholder="Address Line 1 *"
 					aria-label="Address Line 1"
           maxlength="45"
           required
@@ -64,24 +64,28 @@
 					class="form-control"
 					type="text"
 					formControlName="phone"
-					placeholder="Phone"
+					placeholder="Phone *"
 					aria-label="Phone"
 					required
-					pattern="^[0-9]*$"
-					maxlength="15"
-					appTrimText
+					maxlength="13"
+					appMask="(000)000-0000"
 				/>
 			</div>
       <div class="col-12">
 				<input
 					class="form-control"
-					type="text"
+					type="email"
+					pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
 					formControlName="email"
-					placeholder="Email"
+					placeholder="Email *"
 					aria-label="Email"
 					maxlength="70"
 					appTrimText
+					required
 				/>
+			</div>
+			<div class="col-md-12">
+				<label>* Required Information</label>
 			</div>
 		</div>
 	</div>
@@ -93,7 +97,7 @@
 					class="form-control"
 					type="text"
 					formControlName="fullName"
-					placeholder="Customer Name"
+					placeholder="Customer Name *"
 					aria-label="Customer Name"
           maxlength="70"
           required
@@ -116,7 +120,7 @@
 					class="form-control"
 					type="text"
 					formControlName="addressLine1"
-					placeholder="Address Line 1"
+					placeholder="Address Line 1 *"
 					aria-label="Address Line 1"
           required
 					maxlength="45"
@@ -147,21 +151,34 @@
 			</div>
       <div class="col-12">
 				<input
+					*ngIf="!isUsOrCa"
 					class="form-control"
 					type="text"
 					formControlName="phone"
-					placeholder="Phone"
+					placeholder="Phone *"
 					aria-label="Phone"
           required
 					pattern="^[0-9]*$"
 					maxlength="45"
 					appTrimText
 				/>
+				<input
+					*ngIf="isUsOrCa"
+					class="form-control"
+					type="text"
+					formControlName="phone"
+					placeholder="Phone *"
+					aria-label="Phone"
+					required
+					maxlength="13"
+					appMask="(000)000-0000"
+				/>
 			</div>
       <div class="col-12">
 				<input
 					class="form-control"
-					type="text"
+					type="email"
+					pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
 					formControlName="email"
 					placeholder="Email"
 					aria-label="Email"

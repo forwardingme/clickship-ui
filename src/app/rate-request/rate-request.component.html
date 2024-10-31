@@ -1,12 +1,16 @@
 <div class="container">
-  <app-header [title]="title"></app-header>
+  <app-header [title]="title" (goback)="goback()"></app-header>
   <div class="content">
     <app-rate-request-form
       [parcel]="parcel$ | async"
       [domestic]="domestic$ | async"
       [rateResponse]="rateResponse$ | async"
+      [addressbooks]="addressbooks$ | async"
+      [shipperAddressbooks]="shipperAddressbooks$ | async"
       (submitForm)="onSubmit($event)"
       (resetForm)="onReset()"
+      (addressChange)="onAddressChange($event)"
+      (countryChange)="onCountryChange()"
     ></app-rate-request-form>
     <div class="rate text-center" *ngIf="rateResponse$ | async">
       <div>

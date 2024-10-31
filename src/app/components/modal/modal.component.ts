@@ -8,6 +8,11 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 	templateUrl: "./modal.component.html",
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	styles: `
+		:host.text-center .modal-content {
+			.modal-title {
+				width: 100%;
+			}
+		}
 		.modal {
 			display: block;
 			opacity: 1;

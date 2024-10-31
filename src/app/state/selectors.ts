@@ -53,20 +53,17 @@ export const isValidPickupAddressSelector = createSelector(
 export const parcelSelector = createSelector(
   featureSelector,
   (feature): Parcel => {
-    const { isCustomsDeclarable, shipperDetails, receiverDetails, packages, unitOfMeasurement, pickupDetails, parcelType, shipmentTrackingNumber } = feature;
+    const { shipperDetails, receiverDetails, packages, pickupDetails, parcelType, shipmentTrackingNumber, rateResponse, lineItems } = feature;
     return {
       pickupDetailsId: pickupDetails?._id ?? null,
-      shipperDetails: {
-        ...shipperDetails,
-        postalCode: !shipperDetails.postalCode && !!pickupDetails?.postalCode ? pickupDetails?.postalCode : shipperDetails.postalCode,
-        cityName: !shipperDetails.cityName && !!pickupDetails?.cityName ? pickupDetails?.cityName : shipperDetails.cityName,
-      },
+      shipperDetails,
       receiverDetails,
       parcelType,
       packages,
-      isCustomsDeclarable,
-      unitOfMeasurement,
-      shipmentTrackingNumber
+      // unitOfMeasurement,
+      shipmentTrackingNumber,
+      price: rateResponse?.rate ?? null,
+      lineItems,
     };
   }
 );
@@ -96,10 +93,37 @@ export const detailsConfirmedSelector = createSelector(
   }
 );
 
+export const errorSelector = createSelector(
+  featureSelector,
+  (feature) => {
+    return feature.error;
+  }
+);
+
 export const documentsSelector = createSelector(
   featureSelector,
   (feature) => {
     return feature.documents;
+  }
+);
+
+export const addressbooksSelector = createSelector(
+  featureSelector,
+  (feature) => {
+    return feature.addressBooks;
+  }
+);
+export const shipperAddressbooksSelector = createSelector(
+  featureSelector,
+  (feature) => {
+    return feature.shipperAddressBooks;
+  }
+);
+
+export const lineItemsSelector = createSelector(
+  featureSelector,
+  (feature) => {
+    return feature.lineItems;
   }
 );
 

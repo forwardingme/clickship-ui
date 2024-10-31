@@ -1,6 +1,7 @@
 import { CustomerDetails } from "./customerDetails";
+import { LineItem } from "./invoice";
 import { Package } from "./package";
-import { ParcelType, UnitOfMeasurement } from "./shared.models";
+import { ParcelType } from "./shared.models";
 
 export interface Parcel {
   parcelType: ParcelType | null;
@@ -8,7 +9,8 @@ export interface Parcel {
   shipperDetails: CustomerDetails;
   receiverDetails: CustomerDetails;
   packages: Package[];
-  isCustomsDeclarable: boolean;
-  unitOfMeasurement: UnitOfMeasurement;
+  lineItems: LineItem[];
+  // unitOfMeasurement: UnitOfMeasurement;
   shipmentTrackingNumber: string | null;
+  price: number | null;
 }

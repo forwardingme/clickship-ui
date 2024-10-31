@@ -1,10 +1,11 @@
 import { NgIf, Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ModalComponent } from './modal/modal.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgIf],
+  imports: [ModalComponent, NgIf],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
@@ -19,7 +20,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output
       </div>
 
       <div class="col-md-3 text-end">
-        <a class="me-2" (click)="openInfo()">
+        <a class="me-2" (click)="toggleInfo()">
           <img src="assets/images/info.svg" alt="Infomation" />
         </a>
         <a class="me-2" *ngIf="showClose" (click)="exit()">
@@ -27,6 +28,17 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output
         </a>
       </div>
     </header>
+    <app-modal title="Technical Support" class="text-center" [allowClose]="false" *ngIf="showInfo">
+      <div body>
+        <div>Technical Support</div>
+        <h3>1-855-974-9742</h3>
+        <div>Customer Service</div>
+        <h3>Email: ABCD&#64;GMAIL.COM</h3>
+      </div>
+      <div class="text-center w-100" footer>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="toggleInfo()">Close</button>
+      </div>
+    </app-modal>
   `,
   styles: `
     .title {
@@ -48,16 +60,19 @@ export class HeaderComponent {
   @Input() showClose = false;
   @Input() showPrev = true;
   @Output() close = new EventEmitter();
+  @Output() goback = new EventEmitter();
+  showInfo = false;
   private location = inject(Location);
 
   constructor() {}
 
   goBack() {
     this.location.back();
+    this.goback.emit();
   }
 
-  openInfo() {
-    console.log('info');
+  toggleInfo() {
+    this.showInfo = !this.showInfo;
   }
 
   exit() {
