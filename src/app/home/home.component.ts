@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { ParcelActions } from '../state/actions';
 // import { stepSelector } from '../state/selectors';
 import { Router } from '@angular/router';
-import { FooterComponent } from "../components/footer.component";
 import { Observable } from 'rxjs';
 import { isValidPickupAddressSelector } from '../state/selectors';
 import { CommonModule } from '@angular/common';
@@ -12,7 +11,7 @@ import { ModalComponent } from '../components/modal/modal.component';
 @Component({
   selector: 'app-start',
   standalone: true,
-  imports: [FooterComponent, ModalComponent, CommonModule],
+  imports: [ModalComponent, CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
   <div class="container text-center">
@@ -38,7 +37,7 @@ import { ModalComponent } from '../components/modal/modal.component';
         </button>
       </div>
     </div>
-    <app-footer></app-footer>
+    <!-- <app-footer></app-footer> -->
   </div>
   <app-modal title="Machine ID Not Set" [allowClose]="false" *ngIf="!(isValidPickAddress$ | async)">
     <div body>Please contact the owner</div>
