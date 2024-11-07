@@ -1,7 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { State } from './reducer';
 import { Parcel } from '../models/parcel';
-import { CANADA_CODE, DestinationEnum } from '../models/shared.models';
+import { CANADA_CODE } from '../models/shared.models';
 import { CustomerDetails } from '../models/customerDetails';
 
 export const featureSelector = createFeatureSelector<
@@ -29,10 +29,10 @@ export const parcelTypeSelector = createSelector(
   }
 );
 
-export const isDomesticSelector = createSelector(
+export const destinationSelector = createSelector(
   featureSelector,
   (feature) => {
-    return feature.destination === DestinationEnum.DOMESTIC;
+    return feature.destination;
   }
 );
 

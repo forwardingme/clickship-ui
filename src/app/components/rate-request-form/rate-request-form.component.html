@@ -50,7 +50,7 @@
 	<div class="col-md-6" formGroupName="receiverDetails">
 		<app-destination-header prefix="To" [domestic]="domestic"></app-destination-header>
 		<div class="row g-3">
-			<div class="col-12">
+			<div class="col-12" *ngIf="!domestic">
 				<app-dropdown placeholder="Country" 
 					[options]="countries"	
 					formControlName="countryCode" 

@@ -7,21 +7,10 @@
 					class="form-control"
 					type="text"
 					formControlName="fullName"
-					placeholder="Customer Name *"
-					aria-label="Customer Name"
+					placeholder="Your Name *"
+					aria-label="Your Name"
 					maxlength="70"
           required
-					appTrimText
-				/>
-			</div>
-      <div class="col-12">
-				<input
-					class="form-control"
-					type="text"
-					formControlName="companyName"
-					placeholder="Company Name"
-					aria-label="Company Name"
-					maxlength="70"
 					appTrimText
 				/>
 			</div>
@@ -30,31 +19,31 @@
 					class="form-control"
 					type="text"
 					formControlName="addressLine1"
-					placeholder="Address Line 1 *"
-					aria-label="Address Line 1"
+					placeholder="Your Home Address *"
+					aria-label="Your Home Address"
           maxlength="45"
           required
 					appTrimText
 				/>
 			</div>
-      <div class="col-12">
+			<div class="col-6">
 				<input
 					class="form-control"
 					type="text"
-					formControlName="addressLine2"
-					placeholder="Address Line 2"
-					aria-label="Address Line 2"
-					maxlength="45"
-					appTrimText
+					formControlName="postalCode"
+					placeholder="Postal Code *"
+					aria-label="Postal Code"
+          required
+          readonly
 				/>
 			</div>
-      <div class="col-12">
+      <div class="col-6">
 				<input
 					class="form-control"
 					type="text"
-					formControlName="addressLine3"
-					placeholder="Address Line 3"
-					aria-label="Address Line 3"
+					formControlName="cityName"
+					placeholder="Your City *"
+					aria-label="Your City"
           required
           readonly
 				/>
@@ -64,8 +53,8 @@
 					class="form-control"
 					type="text"
 					formControlName="phone"
-					placeholder="Phone *"
-					aria-label="Phone"
+					placeholder="Your Phone Number *"
+					aria-label="Your Phone Number"
 					required
 					maxlength="13"
 					appMask="(000)000-0000"
@@ -77,8 +66,8 @@
 					type="email"
 					pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
 					formControlName="email"
-					placeholder="Email *"
-					aria-label="Email"
+					placeholder="Your Email (for tracking #) *"
+					aria-label="Your Email (for tracking #)"
 					maxlength="70"
 					appTrimText
 					required
@@ -97,8 +86,8 @@
 					class="form-control"
 					type="text"
 					formControlName="fullName"
-					placeholder="Customer Name *"
-					aria-label="Customer Name"
+					placeholder="Recipient Name *"
+					aria-label="Recipient Name"
           maxlength="70"
           required
 					appTrimText
@@ -108,43 +97,43 @@
 				<input
 					class="form-control"
 					type="text"
-					formControlName="companyName"
-					placeholder="Company Name"
-					aria-label="Company Name"
-					maxlength="70"
-					appTrimText
-				/>
-			</div>
-      <div class="col-12">
-				<input
-					class="form-control"
-					type="text"
 					formControlName="addressLine1"
-					placeholder="Address Line 1 *"
-					aria-label="Address Line 1"
+					placeholder="Shipping Address *"
+					aria-label="Shipping Address"
           required
 					maxlength="45"
 					appTrimText
 				/>
 			</div>
-      <div class="col-12">
+      <div class="col-6">
 				<input
 					class="form-control"
 					type="text"
-					formControlName="addressLine2"
-					placeholder="Address Line 2"
-					aria-label="Address Line 2"
+					formControlName="provinceCode"
+					placeholder="Province"
+					aria-label="Province"
 					maxlength="45"
-					appTrimText
+					readonly
 				/>
 			</div>
-      <div class="col-12">
+      <div class="col-6">
 				<input
 					class="form-control"
 					type="text"
-					formControlName="addressLine3"
-					placeholder="Address Line 3"
-					aria-label="Address Line 3"
+					formControlName="cityName"
+					placeholder="Shipping City *"
+					aria-label="Shipping City"
+          required="true"
+          readonly
+				/>
+			</div>
+			<div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="postalCode"
+					placeholder="Postal Code *"
+					aria-label="Postal Code"
           required="true"
           readonly
 				/>
@@ -167,23 +156,11 @@
 					class="form-control"
 					type="text"
 					formControlName="phone"
-					placeholder="Phone *"
-					aria-label="Phone"
+					placeholder="Phone Number(recipient) *"
+					aria-label="Phone Number(recipient)"
 					required
 					maxlength="13"
 					appMask="(000)000-0000"
-				/>
-			</div>
-      <div class="col-12">
-				<input
-					class="form-control"
-					type="email"
-					pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-					formControlName="email"
-					placeholder="Email"
-					aria-label="Email"
-					maxlength="70"
-					appTrimText
 				/>
 			</div>
 		</div>

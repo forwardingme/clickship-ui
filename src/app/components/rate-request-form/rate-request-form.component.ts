@@ -10,7 +10,7 @@ import {
 import { countriesWithoutPostalCode, countryOptions } from '../../models/country';
 import { NgFor, NgIf } from '@angular/common';
 import { Parcel } from '../../models/parcel';
-import { ParcelType, Option, AddressSearchRequest, AddressBook, FromEnum} from '../../models/shared.models';
+import { ParcelType, Option, AddressSearchRequest, AddressBook, FromEnum, DestinationEnum} from '../../models/shared.models';
 import { Package } from '../../models/package';
 import { RateResponse } from '../../models/rateResponse';
 import { initialPackage } from '../../state/reducer';
@@ -62,8 +62,8 @@ export class RateRequestFormComponent implements OnInit {
 	@Input()
 	set addressbooks(data: AddressBook[] | null) {
 		[this.postalCodes, this.cities] = this.generateAddresses(data);
-	} 
-	@Input() domestic: boolean | null = false;
+	}
+	@Input() destination: DestinationEnum | null = DestinationEnum.OTHERS;
 	@Output() submitForm = new EventEmitter<Parcel>();
 	@Output() resetForm = new EventEmitter();
 	@Output() addressChange = new EventEmitter<AddressSearchRequest>();
@@ -100,6 +100,9 @@ export class RateRequestFormComponent implements OnInit {
 	}
 	ngOnInit(): void {}
 
+	get domestic() {
+		return this.destination === DestinationEnum.CA;
+	}
 	get isParcelPackage() {
 		return this.parcelType === ParcelType.PACKAGE;
 	}

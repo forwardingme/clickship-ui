@@ -1,10 +1,5 @@
 import { CustomerDetails } from "./customerDetails";
 
-// export enum UnitOfMeasurement {
-//   METRIC = 'metric',
-// 	IMPERIAL = 'imperial',
-// }
-
 export enum LanguageEnum {
 	EN = 'en',
 	FR = 'fr',
@@ -14,10 +9,12 @@ export enum ParcelType {
 	ENVELOPE = 'envelope',
 	PACKAGE = 'package',
 }
- 
 export enum DestinationEnum {
-	DOMESTIC = 'domestic',
-	INTERNATIONAL = 'international',
+	CA = 'CA',
+	US = 'US',
+	OTHERS = 'OTHERS',
+	// DOMESTIC = 'domestic',
+	// INTERNATIONAL = 'international',
 }
 
 export const CANADA_CODE = 'CA';

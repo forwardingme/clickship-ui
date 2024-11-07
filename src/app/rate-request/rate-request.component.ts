@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { HeaderComponent } from '../components/header.component';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { parcelSelector, rateResponseSelector, isDomesticSelector, addressbooksSelector, shipperAddressbooksSelector } from '../state/selectors';
+import { parcelSelector, rateResponseSelector, addressbooksSelector, shipperAddressbooksSelector, destinationSelector } from '../state/selectors';
 import { RateRequestFormComponent } from '../components/rate-request-form/rate-request-form.component';
 import { Parcel } from '../models/parcel';
 import { Observable } from 'rxjs';
 import { ParcelActions } from '../state/actions';
 import { Router } from '@angular/router';
 import { RateResponse } from '../models/rateResponse';
-import { AddressBook, AddressSearchRequest } from '../models/shared.models';
+import { AddressBook, AddressSearchRequest, DestinationEnum } from '../models/shared.models';
 
 @Component({
   selector: 'app-rate-request',
@@ -22,7 +22,7 @@ import { AddressBook, AddressSearchRequest } from '../models/shared.models';
 export class RateRequestComponent implements OnInit{
   title = 'Get a Shipping Rate';
   parcel$: Observable<Parcel | null>;
-  domestic$: Observable<boolean>;
+  destination$: Observable<DestinationEnum>;
   rateResponse$: Observable<RateResponse | null>;
   addressbooks$: Observable<AddressBook[]>;
   shipperAddressbooks$: Observable<AddressBook[]>;
@@ -31,7 +31,7 @@ export class RateRequestComponent implements OnInit{
 
   constructor() {
     this.parcel$ = this.store.select(parcelSelector);
-    this.domestic$ = this.store.select(isDomesticSelector);
+    this.destination$ = this.store.select(destinationSelector);
     this.rateResponse$ = this.store.select(rateResponseSelector);
     this.addressbooks$ = this.store.select(addressbooksSelector);
     this.shipperAddressbooks$ = this.store.select(shipperAddressbooksSelector);

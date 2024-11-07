@@ -17,11 +17,11 @@ import { IconsComponent } from '../components/icons.component';
     <app-header title="Select Destination"></app-header>
     <div class="d-flex flex-wrap align-items-center justify-content-center flex-fill">
       <div class="d-flex justify-content-center py-2 gap-5">
-        <div class="selection p-4" title="Domestic" (click)="setDestination(DestinationEnum.DOMESTIC)">
+        <div class="selection p-4" title="Domestic" (click)="setDestination(DestinationEnum.CA)">
           <img src="assets/images/canada.svg" alt="Domestic" />
           <div class="text-center fs-3">Canada</div>
         </div>
-        <div class="selection p-4" title="International" (click)="setDestination(DestinationEnum.INTERNATIONAL)">
+        <div class="selection p-4" title="International" (click)="setDestination(DestinationEnum.OTHERS)">
           <img src="assets/images/globe.svg" alt="International" />
           <div class="text-center fs-3">International</div>
         </div>

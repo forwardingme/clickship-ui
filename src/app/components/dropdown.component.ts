@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output, ViewChild, AfterViewInit } from '@angular/core';
 import { Option } from '../models/shared.models';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
@@ -61,12 +61,12 @@ import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
     }
   `,
 })
-export class DropdownComponent implements ControlValueAccessor, Validator, OnInit, OnDestroy {
+export class DropdownComponent implements ControlValueAccessor, Validator, OnInit, AfterViewInit, OnDestroy {
   @ViewChild('input') input: ElementRef | undefined;
   @Input()
   set options(_options: Option[] | null) {
     this.allOptions = _options ?? [];
-    this.setName();
+    if (!!this.input) this.setName();
   }
 	@Input() required = false;
   @Input() debounce = 300;
@@ -94,6 +94,9 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
       this.valueChange.emit(v);
     });
   }
+  ngAfterViewInit(): void {
+    this.setName();
+  }
   ngOnDestroy(): void {
     this.unsubscribe$.next('unsubscribe emit');
     this.unsubscribe$.complete();
@@ -111,7 +114,7 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
   // ControlValueAccessor methods
   writeValue(value: string) {
     this.value = value;
-    this.setName();
+    if (!!this.input) this.setName();
   }
   registerOnChange(onChange: any) {
     this.onChange = onChange;

@@ -10,7 +10,7 @@ export interface State {
   step: Tab;
   languange: LanguageEnum;
   parcelType: ParcelType | null;
-  destination: DestinationEnum | null;
+  destination: DestinationEnum;
   shipperDetails: CustomerDetails;
   receiverDetails: CustomerDetails;
   pickupDetails: PickupDetails | null;
@@ -58,7 +58,7 @@ export const initState: State = {
   step: Tab.LANGUAGE,
   languange: LanguageEnum.FR,
   parcelType: ParcelType.PACKAGE,
-  destination: null,
+  destination: DestinationEnum.OTHERS,
   shipperDetails: {
     ...initialCustomerDetails,
     countryCode: CANADA_CODE,
@@ -86,7 +86,7 @@ export const initState: State = {
 }
 
 export const parcelReducer = createReducer(initState,
-  on(ParcelActions.reset, (state) => ({...initState, pickupDetails: state.pickupDetails})),
+  on(ParcelActions.reset, (state) => ({...initState, pickupDetails: state.pickupDetails, parcelType: state.parcelType, languange: state.languange})),
   on(ParcelActions.setLanguage, (state, { language }) => ({...state, language, step: 2, rateResponse: null })),
   on(ParcelActions.setParcelType, (state, { parcelType }) => {
     const newState = {...state, parcelType, step: 3, rateResponse: null };
@@ -102,7 +102,7 @@ export const parcelReducer = createReducer(initState,
       rateResponse: null,
       receiverDetails: {
         ...receiverDetails,
-        countryCode: destination === DestinationEnum.DOMESTIC ? CANADA_CODE: receiverDetails.countryCode,
+        countryCode: destination !== DestinationEnum.OTHERS ? destination: receiverDetails.countryCode,
       }
     };
   }),
