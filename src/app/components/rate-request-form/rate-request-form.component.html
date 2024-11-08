@@ -19,7 +19,7 @@
 					[required]="true"
 					(valueChange)="onPostalCodeChanged($event, FromEnum.SHIPPER)"
 					(select)="onAddressSelect($event, 'postalCode', FromEnum.SHIPPER)"
-				/>
+				><span class="input-group-text" id="basic-addon1">$</span></app-dropdown>
 			</div>
 			<div class="col-md-6">
 				<app-dropdown placeholder="City"
@@ -82,7 +82,7 @@
 				<input
 					class="form-control"
 					type="text"
-					formControlName="provinceCode"
+					formControlName="provinceName"
 					placeholder="Province"
 					aria-label="Province"
           maxlength="35"

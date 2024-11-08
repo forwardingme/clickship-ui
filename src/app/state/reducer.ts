@@ -29,13 +29,13 @@ export interface State {
 }
 const initialCustomerDetails: CustomerDetails = {
   fullName: '',
-  companyName: '',
   phone: '',
   email: '',
   addressLine1: '',
-  addressLine2: '',
+  // addressLine2: '',
   cityName: '',
   provinceCode: '',
+  provinceName: '',
   countryCode: '',
   postalCode: '',
 }
@@ -63,6 +63,7 @@ export const initState: State = {
     ...initialCustomerDetails,
     countryCode: CANADA_CODE,
     provinceCode: 'QC',
+    provinceName: 'Quebec'
   },
   receiverDetails: initialCustomerDetails,
   pickupDetails: {

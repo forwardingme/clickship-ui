@@ -23,18 +23,22 @@ import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
   ],
 	template: `
 		<div class="group" [ngClass]="{listOpen: listOpen}">
-			<input
-        #input
-				class="form-control"
-				type="text"
-				[placeholder]="placeholderValue"
-        [attr.aria-label]="placeholder"
-				[attr.maxlength]="maxlength"
-				[required]="required"
-        [disabled]="disabled || !required"
-        (input)="onInputChange($event)"
-        (focus)="onFocus()"
-			/>
+      <div class="input-group">
+        <ng-content></ng-content>
+        <input
+          #input
+          class="form-control"
+          type="text"
+          [placeholder]="placeholderValue"
+          [attr.aria-label]="placeholder"
+          [attr.maxlength]="maxlength"
+          [required]="required"
+          [disabled]="disabled || !required"
+          [readonly]="readonly"
+          (input)="onInputChange($event)"
+          (focus)="onFocus()"
+        />
+      </div>
 			<ul class="dropdown-menu" *ngIf="filteredOptions.length > 0">
 				<li *ngFor="let o of filteredOptions; trackBy: trackByFn">
 					<div class="dropdown-item" (click)="onSelect($event, o)">{{ o.description || o.name }}</div>
@@ -69,6 +73,7 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
     if (!!this.input) this.setName();
   }
 	@Input() required = false;
+	@Input() readonly = false;
   @Input() debounce = 300;
   @Input() placeholder = '';
   @Input() maxlength = 100;
@@ -139,7 +144,7 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
   }
   onInputChange(event: Event) {
     this.markAsTouched();
-    if (!this.disabled) {
+    if (!this.disabled && !this.readonly) {
       const v = (event.target as HTMLInputElement).value
       this.value = v;
       this.inputChange$.next(v);
@@ -147,7 +152,9 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
     }
   }
   onFocus() {
-    this.listOpen = true;
+    if (!this.disabled && !this.readonly) {
+      this.listOpen = true;
+    }
   }
   @HostListener("document:click", ['$event', '$event.target']) 
   clicked(event: MouseEvent | TouchEvent, targetElement: HTMLElement) { 
@@ -160,7 +167,7 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
     event.preventDefault();
     event.stopPropagation();
     this.markAsTouched();
-    if (!this.disabled) {
+    if (!this.disabled && !this.readonly) {
       this.onChange(opt.value);
       this.setInputValue(opt.name);
       this.select.emit(opt);

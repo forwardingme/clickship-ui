@@ -90,6 +90,7 @@ export class RateRequestFormComponent implements OnInit {
 				cityName: new FormControl('', [Validators.minLength(2), Validators.maxLength(45)]),
 				postalCode: new FormControl(''),
 				provinceCode: new FormControl('', Validators.minLength(2)),
+				provinceName: new FormControl('', Validators.minLength(2)),
 				countryCode: new FormControl('', [Validators.minLength(2), Validators.maxLength(2)]),
 			}),
 			packages: formBuilder.array([]),
@@ -178,8 +179,10 @@ export class RateRequestFormComponent implements OnInit {
 		}
 		if (!!opt.item.countryDivisionCode) {
 			fg.controls['provinceCode'].setValue(opt.item.countryDivisionCode);
+			fg.controls['provinceName'].setValue(opt.item.countryDivisionName);
 		} else {
 			fg.controls['provinceCode'].setValue('');
+			fg.controls['provinceName'].setValue('');
 		}
 	}
 	onCountrySelect(opt: Option) {

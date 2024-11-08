@@ -73,8 +73,8 @@ export const createShipmentRequestSelector = createSelector(
   (parcel) => {
     const shipperDetails = { ...parcel.shipperDetails };
     const receiverDetails = { ...parcel.receiverDetails };
-    shipperDetails.companyName = !!shipperDetails.companyName ? shipperDetails.companyName : shipperDetails.fullName;
-    receiverDetails.companyName = !!receiverDetails.companyName ? receiverDetails.companyName : receiverDetails.fullName;
+    shipperDetails.companyName = shipperDetails.fullName;
+    receiverDetails.companyName = receiverDetails.fullName;
     return {...parcel, shipperDetails, receiverDetails};
   }
 );

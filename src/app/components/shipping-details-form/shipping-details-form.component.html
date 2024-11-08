@@ -93,6 +93,14 @@
 					appTrimText
 				/>
 			</div>
+			<div class="col-12" *ngIf="!domestic">
+				<app-dropdown placeholder="Shipping Country" 
+					[options]="countries"	
+					formControlName="countryCode" 
+					[required]="true"
+          [readonly]="true"
+				/>
+			</div>
       <div class="col-12">
 				<input
 					class="form-control"
@@ -109,7 +117,7 @@
 				<input
 					class="form-control"
 					type="text"
-					formControlName="provinceCode"
+					formControlName="provinceName"
 					placeholder="Province"
 					aria-label="Province"
 					maxlength="45"

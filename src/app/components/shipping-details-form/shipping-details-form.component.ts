@@ -6,16 +6,18 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from "@angular/forms";
-import { NgFor, NgIf } from "@angular/common";
+import { NgIf } from "@angular/common";
 import { Parcel } from "../../models/parcel";
 import { DestinationHeaderComponent } from "../destination-header.component";
 import { TrimTextDirective } from "../trim-text.directive";
 import { MaskDirective } from "../mask.directive";
 import { CANADA_CODE } from "../../models/shared.models";
+import { countryOptions } from "../../models/country";
+import { DropdownComponent } from "../dropdown.component";
 
 @Component({
 	standalone: true,
-	imports: [ReactiveFormsModule, NgFor, NgIf, DestinationHeaderComponent, TrimTextDirective, MaskDirective],
+	imports: [ReactiveFormsModule, NgIf, DestinationHeaderComponent, TrimTextDirective, MaskDirective, DropdownComponent],
 	selector: "app-shipping-details-form",
 	templateUrl: "./shipping-details-form.component.html",
 	changeDetection: ChangeDetectionStrategy.OnPush
@@ -25,6 +27,7 @@ export class ShipperDetailsFormComponent implements OnInit {
 	form: FormGroup;
 	isUsOrCa = false;
 	domestic = false;
+	countries = countryOptions;
 	@Input()
 	set parcel(data: Parcel | null) {
 		this._parcel = data;
@@ -59,6 +62,7 @@ export class ShipperDetailsFormComponent implements OnInit {
 				cityName: new FormControl('', [Validators.minLength(2), Validators.maxLength(45)]),
 				postalCode: new FormControl('', [Validators.minLength(6), Validators.maxLength(8),
 					 Validators.pattern(/^[a-zA-Z][0-9][a-zA-Z](\s){0,1}[0-9][a-zA-Z][0-9]$/)]),
+				countryCode: new FormControl('', [Validators.minLength(2), Validators.maxLength(2)]),
 			}),
 			receiverDetails: new FormGroup({
         fullName: new FormControl(''),
@@ -68,6 +72,7 @@ export class ShipperDetailsFormComponent implements OnInit {
         cityName: new FormControl('', [Validators.minLength(2), Validators.maxLength(45)]),
 				postalCode: new FormControl(''),
 				provinceCode: new FormControl('', Validators.minLength(2)),
+				provinceName: new FormControl('', Validators.minLength(2)),
 				countryCode: new FormControl('', [Validators.minLength(2), Validators.maxLength(2)]),
 			}),
 		});
