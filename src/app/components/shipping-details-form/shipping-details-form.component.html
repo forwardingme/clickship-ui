@@ -11,24 +11,10 @@
 					class="form-control"
 					type="text"
 					formControlName="fullName"
-					placeholder="Customer Name *"
-					aria-label="Customer Name"
+					placeholder="Your Name *"
+					aria-label="Your Name"
 					maxlength="70"
           required
-					appTrimText
-				/>
-			</div>
-      <div class="col-12 input-group">
-        <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
-          <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
-        </svg></span>
-				<input
-					class="form-control"
-					type="text"
-					formControlName="companyName"
-					placeholder="Company Name"
-					aria-label="Company Name"
-					maxlength="70"
 					appTrimText
 				/>
 			</div>
@@ -41,31 +27,31 @@
 					class="form-control"
 					type="text"
 					formControlName="addressLine1"
-					placeholder="Address Line 1 *"
-					aria-label="Address Line 1"
+					placeholder="Your Home Address *"
+					aria-label="Your Home Address"
           maxlength="45"
           required
 					appTrimText
 				/>
 			</div>
-      <div class="col-12">
+			<div class="col-6">
 				<input
 					class="form-control"
 					type="text"
-					formControlName="addressLine2"
-					placeholder="Address Line 2"
-					aria-label="Address Line 2"
-					maxlength="45"
-					appTrimText
+					formControlName="postalCode"
+					placeholder="Postal Code *"
+					aria-label="Postal Code"
+          required
+          readonly
 				/>
 			</div>
-      <div class="col-12">
+      <div class="col-6">
 				<input
 					class="form-control"
 					type="text"
-					formControlName="addressLine3"
-					placeholder="Address Line 3"
-					aria-label="Address Line 3"
+					formControlName="cityName"
+					placeholder="Your City *"
+					aria-label="Your City"
           required
           readonly
 				/>
@@ -75,8 +61,8 @@
 					class="form-control"
 					type="text"
 					formControlName="phone"
-					placeholder="Phone *"
-					aria-label="Phone"
+					placeholder="Your Phone Number *"
+					aria-label="Your Phone Number"
 					required
 					maxlength="13"
 					appMask="(000)000-0000"
@@ -88,8 +74,8 @@
 					type="email"
 					pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
 					formControlName="email"
-					placeholder="Email *"
-					aria-label="Email"
+					placeholder="Your Email (for tracking #) *"
+					aria-label="Your Email (for tracking #)"
 					maxlength="70"
 					appTrimText
 					required
@@ -112,25 +98,19 @@
 					class="form-control"
 					type="text"
 					formControlName="fullName"
-					placeholder="Customer Name *"
-					aria-label="Customer Name"
+					placeholder="Recipient Name *"
+					aria-label="Recipient Name"
           maxlength="70"
           required
 					appTrimText
 				/>
 			</div>
-      <div class="col-12 input-group">
-        <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
-          <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
-        </svg></span>
-				<input
-					class="form-control"
-					type="text"
-					formControlName="companyName"
-					placeholder="Company Name"
-					aria-label="Company Name"
-					maxlength="70"
-					appTrimText
+			<div class="col-12" *ngIf="!domestic">
+				<app-dropdown placeholder="Shipping Country" 
+					[options]="countries"	
+					formControlName="countryCode" 
+					[required]="true"
+          [readonly]="true"
 				/>
 			</div>
       <div class="col-12">
@@ -138,31 +118,42 @@
 					class="form-control"
 					type="text"
 					formControlName="addressLine1"
-					placeholder="Address Line 1 *"
-					aria-label="Address Line 1"
+					placeholder="Shipping Address *"
+					aria-label="Shipping Address"
           required
 					maxlength="45"
 					appTrimText
 				/>
 			</div>
-      <div class="col-12">
+      <div class="col-6">
 				<input
 					class="form-control"
 					type="text"
-					formControlName="addressLine2"
-					placeholder="Address Line 2"
-					aria-label="Address Line 2"
+					formControlName="provinceName"
+					placeholder="Province"
+					aria-label="Province"
 					maxlength="45"
-					appTrimText
+					readonly
 				/>
 			</div>
-      <div class="col-12">
+      <div class="col-6">
 				<input
 					class="form-control"
 					type="text"
-					formControlName="addressLine3"
-					placeholder="Address Line 3"
-					aria-label="Address Line 3"
+					formControlName="cityName"
+					placeholder="Shipping City *"
+					aria-label="Shipping City"
+          required="true"
+          readonly
+				/>
+			</div>
+			<div class="col-12">
+				<input
+					class="form-control"
+					type="text"
+					formControlName="postalCode"
+					placeholder="Postal Code *"
+					aria-label="Postal Code"
           required="true"
           readonly
 				/>
@@ -185,23 +176,11 @@
 					class="form-control"
 					type="text"
 					formControlName="phone"
-					placeholder="Phone *"
-					aria-label="Phone"
+					placeholder="Phone Number(recipient) *"
+					aria-label="Phone Number(recipient)"
 					required
 					maxlength="13"
 					appMask="(000)000-0000"
-				/>
-			</div>
-      <div class="col-12">
-				<input
-					class="form-control"
-					type="email"
-					pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-					formControlName="email"
-					placeholder="Email"
-					aria-label="Email"
-					maxlength="70"
-					appTrimText
 				/>
 			</div>
 		</div>

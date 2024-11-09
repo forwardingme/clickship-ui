@@ -19,7 +19,7 @@
 					[required]="true"
 					(valueChange)="onPostalCodeChanged($event, FromEnum.SHIPPER)"
 					(select)="onAddressSelect($event, 'postalCode', FromEnum.SHIPPER)"
-				/>
+				><span class="input-group-text" id="basic-addon1">$</span></app-dropdown>
 			</div>
 			<div class="col-md-6">
 				<app-dropdown placeholder="City"
@@ -53,7 +53,7 @@
 	<div class="col-md-6" formGroupName="receiverDetails">
 		<app-destination-header prefix="To" [domestic]="domestic"></app-destination-header>
 		<div class="row g-3">
-			<div class="col-12">
+			<div class="col-12" *ngIf="!domestic">
 				<app-dropdown placeholder="Country" 
 					[options]="countries"	
 					formControlName="countryCode" 
@@ -88,7 +88,7 @@
 				<input
 					class="form-control"
 					type="text"
-					formControlName="provinceCode"
+					formControlName="provinceName"
 					placeholder="Province"
 					aria-label="Province"
           maxlength="35"

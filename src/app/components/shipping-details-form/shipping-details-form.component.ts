@@ -6,15 +6,18 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from "@angular/forms";
-import { NgFor, NgIf } from "@angular/common";
+import { NgIf } from "@angular/common";
 import { Parcel } from "../../models/parcel";
 import { DestinationHeaderComponent } from "../destination-header.component";
 import { TrimTextDirective } from "../trim-text.directive";
 import { MaskDirective } from "../mask.directive";
+import { CANADA_CODE } from "../../models/shared.models";
+import { countryOptions } from "../../models/country";
+import { DropdownComponent } from "../dropdown.component";
 
 @Component({
 	standalone: true,
-	imports: [ReactiveFormsModule, NgFor, NgIf, DestinationHeaderComponent, TrimTextDirective, MaskDirective],
+	imports: [ReactiveFormsModule, NgIf, DestinationHeaderComponent, TrimTextDirective, MaskDirective, DropdownComponent],
 	selector: "app-shipping-details-form",
 	templateUrl: "./shipping-details-form.component.html",
 	changeDetection: ChangeDetectionStrategy.OnPush
@@ -23,22 +26,18 @@ import { MaskDirective } from "../mask.directive";
 export class ShipperDetailsFormComponent implements OnInit {
 	form: FormGroup;
 	isUsOrCa = false;
-	@Input() domestic: boolean | null = false;
+	domestic = false;
+	countries = countryOptions;
 	@Input()
 	set parcel(data: Parcel | null) {
 		this._parcel = data;
 		if (!!data) {
       const {shipperDetails, receiverDetails} = data;
+			this.domestic = receiverDetails.countryCode === CANADA_CODE;
 			this.isUsOrCa = ['US', 'CA'].includes(receiverDetails.countryCode);
 			this.form.patchValue({
-        shipperDetails: {
-          ...shipperDetails,
-          addressLine3: `${shipperDetails.cityName}, ${shipperDetails.postalCode}, ${shipperDetails.countryCode}`
-        },
-        receiverDetails: {
-          ...receiverDetails,
-          addressLine3: `${receiverDetails.cityName}, ${receiverDetails.postalCode}, ${receiverDetails.countryCode}`
-        }
+        shipperDetails,
+        receiverDetails
       });
 			if(this.isUsOrCa) {
 				const phoneCtrl = (this.form.controls['receiverDetails'] as FormGroup).controls['phone'];
@@ -57,33 +56,30 @@ export class ShipperDetailsFormComponent implements OnInit {
 			pickupDetailsId: new FormControl(''),
 			shipperDetails: new FormGroup({
         fullName: new FormControl('', [Validators.required, Validators.maxLength(70)]),
-        companyName: new FormControl('', [Validators.maxLength(70)]),
         phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
         email: new FormControl('', [Validators.maxLength(70)]),
         addressLine1: new FormControl('', [Validators.required, Validators.maxLength(45)]),
-        addressLine2: new FormControl('', [Validators.maxLength(45)]),
-				addressLine3: new FormControl(''),
+				cityName: new FormControl('', [Validators.minLength(2), Validators.maxLength(45)]),
+				postalCode: new FormControl('', [Validators.minLength(6), Validators.maxLength(8),
+					 Validators.pattern(/^[a-zA-Z][0-9][a-zA-Z](\s){0,1}[0-9][a-zA-Z][0-9]$/)]),
+				countryCode: new FormControl('', [Validators.minLength(2), Validators.maxLength(2)]),
 			}),
 			receiverDetails: new FormGroup({
         fullName: new FormControl(''),
-        companyName: new FormControl(''),
         phone: new FormControl(''),
         email: new FormControl(''),
         addressLine1: new FormControl(''),
-        addressLine2: new FormControl(''),
-				addressLine3: new FormControl(''),
+        cityName: new FormControl('', [Validators.minLength(2), Validators.maxLength(45)]),
+				postalCode: new FormControl(''),
+				provinceCode: new FormControl('', Validators.minLength(2)),
+				provinceName: new FormControl('', Validators.minLength(2)),
+				countryCode: new FormControl('', [Validators.minLength(2), Validators.maxLength(2)]),
 			}),
 		});
 	}
 	ngOnInit(): void {}
 
 	onSubmit() {
-		let obj = this.form.value;
-		if (!!this.parcel) {
-			obj.receiverDetails = {...this.parcel.receiverDetails, ...obj.receiverDetails};
-			obj.shipperDetails = {...this.parcel.shipperDetails, ...obj.shipperDetails};
-			obj = {...this.parcel, ...obj};
-		}
-		this.submitForm.emit(obj);
+		this.submitForm.emit(this.form.value);
 	}
 }

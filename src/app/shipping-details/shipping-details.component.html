@@ -3,7 +3,6 @@
   <div class="content">
     <app-shipping-details-form
       [parcel]="parcel$ | async"
-      [domestic]="domestic$ | async"
       (submitForm)="onSubmit($event)"
     ></app-shipping-details-form>
   </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, inject, Input, OnDestroy, OnInit, Output, ViewChild, AfterViewInit } from '@angular/core';
 import { Option } from '../models/shared.models';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
@@ -22,23 +22,23 @@ import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
     }
   ],
 	template: `
-		<div class="group input-group" [ngClass]="{listOpen: listOpen}">
-    <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-buildings" viewBox="0 0 16 16">
-  <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022M6 8.694 1 10.36V15h5zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5z"/>
-  <path d="M2 11h1v1H2zm2 0h1v1H4zm-2 2h1v1H2zm2 0h1v1H4zm4-4h1v1H8zm2 0h1v1h-1zm-2 2h1v1H8zm2 0h1v1h-1zm2-2h1v1h-1zm0 2h1v1h-1zM8 7h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zM8 5h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zm0-2h1v1h-1z"/>
-</svg></span>
-			<input
-        #input
-				class="form-control"
-				type="text"
-				[placeholder]="placeholderValue"
-        [attr.aria-label]="placeholder"
-				[attr.maxlength]="maxlength"
-				[required]="required"
-        [disabled]="disabled || !required"
-        (input)="onInputChange($event)"
-        (focus)="onFocus()"
-			/>
+		<div class="group" [ngClass]="{listOpen: listOpen}">
+      <div class="input-group">
+        <ng-content></ng-content>
+        <input
+          #input
+          class="form-control"
+          type="text"
+          [placeholder]="placeholderValue"
+          [attr.aria-label]="placeholder"
+          [attr.maxlength]="maxlength"
+          [required]="required"
+          [disabled]="disabled || !required"
+          [readonly]="readonly"
+          (input)="onInputChange($event)"
+          (focus)="onFocus()"
+        />
+      </div>
 			<ul class="dropdown-menu" *ngIf="filteredOptions.length > 0">
 				<li *ngFor="let o of filteredOptions; trackBy: trackByFn">
 					<div class="dropdown-item" (click)="onSelect($event, o)">{{ o.description || o.name }}</div>
@@ -65,14 +65,15 @@ import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
     }
   `,
 })
-export class DropdownComponent implements ControlValueAccessor, Validator, OnInit, OnDestroy {
+export class DropdownComponent implements ControlValueAccessor, Validator, OnInit, AfterViewInit, OnDestroy {
   @ViewChild('input') input: ElementRef | undefined;
   @Input()
   set options(_options: Option[] | null) {
     this.allOptions = _options ?? [];
-    this.setName();
+    if (!!this.input) this.setName();
   }
 	@Input() required = false;
+	@Input() readonly = false;
   @Input() debounce = 300;
   @Input() placeholder = '';
   @Input() maxlength = 100;
@@ -98,6 +99,9 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
       this.valueChange.emit(v);
     });
   }
+  ngAfterViewInit(): void {
+    this.setName();
+  }
   ngOnDestroy(): void {
     this.unsubscribe$.next('unsubscribe emit');
     this.unsubscribe$.complete();
@@ -115,7 +119,7 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
   // ControlValueAccessor methods
   writeValue(value: string) {
     this.value = value;
-    this.setName();
+    if (!!this.input) this.setName();
   }
   registerOnChange(onChange: any) {
     this.onChange = onChange;
@@ -140,7 +144,7 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
   }
   onInputChange(event: Event) {
     this.markAsTouched();
-    if (!this.disabled) {
+    if (!this.disabled && !this.readonly) {
       const v = (event.target as HTMLInputElement).value
       this.value = v;
       this.inputChange$.next(v);
@@ -148,7 +152,9 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
     }
   }
   onFocus() {
-    this.listOpen = true;
+    if (!this.disabled && !this.readonly) {
+      this.listOpen = true;
+    }
   }
   @HostListener("document:click", ['$event', '$event.target']) 
   clicked(event: MouseEvent | TouchEvent, targetElement: HTMLElement) { 
@@ -161,7 +167,7 @@ export class DropdownComponent implements ControlValueAccessor, Validator, OnIni
     event.preventDefault();
     event.stopPropagation();
     this.markAsTouched();
-    if (!this.disabled) {
+    if (!this.disabled && !this.readonly) {
       this.onChange(opt.value);
       this.setInputValue(opt.name);
       this.select.emit(opt);

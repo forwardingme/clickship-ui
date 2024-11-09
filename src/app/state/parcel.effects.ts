@@ -21,7 +21,8 @@ export class ParcelEffects {
 		this.actions$.pipe(
 			ofType(ParcelActions.rateRequest),
 			switchMap((action) => {
-				return this.parcelService.rateRquest(action.parcel).pipe(
+				const {provinceName, ...receiver} = action.parcel.receiverDetails;
+				return this.parcelService.rateRquest({...action.parcel, receiverDetails: receiver}).pipe(
 					map((res) => {
 						if (res.error) {
 							return ParcelActions.setError({ error: res.message});

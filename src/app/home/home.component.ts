@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { ParcelActions } from '../state/actions';
 // import { stepSelector } from '../state/selectors';
 import { Router } from '@angular/router';
+import { FooterComponent } from "../components/footer.component";
 import { Observable } from 'rxjs';
 import { isValidPickupAddressSelector } from '../state/selectors';
 import { CommonModule } from '@angular/common';
@@ -11,7 +12,7 @@ import { ModalComponent } from '../components/modal/modal.component';
 @Component({
   selector: 'app-start',
   standalone: true,
-  imports: [ModalComponent, CommonModule],
+  imports: [FooterComponent, ModalComponent, CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
   <div class="container text-center">
