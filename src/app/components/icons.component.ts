@@ -41,6 +41,7 @@ import { Store } from '@ngrx/store';
   styles: `
     :host {
       width: 100%;
+      margin:15px 0;
     }
     .icons {
       height: 200px auto;

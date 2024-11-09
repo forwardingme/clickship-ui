@@ -28,24 +28,23 @@ import { IconsComponent } from '../components/icons.component';
       </div>
       <app-icons></app-icons>
     </div>-->
-    <div class="row d-flex justify-content-center">
-      <div class="selection p-4 col-sm-5 d-flex justify-content-center" title="Envolope" (click)="setShipmentType(ParcelType.ENVELOPE)">
+    <div class="row d-flex justify-content-center flex-fill">
+      <div class="selection p-4 col-sm-5 d-flex justify-content-center align-items-center" title="Envolope" (click)="setShipmentType(ParcelType.ENVELOPE)">
         <div>
           <img class="logo_envolope big-img" src="assets/images/envelope.svg" alt="Envelope" />
-          <div class="button">ENVELOPE</div>
+          <div class="d-flex justify-content-center p-5"><button class="button">ENVELOPE</button></div>
         </div>
       </div>
       <div class="vertical-line"></div>
       <div class="selection p-4 col-sm-5 d-flex justify-content-center align-items-center" title="package" (click)="setShipmentType(ParcelType.PACKAGE)">
         <div >
         <img class="logo_package big-img" src="assets/images/box.svg" alt="Package" />
-        <div class="button">PACKAGE</div>
+        <div class="d-flex justify-content-center p-5"><button class="button">PACKAGE</button></div>
         </div>
       </div>
-     
+      
     </div>
     <app-icons></app-icons>
-    <app-footer></app-footer>
   </div>
   `,
   styleUrls: ['./shipment-type.component.scss']
