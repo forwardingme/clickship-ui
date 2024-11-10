@@ -26,9 +26,9 @@ import { IconsComponent } from '../components/icons.component';
           <div class="text-center fs-3">International</div>
         </div>
       </div>
-      <app-icons></app-icons>
+      
     </div>
-    <app-footer></app-footer>
+    <app-icons></app-icons>
   </div>
   `,
 styleUrls: ['./destination.component.scss']

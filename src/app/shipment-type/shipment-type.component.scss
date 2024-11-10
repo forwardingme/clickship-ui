@@ -4,7 +4,33 @@
   color: var(--bs-gray-600);
 }
 
-img {
-  width: 250px;
-  height: 150px;
+.big-img {
+  width: 300px;
+  height: 200px;
+}
+
+
+
+.button {
+  background: red;
+  border: 1px solid currentColor;
+  color: white;
+  margin-left: 5px;
+  padding: 2% 1%;
+  overflow: hidden;
+  cursor: pointer;
+  width: 80%;
+  height: 60px;
+  border-radius: 25px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.vertical-line {
+  width: 2px;  
+  padding:0;             
+  height:auto;            
+  background-color: grey;
+  margin: 0 15px;          
 }

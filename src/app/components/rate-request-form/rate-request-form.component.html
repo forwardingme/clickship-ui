@@ -19,7 +19,7 @@
 					[required]="true"
 					(valueChange)="onPostalCodeChanged($event, FromEnum.SHIPPER)"
 					(select)="onAddressSelect($event, 'postalCode', FromEnum.SHIPPER)"
-				><span class="input-group-text" id="basic-addon1">$</span></app-dropdown>
+				><span class="input-group-text" id="basic-addon1"><img src="assets/images/location.svg"/></span></app-dropdown>
 			</div>
 			<div class="col-md-6">
 				<app-dropdown placeholder="City"
@@ -29,9 +29,10 @@
 					[debounce]="600"
 					(valueChange)="onCityNameChanged($event, FromEnum.SHIPPER)"
 					(select)="onAddressSelect($event, 'cityName', FromEnum.SHIPPER)"
-				/>
+				><span class="input-group-text" id="basic-addon1"><img src="assets/images/buildings.svg"/></span></app-dropdown>
 			</div>
-			<div class="col-md-12">
+			<div class="col-md-12 input-group">
+        <span class="input-group-text"><img src="assets/images/flag.svg"/></span>
 				<input
 					class="form-control"
 					type="text"
@@ -56,7 +57,7 @@
 					formControlName="countryCode" 
 					[required]="true"
 					(select)="onCountrySelect($event)"
-				/>
+          ><span class="input-group-text" id="basic-addon1"><img src="assets/images/globe-americas.svg"/></span></app-dropdown>
 			</div>
 			<div class="col-6">
 				<app-dropdown placeholder="Postal Code" 
@@ -66,7 +67,7 @@
 					[required]="requirePostalCode"
 					(valueChange)="onPostalCodeChanged($event, FromEnum.RECEIVER)"
 					(select)="onAddressSelect($event, 'postalCode', FromEnum.RECEIVER)"
-				/>
+          ><span class="input-group-text" id="basic-addon1"><img src="assets/images/location.svg"/></span></app-dropdown>
 			</div>
 			<div class="col-md-6">
 				<app-dropdown placeholder="City"
@@ -76,9 +77,10 @@
 					[debounce]="600"
 					(valueChange)="onCityNameChanged($event, FromEnum.RECEIVER)"
 					(select)="onAddressSelect($event, 'cityName', FromEnum.RECEIVER)"
-				/>
+				><span class="input-group-text" id="basic-addon1"><img src="assets/images/buildings.svg"/></span></app-dropdown>
 			</div>
-			<div class="col-md-12">
+			<div class="col-md-12 input-group">
+        <span class="input-group-text"><img src="assets/images/flag.svg"/></span>
 				<input
 					class="form-control"
 					type="text"

@@ -2,7 +2,8 @@
 	<div class="col-md-6">
 		<app-destination-header prefix="From" [domestic]="true"></app-destination-header>
 		<div class="row g-3" formGroupName="shipperDetails">
-      <div class="col-12">
+      <div class="col-12 input-group">
+        <span class="input-group-text"><img src="assets/images/person-circle.svg"/></span>
 				<input
 					class="form-control"
 					type="text"
@@ -14,7 +15,8 @@
 					appTrimText
 				/>
 			</div>
-      <div class="col-12">
+      <div class="col-12 input-group">
+        <span class="input-group-text"><img src="assets/images/house-door.svg"/></span>
 				<input
 					class="form-control"
 					type="text"
@@ -27,28 +29,35 @@
 				/>
 			</div>
 			<div class="col-6">
-				<input
-					class="form-control"
-					type="text"
-					formControlName="postalCode"
-					placeholder="Postal Code *"
-					aria-label="Postal Code"
-          required
-          readonly
-				/>
+        <div  class="input-group">
+          <span class="input-group-text"><img src="assets/images/location.svg"/></span>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="postalCode"
+            placeholder="Postal Code *"
+            aria-label="Postal Code"
+            required
+            readonly
+          />
+        </div>
 			</div>
       <div class="col-6">
-				<input
-					class="form-control"
-					type="text"
-					formControlName="cityName"
-					placeholder="Your City *"
-					aria-label="Your City"
-          required
-          readonly
-				/>
+        <div class="input-group">
+          <span class="input-group-text"><img src="assets/images/buildings.svg"/></span>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="cityName"
+            placeholder="Your City *"
+            aria-label="Your City"
+            required
+            readonly
+          />
+      </div>
 			</div>
-      <div class="col-12">
+      <div class="col-12 input-group">
+        <span class="input-group-text"><img src="assets/images/telephone.svg"/></span>
 				<input
 					class="form-control"
 					type="text"
@@ -60,7 +69,8 @@
 					appMask="(000)000-0000"
 				/>
 			</div>
-      <div class="col-12">
+      <div class="col-12 input-group">
+        <span class="input-group-text"><img src="assets/images/letter.svg"/></span>
 				<input
 					class="form-control"
 					type="email"
@@ -81,7 +91,8 @@
   <div class="col-md-6">
 		<app-destination-header prefix="To" [domestic]="domestic"></app-destination-header>
 		<div class="row g-3" formGroupName="receiverDetails">
-      <div class="col-12">
+      <div class="col-12 input-group">
+        <span class="input-group-text"><img src="assets/images/person-circle.svg"/></span>
 				<input
 					class="form-control"
 					type="text"
@@ -99,9 +110,10 @@
 					formControlName="countryCode" 
 					[required]="true"
           [readonly]="true"
-				/>
+          ><span class="input-group-text" id="basic-addon1"><img src="assets/images/globe-americas.svg"/></span></app-dropdown>
 			</div>
-      <div class="col-12">
+      <div class="col-12 input-group">
+        <span class="input-group-text"><img src="assets/images/map.svg"/></span>
 				<input
 					class="form-control"
 					type="text"
@@ -114,28 +126,35 @@
 				/>
 			</div>
       <div class="col-6">
-				<input
-					class="form-control"
-					type="text"
-					formControlName="provinceName"
-					placeholder="Province"
-					aria-label="Province"
-					maxlength="45"
-					readonly
-				/>
+        <div class="input-group">
+          <span class="input-group-text"><img src="assets/images/flag.svg"/></span>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="provinceName"
+            placeholder="Province"
+            aria-label="Province"
+            maxlength="45"
+            readonly
+          />
+        </div>
 			</div>
       <div class="col-6">
-				<input
-					class="form-control"
-					type="text"
-					formControlName="cityName"
-					placeholder="Shipping City *"
-					aria-label="Shipping City"
-          required="true"
-          readonly
-				/>
+        <div class="input-group">
+          <span class="input-group-text"><img src="assets/images/buildings.svg"/></span>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="cityName"
+            placeholder="Shipping City *"
+            aria-label="Shipping City"
+            required="true"
+            readonly
+          />
+        </div>
 			</div>
-			<div class="col-12">
+			<div class="col-12 input-group">
+        <span class="input-group-text"><img src="assets/images/location.svg"/></span>
 				<input
 					class="form-control"
 					type="text"
@@ -146,7 +165,8 @@
           readonly
 				/>
 			</div>
-      <div class="col-12">
+      <div class="col-12 input-group">
+        <span class="input-group-text"><img src="assets/images/telephone.svg"/></span>
 				<input
 					*ngIf="!isUsOrCa"
 					class="form-control"
