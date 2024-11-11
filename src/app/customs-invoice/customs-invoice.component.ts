@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { HeaderComponent } from '../components/header.component';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { lineItemsSelector } from '../state/selectors';
+import { lineItemsSelector, stepNumSelector } from '../state/selectors';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { ParcelActions } from '../state/actions';
@@ -19,12 +19,13 @@ import { LineItem } from '../models/invoice';
 })
 export class CustomsInvoiceComponent implements OnInit{
   items$: Observable<LineItem[] | null>;
-
+  steps$: Observable<number>;
   private store = inject(Store);
   private router = inject(Router);
 
   constructor() {
     this.items$ = this.store.select(lineItemsSelector);
+    this.steps$ = this.store.select(stepNumSelector);
   }
 
   ngOnInit(): void { }

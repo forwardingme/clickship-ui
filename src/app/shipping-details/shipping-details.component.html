@@ -1,5 +1,6 @@
 <div class="container">
-  <app-header title="Shipping Details"></app-header>
+  <app-header [step]="5" [steps]="steps$ | async"></app-header>
+  <div class="page-title">Shipping Details</div>
   <div class="content">
     <app-shipping-details-form
       [parcel]="parcel$ | async"

@@ -197,10 +197,10 @@ export class RateRequestFormComponent implements OnInit {
 	onSubmit() {
 		this.submitForm.emit({...this.form.value, parcelType: this.parcelType});
 	}
-	onReset() {
-		this.resetForm.emit();
-		this.form.enable();
-	}
+	// onReset() {
+	// 	this.resetForm.emit();
+	// 	this.form.enable();
+	// }
 
 	private generateAddresses(addressbooks: AddressBook[] | null) {
 		const postalCodes: Option[] = [];

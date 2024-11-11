@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { HeaderComponent } from '../components/header.component';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { parcelSelector, rateResponseSelector, addressbooksSelector, shipperAddressbooksSelector, destinationSelector } from '../state/selectors';
+import { parcelSelector, rateResponseSelector, addressbooksSelector, shipperAddressbooksSelector, destinationSelector, stepNumSelector } from '../state/selectors';
 import { RateRequestFormComponent } from '../components/rate-request-form/rate-request-form.component';
 import { Parcel } from '../models/parcel';
 import { Observable } from 'rxjs';
@@ -26,6 +26,7 @@ export class RateRequestComponent implements OnInit{
   rateResponse$: Observable<RateResponse | null>;
   addressbooks$: Observable<AddressBook[]>;
   shipperAddressbooks$: Observable<AddressBook[]>;
+  steps$: Observable<number>;
   private store = inject(Store);
   private router = inject(Router);
 
@@ -35,6 +36,7 @@ export class RateRequestComponent implements OnInit{
     this.rateResponse$ = this.store.select(rateResponseSelector);
     this.addressbooks$ = this.store.select(addressbooksSelector);
     this.shipperAddressbooks$ = this.store.select(shipperAddressbooksSelector);
+    this.steps$ = this.store.select(stepNumSelector);
   }
 
   ngOnInit(): void {

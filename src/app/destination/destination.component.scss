@@ -1,3 +1,7 @@
+.app-header {
+  margin-bottom: 0.5rem;
+}
+
 .selection {
   background-color: var(--bs-gray-100);
   cursor: pointer;
@@ -7,4 +11,10 @@
 img {
   width: 250px;
   height: 150px;
+  margin-bottom: 1.2rem;
+}
+
+.button {
+  width: 80%;
+  height: 45px;
 }

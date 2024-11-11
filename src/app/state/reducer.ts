@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { AddressBook, CANADA_CODE, DestinationEnum, LanguageEnum, ParcelType, PickupDetails, Tab } from "../models/shared.models";
+import { AddressBook, CANADA_CODE, DestinationEnum, LanguageEnum, ParcelType, PickupDetails } from "../models/shared.models";
 import { ParcelActions } from "./actions";
 import { CustomerDetails } from "../models/customerDetails";
 import { Package } from "../models/package";
@@ -7,7 +7,6 @@ import { RateResponse } from "../models/rateResponse";
 import { LineItem } from "../models/invoice";
 
 export interface State {
-  step: Tab;
   languange: LanguageEnum;
   parcelType: ParcelType | null;
   destination: DestinationEnum;
@@ -55,7 +54,6 @@ export const initLineItem: LineItem = {
 }
 
 export const initState: State = {
-  step: Tab.LANGUAGE,
   languange: LanguageEnum.FR,
   parcelType: ParcelType.PACKAGE,
   destination: DestinationEnum.OTHERS,
@@ -88,9 +86,9 @@ export const initState: State = {
 
 export const parcelReducer = createReducer(initState,
   on(ParcelActions.reset, (state) => ({...initState, pickupDetails: state.pickupDetails, parcelType: state.parcelType, languange: state.languange})),
-  on(ParcelActions.setLanguage, (state, { language }) => ({...state, language, step: 2, rateResponse: null })),
+  on(ParcelActions.setLanguage, (state, { language }) => ({...state, language, rateResponse: null })),
   on(ParcelActions.setParcelType, (state, { parcelType }) => {
-    const newState = {...state, parcelType, step: 3, rateResponse: null };
+    const newState = {...state, parcelType, rateResponse: null };
     if (parcelType === ParcelType.PACKAGE) return newState;
     newState.packages = [{weight: 1, length: 13.8, width: 10.8, height: 1}];
     return newState;

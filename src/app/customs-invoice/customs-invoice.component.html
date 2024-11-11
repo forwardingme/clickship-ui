@@ -1,5 +1,6 @@
 <div class="container">
-  <app-header title="Customs Invoice"></app-header>
+  <app-header [step]="6" [steps]="steps$ | async"></app-header>
+  <div class="page-title">Customs Invoice</div>
   <div class="content">
     <app-customs-invoice-form
       [items]="items$ | async"

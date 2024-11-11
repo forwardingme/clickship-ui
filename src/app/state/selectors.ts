@@ -1,7 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { State } from './reducer';
 import { Parcel } from '../models/parcel';
-import { CANADA_CODE } from '../models/shared.models';
+import { CANADA_CODE, ParcelType, STEP_NUM } from '../models/shared.models';
 import { CustomerDetails } from '../models/customerDetails';
 
 export const featureSelector = createFeatureSelector<
@@ -40,6 +40,13 @@ export const pickupAddressSelector = createSelector(
   featureSelector,
   (feature) => {
     return feature.pickupDetails;
+  }
+);
+
+export const stepNumSelector = createSelector(
+  featureSelector,
+  (feature) => {
+    return feature.parcelType === ParcelType.ENVELOPE ? STEP_NUM - 1 : STEP_NUM;
   }
 );
 

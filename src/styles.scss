@@ -44,6 +44,29 @@ body {
   }
 }
 
+.page-title {
+  text-align: center;
+  font-size: 3rem;
+  color: #757575;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-family: sans-serif;
+}
+
+.button {
+  background: red;
+  border: 1px solid red;
+  color: var(--bs-white);
+  margin-left: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  height: 60px;
+  border-radius: 25px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
 @keyframes loader {
   0% {
     transform: rotate(0deg);
@@ -61,7 +84,7 @@ body {
 
 .logo_dhl {
 	width: 400px;
-	background-color: #fc0;
+	// background-color: #fc0;
 	padding: 6px 0;
 }
 
@@ -95,5 +118,11 @@ body {
   .container {
     height: auto;
     min-height: 100vh;
+  }
+}
+
+@media only screen and (max-width: 1366px) {
+  .container {
+    max-width: 100%;
   }
 }

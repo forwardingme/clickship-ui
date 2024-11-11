@@ -4,29 +4,31 @@ import { Store } from '@ngrx/store';
 import { DestinationEnum } from '../models/shared.models';
 import { ParcelActions } from '../state/actions';
 import { HeaderComponent } from '../components/header.component';
-import { FooterComponent } from '../components/footer.component';
 import { IconsComponent } from '../components/icons.component';
+import { Observable } from 'rxjs';
+import { stepNumSelector } from '../state/selectors';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-destination',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, IconsComponent],
+  imports: [HeaderComponent, IconsComponent, CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
    <div class="container">
-    <app-header title="Select Destination"></app-header>
+    <app-header class="app-header" [step]="3" [steps]="steps$ | async"></app-header>
+    <div class="page-title">Press to Choose Destination</div>
     <div class="d-flex flex-wrap align-items-center justify-content-center flex-fill">
       <div class="d-flex justify-content-center py-2 gap-5">
+      <div class="selection p-4" title="International" (click)="setDestination(DestinationEnum.OTHERS)">
+          <img src="assets/images/globe.svg" alt="International" />
+          <div class="text-center"><button class="button">International</button></div>
+        </div>
         <div class="selection p-4" title="Domestic" (click)="setDestination(DestinationEnum.CA)">
           <img src="assets/images/canada.svg" alt="Domestic" />
-          <div class="text-center fs-3">Canada</div>
-        </div>
-        <div class="selection p-4" title="International" (click)="setDestination(DestinationEnum.OTHERS)">
-          <img src="assets/images/globe.svg" alt="International" />
-          <div class="text-center fs-3">International</div>
+          <div class="text-center"><button class="button">Canada</button></div>
         </div>
       </div>
-      
     </div>
     <app-icons></app-icons>
   </div>
@@ -34,11 +36,14 @@ import { IconsComponent } from '../components/icons.component';
 styleUrls: ['./destination.component.scss']
 })
 export class DestinationComponent {
+  steps$: Observable<number>;
   DestinationEnum = DestinationEnum;
   private store = inject(Store);
   private router = inject(Router);
 
-  constructor() {}
+  constructor() {
+    this.steps$ = this.store.select(stepNumSelector);
+  }
 
   setDestination(destination: DestinationEnum) {
     this.store.dispatch(ParcelActions.setDestination({ destination }));
