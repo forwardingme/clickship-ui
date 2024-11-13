@@ -24,8 +24,8 @@ import {
 			<app-header [showProgress]="false"></app-header>
 			<!-- <div class="page-title">Accept & Pay</div> -->
 			<div class="content" *ngIf="!accepted">
-				<div class="d-flex text-center mt-3 m-auto justify-content-center">
-					<div class="left">
+				<div class="row d-flex text-center mt-3 m-auto justify-content-around">
+					<div class="left col-md-6 col-sm-12">
 						<div class="rate m-auto">
 							<div>
 								<img
@@ -75,8 +75,72 @@ import {
 						</div>
 						<div class="time-lapse fs-2">09:53</div>
 					</div>
-					<div class="right">
-						
+					<div class="right col-md-6 col-sm-12">
+            <div id="carouselExampleIndicators" class="carousel carousel-dark slide">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="star-group d-flex justify-content-around">
+                    <img src="assets/images/star-fill.svg">
+                    <img src="assets/images/star-fill.svg">
+                    <img src="assets/images/star-fill.svg">
+                    <img src="assets/images/star-half.svg">
+                    <img src="assets/images/star.svg">
+                  </div>
+                  <div class="text-center mb-5">
+                    <h4>“Klickship quick to Haiti, no issues”</h4>
+                    <br>
+                    <h3>Junior Augustin</h3>
+                    <img class="rounded-circle my-2" src="assets/images/avatar.png" width="150" alt="avatar">
+                  </div>
+                </div>
+                <div class="carousel-item">
+                <div class="star-group d-flex justify-content-around">
+                    <img src="assets/images/star-fill.svg">
+                    <img src="assets/images/star-fill.svg">
+                    <img src="assets/images/star-fill.svg">
+                    <img src="assets/images/star-fill.svg">
+                    <img src="assets/images/star-half.svg">
+                  </div>
+                  <div class="text-center mb-5">
+                    <h4>“Klickship quick to Haiti, no issues”</h4>
+                    <br>
+                    <h3>Junior Augustin</h3>
+                    <img class="rounded-circle my-2" src="assets/images/avatar.png" width="150" alt="avatar">
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="star-group d-flex justify-content-around">
+                    <img src="assets/images/star-fill.svg">
+                    <img src="assets/images/star-fill.svg">
+                    <img src="assets/images/star-fill.svg">
+                    <img src="assets/images/star-fill.svg">
+                    <img src="assets/images/star-fill.svg">
+                  </div>
+                  <div class="text-center mb-5">
+                    <h4>“Klickship quick to Haiti, no issues”</h4>
+                    <br>
+                    <h3>Junior Augustin</h3>
+                    <img class="rounded-circle my-2" src="assets/images/avatar.png" width="150" alt="avatar">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div><h6>12 268+ Happy Clients</h6></div>
+            <hr>
+            <div class="h3 d-flex justify-content-start align-items-center">
+              <img src="assets/images/payment-lock.png" width="50" alt="payment-lock">
+              &nbsp;&nbsp;Safe Transaction
+            
+            </div>
+            <div class="h3 d-flex justify-content-start align-items-center">
+              <img src="assets/images/payment-shield.png" width="50" alt="payment-shield">
+              &nbsp;&nbsp;100% Secure Shipment 
+            </div>
 					</div>
 				</div>
 			</div>
