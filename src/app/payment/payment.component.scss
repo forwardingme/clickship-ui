@@ -1,8 +1,12 @@
-.left, .right {
+.left,.right {
   width: 450px;
   padding: 1.5rem;
-  border-radius: 1rem;
-  border: 1px solid #999;
+  border-radius: 3rem;
+}
+
+.left{
+  border: 1px solid rgb(153, 153, 153);
+  box-shadow: 5px 5px 5px rgb(153, 153, 153), -2px -2px 5px rgb(153, 153, 153);
 }
 .right {
   border-left: none;
@@ -41,9 +45,27 @@ button.button {
   margin: auto;
   width: 210px;
   margin-bottom: 1rem;
-  border: 1px solid var(--bs-blue);
+
 
   img {
     width: 200px;
   }
+}
+
+.star-group{
+  width: 80% auto;
+  height: 30px;
+  margin: 15px 0;
+}
+
+.time-lapse{
+  color: red;
+}
+
+.font-16 {
+  font-size: 16px;
+}
+
+.secure{
+  font-weight: bold;
 }
