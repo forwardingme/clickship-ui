@@ -8,14 +8,14 @@ import {
 	Validators,
 } from "@angular/forms";
 import { NgFor, NgIf } from "@angular/common";
-import { TrimTextDirective } from "../trim-text.directive";
+// import { TrimTextDirective } from "../trim-text.directive";
 import { LineItem, reasons } from "../../models/invoice";
 import { DropdownComponent } from "../dropdown.component";
 import { countryOptions } from "../../models/country";
 
 @Component({
 	standalone: true,
-	imports: [ReactiveFormsModule, NgFor, NgIf, TrimTextDirective, DropdownComponent],
+	imports: [ReactiveFormsModule, NgFor, NgIf, DropdownComponent],
 	selector: "app-customs-invoice-form",
 	templateUrl: "./customs-invoice-form.component.html",
 	changeDetection: ChangeDetectionStrategy.OnPush
@@ -69,6 +69,18 @@ export class CustomsInvoiceFormComponent implements OnInit {
 				exportReasonType: new FormControl(''), 
 			})
 		);
+	}
+	removeItem(idx: number) {
+		const value = this.itemFa.value;
+
+		this.itemFa.setValue(
+			value
+				.slice(0, idx)
+				.concat(value.slice(idx + 1))
+				.concat(value[idx])
+		);
+
+		this.itemFa.removeAt(value.length - 1);
 	}
 	onSubmit() {
 		this.submitForm.emit(this.form.value.lineItems);

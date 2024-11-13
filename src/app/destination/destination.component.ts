@@ -20,12 +20,16 @@ import { CommonModule } from '@angular/common';
     <div class="page-title">Press to Choose Destination</div>
     <div class="d-flex flex-wrap align-items-center justify-content-center flex-fill">
       <div class="d-flex justify-content-center py-2 gap-5">
-      <div class="selection p-4" title="International" (click)="setDestination(DestinationEnum.OTHERS)">
+        <div class="selection p-4" title="International" (click)="setDestination(DestinationEnum.OTHERS)">
           <img src="assets/images/globe.svg" alt="International" />
           <div class="text-center"><button class="button">International</button></div>
         </div>
-        <div class="selection p-4" title="Domestic" (click)="setDestination(DestinationEnum.CA)">
-          <img src="assets/images/canada.svg" alt="Domestic" />
+        <div class="selection p-4" title="USA" (click)="setDestination(DestinationEnum.US)">
+          <img src="assets/images/usa.svg" alt="USA" />
+          <div class="text-center"><button class="button">USA</button></div>
+        </div>
+        <div class="selection p-4" title="Canada" (click)="setDestination(DestinationEnum.CA)">
+          <img src="assets/images/canada.svg" alt="Canada" />
           <div class="text-center"><button class="button">Canada</button></div>
         </div>
       </div>

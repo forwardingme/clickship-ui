@@ -2,15 +2,6 @@
 	<div class="col-md-6">
 		<app-destination-header prefix="From" [domestic]="true"></app-destination-header>
 		<div class="row g-3" formGroupName="shipperDetails">
-			<div class="col-12 d-none">
-				<select
-					formControlName="countryCode"
-					class="form-select"
-					required
-				>
-					<option value="CA">Canada</option>
-				</select>
-			</div>
 			<div class="col-6">
 				<app-dropdown placeholder="Postal Code" 
 					[options]="shipperPostalCodes"	
@@ -56,6 +47,7 @@
 					[options]="countries"	
 					formControlName="countryCode" 
 					[required]="true"
+					[readonly]="isCountryReadonly"
 					(select)="onCountrySelect($event)"
           ><span class="input-group-text" id="basic-addon1"><img src="assets/images/globe-americas.svg"/></span></app-dropdown>
 			</div>
@@ -191,7 +183,7 @@
 			</div>
 		</div>
 	</ng-container>
-	<div class="col-md-2 offset-md-10" *ngIf="!rateResponse">
+	<div class="col-md-2 offset-md-10 mt-3" *ngIf="!rateResponse">
 		<button
 			type="submit"
 			class="btn btn-danger btn-lg "

@@ -51,7 +51,7 @@
 					required
 				/>
 			</div>
-			<div class="col-md-9">
+			<div class="col-md-8">
 				<label class="form-label">What is the reason for the export? *</label>
 				<div class="col-12">
 					<select
@@ -69,8 +69,18 @@
 					</select>
 				</div>
 			</div>
-			<div class="col-md-3" *ngIf="isLast">
-				<label class="form-label"></label>
+			<div class="col-md-3 d-flex text-end align-items-end" *ngIf="!isLast">
+				<div class="col-12">
+					<button
+						type="button"
+						class="btn btn-danger btn-lg"
+						(click)="removeItem(i)"
+					>
+						<span>Remove </span><span>-</span>
+					</button>
+				</div>
+			</div>
+			<div class="col-md-3 d-flex text-end align-items-end" *ngIf="isLast">
 				<div class="col-12">
 					<button
 						type="button"
@@ -93,7 +103,7 @@
 				I confirm I have read and understood the both Terms & Conditions.
 			</label> -->
 		</div>
-		<div class="col-md-4 p-3 text-end">
+		<div class="col-md-5 p-3 text-end">
 			<button
 				type="submit"
 				class="btn btn-danger btn-lg"

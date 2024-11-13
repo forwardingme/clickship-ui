@@ -20,8 +20,18 @@ import { DropdownComponent } from "../dropdown.component";
 	imports: [ReactiveFormsModule, NgIf, DestinationHeaderComponent, TrimTextDirective, MaskDirective, DropdownComponent],
 	selector: "app-shipping-details-form",
 	templateUrl: "./shipping-details-form.component.html",
-	changeDetection: ChangeDetectionStrategy.OnPush
-	// styleUrls: ["./shipping-details-form.component.scss"],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	styles: `
+		.link img {
+			height: 50px;
+			margin: .5rem;
+		}
+		.terms .form-check-input {
+			width: 40px;
+			height: 35px;
+			margin-right: .5rem;
+		}
+	`,
 })
 export class ShipperDetailsFormComponent implements OnInit {
 	form: FormGroup;
@@ -75,11 +85,12 @@ export class ShipperDetailsFormComponent implements OnInit {
 				provinceName: new FormControl('', Validators.minLength(2)),
 				countryCode: new FormControl('', [Validators.minLength(2), Validators.maxLength(2)]),
 			}),
+			accept: new FormControl(false, Validators.requiredTrue)
 		});
 	}
 	ngOnInit(): void {}
 
 	onSubmit() {
-		this.submitForm.emit(this.form.value);
+		this.submitForm.emit({...this.form.value, parcelType: this._parcel?.parcelType});
 	}
 }

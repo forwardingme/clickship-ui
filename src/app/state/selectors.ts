@@ -29,6 +29,13 @@ export const parcelTypeSelector = createSelector(
   }
 );
 
+export const paymentStepSelector = createSelector(
+  featureSelector,
+  (feature) => {
+    return feature.parcelType === ParcelType.ENVELOPE ? 5 : 6;
+  }
+);
+
 export const destinationSelector = createSelector(
   featureSelector,
   (feature) => {

@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ParcelActions } from '../state/actions';
 import { HeaderComponent } from '../components/header.component';
-import { FooterComponent } from "../components/footer.component";
 import { Observable } from 'rxjs';
 import { documentsSelector } from '../state/selectors';
 import { CommonModule } from '@angular/common';
@@ -12,11 +11,12 @@ import { SafePipe } from '../components/safe.pipe';
 @Component({
   selector: 'app-shipment',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, CommonModule, SafePipe],
+  imports: [HeaderComponent, CommonModule, SafePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="container">
-      <app-header title="Shipment" [showClose]="true" [showPrev]="false" (close)="reset()"></app-header>
+      <app-header title="Shipment" [showProgress]="false" [showClose]="true" [showPrev]="false" (close)="reset()"></app-header>
+      <div class="page-title">Shipment Details</div>
       <div class="content">
         <ng-container *ngIf="!!shipmentTrackingNumber">
           <div>Shipment Tracking Number: {{shipmentTrackingNumber}}</div>

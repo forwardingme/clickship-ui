@@ -193,14 +193,27 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="text-center col-12 p-3">
+	<div class="col-md-6 d-flex p-3 g-2 terms">
+		<div class="link">
+			<img src="assets/images/link.svg" alt="link" />
+		</div>
+		<div>
+			<h5>Press the Button Bellow</h5>
+			<div class="form-check d-flex align-items-center">
+				<input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="accept">
+				<label class="form-check-label" for="flexCheckDefault">
+					I confirm I have read and understood the both Terms & Conditions.
+				</label>
+			</div>
+		</div>
+	</div>
+	<div class="offset-md-4 col-md-2  d-flex align-items-end p-3">
 		<button
 			type="submit"
 			class="btn btn-danger btn-lg"
 			[disabled]="!form.valid"
 		>
-			Confirm
+			Next
 		</button>
 	</div>
 </form>

@@ -13,7 +13,7 @@
       (addressChange)="onAddressChange($event)"
       (countryChange)="onCountryChange()"
     ></app-rate-request-form>
-    <div class="row" *ngIf="rateResponse$ | async">
+    <div class="row mb-3 mt-2" *ngIf="rateResponse$ | async">
       <div class="col-md-4 offset-md-4 rate text-center ">
         <div>
           <img class="logo_dhl" src="assets/images/dhl-log.svg" />
@@ -29,7 +29,7 @@
       <div class="col-md-2 offset-md-2 d-flex align-items-end">
         <button
           type="button"
-          class="btn btn-danger btn-lg "
+          class="btn btn-danger btn-lg"
           (click)="createShipment()"
         >
           Next

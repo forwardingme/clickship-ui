@@ -55,6 +55,9 @@ export class RateRequestFormComponent implements OnInit {
 	get rateResponse(): RateResponse | null {
 		return this._rateResponse;
 	}
+	get isCountryReadonly() {
+		return this.destination !== DestinationEnum.OTHERS;
+	}
 	@Input()
 	set shipperAddressbooks(data: AddressBook[] | null) {
 		[this.shipperPostalCodes, this.shipperCities] = this.generateAddresses(data);
