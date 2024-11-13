@@ -45,7 +45,7 @@ button.button {
   margin: auto;
   width: 210px;
   margin-bottom: 1rem;
-  border: 1px solid var(--bs-blue);
+
 
   img {
     width: 200px;
@@ -56,4 +56,16 @@ button.button {
   width: 80% auto;
   height: 30px;
   margin: 15px 0;
+}
+
+.time-lapse{
+  color: red;
+}
+
+.font-16 {
+  font-size: 16px;
+}
+
+.secure{
+  font-weight: bold;
 }
