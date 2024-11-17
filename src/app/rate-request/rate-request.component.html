@@ -9,7 +9,6 @@
       [addressbooks]="addressbooks$ | async"
       [shipperAddressbooks]="shipperAddressbooks$ | async"
       (submitForm)="onSubmit($event)"
-      (resetForm)="onReset()"
       (addressChange)="onAddressChange($event)"
       (countryChange)="onCountryChange()"
     ></app-rate-request-form>
@@ -27,9 +26,12 @@
         </div>
       </div>
       <div class="col-md-2 offset-md-2 d-flex align-items-end">
+        <button type="button" class="btn btn-danger btn-lg" (click)="onReset()">
+          Reset
+        </button>
         <button
           type="button"
-          class="btn btn-danger btn-lg"
+          class="btn btn-danger btn-lg mx-2"
           (click)="createShipment()"
         >
           Next

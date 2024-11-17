@@ -3,6 +3,7 @@ import { State } from './reducer';
 import { Parcel } from '../models/parcel';
 import { CANADA_CODE, ParcelType, STEP_NUM } from '../models/shared.models';
 import { CustomerDetails } from '../models/customerDetails';
+import { AllReviews } from '../models/reviews';
 
 export const featureSelector = createFeatureSelector<
   Readonly<State>
@@ -140,6 +141,19 @@ export const lineItemsSelector = createSelector(
     return feature.lineItems;
   }
 );
+
+export const reviewsSelector = createSelector(
+  featureSelector,
+  (feature) => {
+    const countryCode = feature.receiverDetails.countryCode;
+    const reviews = AllReviews.filter(r => r.countryCode === countryCode);
+    while (reviews.length < 3) {
+      const r = AllReviews[Math.floor(Math.random() * AllReviews.length)];
+      reviews.push(r);
+    }
+    return reviews.map(r => ({...r, url: `assets/avatars/${r.author.replace(/\s+/g, '_')}.svg`}));
+  }
+)
 
 export function isValidPickupAddress(address: CustomerDetails | null): boolean {
   return !!address && !!address.fullName && !!address.addressLine1 && !!address.cityName

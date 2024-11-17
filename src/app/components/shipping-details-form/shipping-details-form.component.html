@@ -21,10 +21,22 @@
 					class="form-control"
 					type="text"
 					formControlName="addressLine1"
-					placeholder="Your Home Address *"
+					placeholder="Your Home Address Line 1 *"
 					aria-label="Your Home Address"
           maxlength="45"
           required
+					appTrimText
+				/>
+			</div>
+			<div class="col-12 input-group">
+        <span class="input-group-text"><img src="assets/images/house-door.svg"/></span>
+				<input
+					class="form-control"
+					type="text"
+					formControlName="addressLine2"
+					placeholder="Your Home Address Line 2"
+					aria-label="Your Home Address Line 2"
+          maxlength="45"
 					appTrimText
 				/>
 			</div>
@@ -118,9 +130,21 @@
 					class="form-control"
 					type="text"
 					formControlName="addressLine1"
-					placeholder="Shipping Address *"
+					placeholder="Shipping Address Line 1 *"
 					aria-label="Shipping Address"
           required
+					maxlength="45"
+					appTrimText
+				/>
+			</div>
+			<div class="col-12 input-group">
+        <span class="input-group-text"><img src="assets/images/map.svg"/></span>
+				<input
+					class="form-control"
+					type="text"
+					formControlName="addressLine2"
+					placeholder="Shipping Address Line 2"
+					aria-label="Shipping Address Line 2"
 					maxlength="45"
 					appTrimText
 				/>

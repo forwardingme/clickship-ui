@@ -49,7 +49,9 @@ export class RateRequestFormComponent implements OnInit {
 		this._rateResponse = r;
 		if (!!r) {
 			this.form.disable();
-			this.form.controls['verification'].enable();
+			// this.form.controls['verification'].enable();
+		} else {
+			this.form.enable();
 		}
 	}
 	get rateResponse(): RateResponse | null {
@@ -68,7 +70,6 @@ export class RateRequestFormComponent implements OnInit {
 	}
 	@Input() destination: DestinationEnum | null = DestinationEnum.OTHERS;
 	@Output() submitForm = new EventEmitter<Parcel>();
-	@Output() resetForm = new EventEmitter();
 	@Output() addressChange = new EventEmitter<AddressSearchRequest>();
 	@Output() countryChange = new EventEmitter();
 
@@ -77,6 +78,7 @@ export class RateRequestFormComponent implements OnInit {
 	private hasParcel = false;
 	private shipperFG: FormGroup;
 	private receiverFG: FormGroup;
+	private package: Package = initialPackage;
 
 	constructor(private formBuilder: FormBuilder) {
 		this.form = formBuilder.group({
@@ -133,17 +135,18 @@ export class RateRequestFormComponent implements OnInit {
 		const packageGroup = this.form.controls['packages'] as FormArray;
 		packageGroup.push(
 			new FormGroup({
-				weight: new FormControl(initialPackage.weight),
-				width: new FormControl(initialPackage.width),
-				height: new FormControl(initialPackage.height),
-				length: new FormControl(initialPackage.length),
+				weight: new FormControl(this.package.weight),
+				width: new FormControl(this.package.width),
+				height: new FormControl(this.package.height),
+				length: new FormControl(this.package.length),
 			})
 		);
+		this.package = initialPackage;
 	}
 	removePackage(idx: number) {
 		const packageGroup = this.form.controls['packages'] as FormArray;
 		const value = packageGroup.value;
-
+		this.package = value[idx];
 		packageGroup.setValue(
 			value
 				.slice(0, idx)
@@ -177,15 +180,15 @@ export class RateRequestFormComponent implements OnInit {
 		const fg = from === FromEnum.SHIPPER ? this.shipperFG : this.receiverFG;
 		if (control === 'postalCode') {
 			fg.controls['cityName'].setValue(opt.item.city)
-		} else if (!!opt.item.postalCode) {
+		} else if (!!opt.item.postalCode && !fg.controls['postalCode'].value?.includes(opt.item.postalCode)) {
 			fg.controls['postalCode'].setValue(opt.item.postalCode);
 		}
 		if (!!opt.item.countryDivisionCode) {
 			fg.controls['provinceCode'].setValue(opt.item.countryDivisionCode);
-			fg.controls['provinceName'].setValue(opt.item.countryDivisionName);
+			fg.controls['provinceName']?.setValue(opt.item.countryDivisionName);
 		} else {
 			fg.controls['provinceCode'].setValue('');
-			fg.controls['provinceName'].setValue('');
+			fg.controls['provinceName']?.setValue('');
 		}
 	}
 	onCountrySelect(opt: Option) {
@@ -200,10 +203,6 @@ export class RateRequestFormComponent implements OnInit {
 	onSubmit() {
 		this.submitForm.emit({...this.form.value, parcelType: this.parcelType});
 	}
-	// onReset() {
-	// 	this.resetForm.emit();
-	// 	this.form.enable();
-	// }
 
 	private generateAddresses(addressbooks: AddressBook[] | null) {
 		const postalCodes: Option[] = [];

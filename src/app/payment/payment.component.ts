@@ -1,30 +1,29 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ParcelActions } from '../state/actions';
 import { HeaderComponent } from '../components/header.component';
-import { Observable } from 'rxjs';
+import { interval, Observable, Subscription } from 'rxjs';
 import { RateResponse } from '../models/rateResponse';
-import { paymentStepSelector, rateResponseSelector, stepNumSelector } from '../state/selectors';
+import { paymentStepSelector, rateResponseSelector, reviewsSelector, stepNumSelector } from '../state/selectors';
 import { CommonModule } from '@angular/common';
 import {
 	FormBuilder,
-	FormControl,
-	FormGroup,
 	ReactiveFormsModule,
-	Validators,
 } from '@angular/forms';
+import { RatingComponent } from '../components/rating.component';
+import { Review } from '../models/reviews';
 
 @Component({
 	selector: 'app-payment',
 	standalone: true,
-	imports: [HeaderComponent, CommonModule, ReactiveFormsModule],
+	imports: [HeaderComponent, RatingComponent, CommonModule, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="container">
 			<app-header [showProgress]="false"></app-header>
 			<!-- <div class="page-title">Accept & Pay</div> -->
 			<div class="content">
-				<div class="row d-flex text-center mt-3 m-auto justify-content-around">
+				<div class="row d-flex text-center mt-3 m-auto justify-content-center">
 					<div class="left col-md-6 col-sm-12">
 						<div class="rate m-auto">
 							<div>
@@ -56,7 +55,7 @@ import {
 							<button
 								type="button"
 								class="btn btn-danger btn-lg button"
-								(click)="onSubmit()" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+								(click)="onAccept()" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
 							>
 								Accept & Pay
 							</button>
@@ -74,7 +73,7 @@ import {
 							DHL prices can change every 10 minutes. Finish your
 							payment to secure your rate.
 						</div>
-						<div class="time-lapse fs-2">09:53</div>
+						<div class="time-lapse fs-2">{{ timeLapse }}</div>
 					</div>
 					<div class="right col-md-6 col-sm-12">
             <!-- this is the carousel for the reviews-->
@@ -86,49 +85,12 @@ import {
               </div>
              
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="star-group d-flex justify-content-around">
-                    <img src="assets/images/star-fill.svg">
-                    <img src="assets/images/star-fill.svg">
-                    <img src="assets/images/star-fill.svg">
-                    <img src="assets/images/star-half.svg">
-                    <img src="assets/images/star.svg">
-                  </div>
+                <div class="carousel-item" *ngFor="let review of (reviews$ | async); let i = index" [ngClass]="{active: i === 0}">
+                  <app-rating [rating]="review.rating"></app-rating>
                   <div class="text-center mb-5">
-                    <h4>“Klickship quick to Haiti, no issues”</h4>
-                    <br>
-                    <h3>Junior Augustin</h3>
-                    <img class="rounded-circle my-2" src="assets/images/avatar.png" width="150" alt="avatar">
-                  </div>
-                </div>
-                <div class="carousel-item">
-                <div class="star-group d-flex justify-content-around">
-                    <img src="assets/images/star-fill.svg">
-                    <img src="assets/images/star-fill.svg">
-                    <img src="assets/images/star-fill.svg">
-                    <img src="assets/images/star-fill.svg">
-                    <img src="assets/images/star-half.svg">
-                  </div>
-                  <div class="text-center mb-5">
-                    <h4>“Klickship quick to Haiti, no issues”</h4>
-                    <br>
-                    <h3>Junior Augustin</h3>
-                    <img class="rounded-circle my-2" src="assets/images/avatar.png" width="150" alt="avatar">
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="star-group d-flex justify-content-around">
-                    <img src="assets/images/star-fill.svg">
-                    <img src="assets/images/star-fill.svg">
-                    <img src="assets/images/star-fill.svg">
-                    <img src="assets/images/star-fill.svg">
-                    <img src="assets/images/star-fill.svg">
-                  </div>
-                  <div class="text-center mb-5">
-                    <h4>“Klickship quick to Haiti, no issues”</h4>
-                    <br>
-                    <h3>Junior Augustin</h3>
-                    <img class="rounded-circle my-2" src="assets/images/avatar.png" width="150" alt="avatar">
+                    <div class="review-comment fs-4">“{{ review.comment }}”</div>
+                    <h3>{{ review.author }}</h3>
+                    <img class="rounded-circle my-2 avatar" [src]="review.url" alt="avatar">
                   </div>
                 </div>
               </div>
@@ -140,11 +102,11 @@ import {
             <hr>
 
             <!-- the end of the carousel for the reviews-->
-            <div class="h3 d-flex justify-content-start align-items-center">
+            <div class="h3 d-flex justify-content-start align-items-center mt-3">
               <img src="assets/images/payment-lock.png" width="50" alt="payment-lock">
               &nbsp;&nbsp;Safe Transaction
             </div>
-            <div class="h3 d-flex justify-content-start align-items-center">
+            <div class="h3 d-flex justify-content-start align-items-center mt-3">
               <img src="assets/images/payment-shield.png" width="50" alt="payment-shield">
               &nbsp;&nbsp;100% Secure Shipment 
             </div>
@@ -159,7 +121,7 @@ import {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
           <div class="modal-body">
-            <div class="content text-center" *ngIf="accepted">
+            <div class="content text-center">
               <img src="assets/images/credit-card-icon.png" width="150" alt="credit card icon">
                 <h3 class="w-100 m-auto">
                   Please use the payment machine <br />
@@ -188,22 +150,43 @@ import {
 	`,
 	styleUrls: ['./payment.component.scss'],
 })
-export class PaymentComponent {
+export class PaymentComponent implements OnInit, OnDestroy {
 	rateResponse$: Observable<RateResponse | null>;
 	steps$: Observable<number>;
   paymentStep$: Observable<number>;
-	accepted = false;
+  reviews$: Observable<Review[]>;
+  timeLapse = '00:00';
 	private store = inject(Store);
+  private cdr = inject(ChangeDetectorRef);
+  private subscription: Subscription = new Subscription();
 	// private router = inject(Router);
 	constructor(private formBuilder: FormBuilder) {
 		this.rateResponse$ = this.store.select(rateResponseSelector);
 		this.steps$ = this.store.select(stepNumSelector);
     this.paymentStep$ = this.store.select(paymentStepSelector);
+    this.reviews$ = this.store.select(reviewsSelector);
 	}
 
-	onSubmit() {
-		this.accepted = true;
-	}
+  ngOnInit(): void {
+    let seconds = 600;
+    this.subscription.add(
+      interval(1000).subscribe(_ => {
+        seconds--;
+        if (seconds < 0) this.subscription.unsubscribe();
+
+        const m = Math.floor(seconds / 60);
+        let s = seconds % 60;
+        this.timeLapse = `0${m}:${s < 9 ? '0' + s : s}`;
+        this.cdr.markForCheck();
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
+
+	onAccept() { }
 
 	createShipment() {
 		console.log('completed');

@@ -90,22 +90,6 @@
 			<img src="assets/images/package.svg" width="90%" alt="Package dimension">
 		</div>
 		<div class="col-md-6 packages">
-			<!-- <div class="row g-3 p-1">
-				<div class="col-md-2">
-					<label class="form-label text-center"
-						>Length(ln)
-					</label>
-				</div>
-				<div class="col-md-2">
-					<label class="form-label">Width(ln) </label>
-				</div>
-				<div class="col-md-2">
-					<label class="form-label">Height(ln) </label>
-				</div>
-				<div class="col-md-2">
-					<label class="form-label">Weight(LB) </label>
-				</div>
-			</div> -->
 			<div formArrayName="packages">
 				<div class="row g-3 p-2 mt-3 package"
 					*ngFor="let item of packages; let i = index; let isLast=last; trackBy: trackByIndex"
@@ -178,7 +162,6 @@
 					placeholder="Verification Code (Ask the Clerk)"
 					aria-label="Verification"
 					pattern="test_123"
-					[required]="!!rateResponse"
 				/>
 			</div>
 		</div>

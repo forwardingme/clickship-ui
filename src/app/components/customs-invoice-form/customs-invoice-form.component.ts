@@ -12,6 +12,7 @@ import { NgFor, NgIf } from "@angular/common";
 import { LineItem, reasons } from "../../models/invoice";
 import { DropdownComponent } from "../dropdown.component";
 import { countryOptions } from "../../models/country";
+import { initLineItem } from "../../state/reducer";
 
 @Component({
 	standalone: true,
@@ -19,7 +20,6 @@ import { countryOptions } from "../../models/country";
 	selector: "app-customs-invoice-form",
 	templateUrl: "./customs-invoice-form.component.html",
 	changeDetection: ChangeDetectionStrategy.OnPush
-	// styleUrls: ["./customs-invoice-form.component.scss"],
 })
 export class CustomsInvoiceFormComponent implements OnInit {
 	form: FormGroup;
@@ -36,6 +36,7 @@ export class CustomsInvoiceFormComponent implements OnInit {
 	}
 	@Output() submitForm = new EventEmitter<any>();
 	private itemFa: FormArray;
+	private lineItem: LineItem = initLineItem;
 
 	constructor(formBuilder: FormBuilder) {
 		this.form = formBuilder.group({
@@ -44,6 +45,12 @@ export class CustomsInvoiceFormComponent implements OnInit {
 		this.itemFa = this.form.controls['lineItems'] as FormArray;
 	}
 	ngOnInit(): void {}
+
+	get totalValue() {
+		return this.itemFa.controls
+			.map(fc => (fc.get('price')?.value ?? 0) * (fc.get('quantity')?.value ?? 0))
+			.reduce((acc, price) => acc + price, 0);
+	}
 
 	createItemFormGroup(_items: LineItem[]) {
 		if (this.itemFa.length > 0) return;
@@ -62,17 +69,18 @@ export class CustomsInvoiceFormComponent implements OnInit {
 	addItem() {
 		this.itemFa.push(
 			new FormGroup({
-				price: new FormControl(''),
-				quantity: new FormControl(''),
-				description: new FormControl(''),
-				manufacturerCountry: new FormControl('', [Validators.minLength(2), Validators.maxLength(2)]), // countryCode
-				exportReasonType: new FormControl(''), 
+				price: new FormControl(this.lineItem.price),
+				quantity: new FormControl(this.lineItem.quantity),
+				description: new FormControl(this.lineItem.description),
+				manufacturerCountry: new FormControl(this.lineItem.manufacturerCountry, [Validators.minLength(2), Validators.maxLength(2)]), // countryCode
+				exportReasonType: new FormControl(this.lineItem.exportReasonType), 
 			})
 		);
+		this.lineItem = initLineItem;
 	}
 	removeItem(idx: number) {
 		const value = this.itemFa.value;
-
+		this.lineItem = value[idx];
 		this.itemFa.setValue(
 			value
 				.slice(0, idx)
