@@ -7,6 +7,7 @@ import { ShippingDetailsComponent } from "./shipping-details/shipping-details.co
 import { PaymentComponent } from "./payment/payment.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { ShipmentComponent } from "./shipment/shipment.component";
+import { FinalPageComponent } from "./final-page/final-page.component";
 import { checkMachineGuard } from "./state/check-machine.guard";
 import { CustomsInvoiceComponent } from "./customs-invoice/customs-invoice.component";
 
@@ -52,5 +53,10 @@ export const routes: Routes = [
 	{
     path: 'settings',
     component: SettingsComponent
-  }
+  },
+  {
+		path: "final-page",
+		component: FinalPageComponent,
+		
+	}
 ];

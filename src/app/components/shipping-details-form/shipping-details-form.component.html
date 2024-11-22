@@ -217,24 +217,30 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6 d-flex p-3 g-2 terms">
-		<div class="link">
-			<img src="assets/images/link.svg" alt="link" />
-		</div>
-		<div>
-			<h5>Press the Button Bellow</h5>
-			<div class="form-check d-flex align-items-center">
-				<input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="accept">
-				<label class="form-check-label" for="flexCheckDefault">
-					I confirm I have read and understood the both Terms & Conditions.
-				</label>
-			</div>
-		</div>
+	<div class="col-md-6">
+    <div class="col-md-12 d-flex p-3 g-2 terms">
+      <div class="link">
+        <img src="assets/images/link.svg" alt="link" />
+      </div>
+      <div>
+        <h5>Press the Button Bellow</h5>
+        <div class="form-check d-flex align-items-center">
+          <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="accept">
+          <label class="form-check-label" for="flexCheckDefault">
+            I confirm I have read and understood the both Terms & Conditions.
+          </label>
+        </div>
+        <br>
+        <a href="https://www.dhl.com/ca-en/home/footer/terms-of-use.html">DHL Terms & Conditions</a>
+        &nbsp;&nbsp;
+        <a href="https://www.dhl.com/content/dam/dhl/local/se/dhl-freight/documents/pdf/price-increase-documents/se-freight-general-terms-and-conditions-en-01112019.pdf">Klickship Terms & Conditions</a>
+      </div>
+    </div>
 	</div>
-	<div class="offset-md-4 col-md-2  d-flex align-items-end p-3">
+	<div class="offset-md-2 col-md-3 d-flex justify-content-center align-items-center">
 		<button
 			type="submit"
-			class="btn btn-danger btn-lg"
+			class="btn btn-danger btn-lg w-100 rounded-pill"
 			[disabled]="!form.valid"
 		>
 			Next
