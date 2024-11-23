@@ -144,8 +144,8 @@ import { Review } from '../models/reviews';
           </div>
         </div>
       </div>
-    </div>
-			
+      </div>
+      
 		</div>
 	`,
 	styleUrls: ['./payment.component.scss'],
@@ -190,6 +190,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
 	createShipment() {
 		console.log('completed');
-		this.store.dispatch(ParcelActions.createShipment());
+		this.store.dispatch(ParcelActions.createShipment()); 
 	}
 }

@@ -3,8 +3,8 @@
 		<div class="row g-3 p-2 mt-3 item"
 					*ngFor="let item of items; let i = index; let isLast=last; trackBy: trackByIndex"
 					formGroupName="{{i}}">
-			<div class="col-md-5">
-				<label class="form-label">Parcel Current Value *</label>
+			<div class="col-md-4 col-sm-12">
+				<label class="form-label"><h3>Parcel Current Value *</h3></label>
 				<input
 					class="form-control"
 					type="number"
@@ -16,8 +16,8 @@
 					required
 				/>
 			</div>
-			<div class="col-md-2">
-				<label class="form-label">Quantity *</label>
+			<div class="col-md-2 col-sm-12">
+				<label class="form-label"><h3>Quantity *</h3></label>
 				<input
 					class="form-control"
 					type="number"
@@ -29,8 +29,8 @@
 					required
 				/>
 			</div>
-			<div class="col-md-5">
-				<label class="form-label">Where was the item made? *</label>
+			<div class="col-md-6 col-sm-12">
+				<label class="form-label"><h3>Where was the item made? *</h3></label>
 				<div class="col-12">
 					<app-dropdown placeholder="Country" 
 						[options]="countries"	
@@ -40,7 +40,7 @@
 				</div>
 			</div>
 			<div class="col-md-12">
-				<label class="form-label">Product Description (be specific of contents for customs) *</label>
+				<label class="form-label"><h3>Product Description (be specific of contents for customs) *</h3></label>
 				<input
 					class="form-control"
 					type="text"
@@ -52,7 +52,7 @@
 				/>
 			</div>
 			<div class="col-md-8">
-				<label class="form-label">What is the reason for the export? *</label>
+				<label class="form-label"><h3>What is the reason for the export? *</h3></label>
 				<div class="col-12">
 					<select
 						formControlName="exportReasonType"
@@ -69,7 +69,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="col-md-3 d-flex text-end align-items-end" *ngIf="!isLast">
+      <div class="col-md-4 d-flex text-end align-items-end" *ngIf="!isLast">
 				<div class="col-12">
 					<button
 						type="button"
@@ -80,7 +80,7 @@
 					</button>
 				</div>
 			</div>
-			<div class="col-md-3 d-flex text-end align-items-end" *ngIf="isLast">
+			<div class="col-md-4 d-flex text-end align-items-end" *ngIf="isLast">
 				<div class="col-12">
 					<button
 						type="button"
@@ -97,13 +97,34 @@
 		<label>* Required Information</label>
 	</div>
 	<div class="row g-1 p-3 mt-1 align-items-end">
-		<div class="col-md-6 px-2">
+		<div class="col-md-12 px-2">
 			<span class="fs-4">Total Value: {{ totalValue }}$</span>
 		</div>
-		<div class="col-md-5 text-end">
+    <div class="col-md-12">
+      <div class="col-md-12 d-flex p-3 g-2 terms">
+        <div class="link">
+          <img src="assets/images/link.svg" alt="link" />
+        </div>
+        <div>
+          <h5>Press the Button Bellow</h5>
+          <div class="form-check d-flex align-items-center">
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="accept">
+            <label class="form-check-label" for="flexCheckDefault">
+              I confirm I have read and understood the both Terms & Conditions.
+            </label>
+          </div>
+          <br>
+          <a href="https://www.dhl.com/ca-en/home/footer/terms-of-use.html">DHL Terms & Conditions</a>
+          &nbsp;&nbsp;
+          <a href="https://www.dhl.com/content/dam/dhl/local/se/dhl-freight/documents/pdf/price-increase-documents/se-freight-general-terms-and-conditions-en-01112019.pdf">Klickship Terms & Conditions</a>
+        </div>
+      </div>
+      
+    </div>
+		<div class="offset-md-8 col-md-3 text-end">
 			<button
 				type="submit"
-				class="btn btn-danger btn-lg"
+				class="btn btn-danger rounded-pill w-100"
 				[disabled]="!form.valid"
 			>
 				Next
