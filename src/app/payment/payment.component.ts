@@ -6,10 +6,7 @@ import { interval, Observable, Subscription } from 'rxjs';
 import { RateResponse } from '../models/rateResponse';
 import { paymentStepSelector, rateResponseSelector, reviewsSelector, stepNumSelector } from '../state/selectors';
 import { CommonModule } from '@angular/common';
-import {
-	FormBuilder,
-	ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RatingComponent } from '../components/rating.component';
 import { Review } from '../models/reviews';
 
@@ -67,7 +64,7 @@ import { Review } from '../models/reviews';
 								alt="Payment Methods"
 							/>
 						</div>
-            <hr>
+						<hr />
 						<div class="secure fs-5">Secure your rate!</div>
 						<div class="note">
 							DHL prices can change every 10 minutes. Finish your
@@ -99,7 +96,7 @@ import { Review } from '../models/reviews';
 
             <!-- here need the number of reviews-->
             <div><h6>12 268+ Happy Clients</h6></div>
-            <hr>
+            <hr />
 
             <!-- the end of the carousel for the reviews-->
             <div class="h3 d-flex justify-content-start align-items-center mt-3">
@@ -114,38 +111,55 @@ import { Review } from '../models/reviews';
 					</div>
 				</div>
 			</div>
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-          <div class="modal-body">
-            <div class="content text-center">
-              <img src="assets/images/credit-card-icon.png" width="150" alt="credit card icon">
-                <h3 class="w-100 m-auto">
-                  Please use the payment machine <br />
-                  located to your right
-                </h3>
-                <div class="font-16 p-5">
-                  Kindly attach the first label on the shipment <br />and
-                  retain the second label for your records
-                </div>
-                <div class="text-center col-12 p-3">
-                  <button
-                    type="submit"
-                    class="btn btn-danger btn-lg"
-                    (click)="createShipment()"
-                  >
-                  Complete
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-      
+			<div
+				class="modal fade"
+				id="staticBackdrop"
+				data-bs-backdrop="static"
+				data-bs-keyboard="false"
+				tabindex="-1"
+				aria-labelledby="staticBackdropLabel"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog modal-dialog-centered modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Close"
+							></button>
+						</div>
+						<div class="modal-body">
+							<div class="content text-center">
+								<img
+									src="assets/images/credit-card-icon.png"
+									width="150"
+									alt="credit card icon"
+								/>
+								<h3 class="w-100 m-auto">
+									Please use the payment machine <br />
+									located to your right
+								</h3>
+								<div class="font-16 p-5">
+									Kindly attach the first label on the
+									shipment <br />and retain the second label
+									for your records
+								</div>
+								<div class="text-center col-12 p-3">
+									<button
+										type="submit"
+										class="btn btn-danger btn-lg"
+										(click)="createShipment()"
+									>
+										Complete
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	`,
 	styleUrls: ['./payment.component.scss'],
@@ -153,43 +167,43 @@ import { Review } from '../models/reviews';
 export class PaymentComponent implements OnInit, OnDestroy {
 	rateResponse$: Observable<RateResponse | null>;
 	steps$: Observable<number>;
-  paymentStep$: Observable<number>;
-  reviews$: Observable<Review[]>;
-  timeLapse = '00:00';
+	paymentStep$: Observable<number>;
+	reviews$: Observable<Review[]>;
+	timeLapse = '00:00';
 	private store = inject(Store);
-  private cdr = inject(ChangeDetectorRef);
-  private subscription: Subscription = new Subscription();
+	private cdr = inject(ChangeDetectorRef);
+	private subscription: Subscription = new Subscription();
 	// private router = inject(Router);
 	constructor(private formBuilder: FormBuilder) {
 		this.rateResponse$ = this.store.select(rateResponseSelector);
 		this.steps$ = this.store.select(stepNumSelector);
-    this.paymentStep$ = this.store.select(paymentStepSelector);
-    this.reviews$ = this.store.select(reviewsSelector);
+		this.paymentStep$ = this.store.select(paymentStepSelector);
+		this.reviews$ = this.store.select(reviewsSelector);
 	}
 
-  ngOnInit(): void {
-    let seconds = 600;
-    this.subscription.add(
-      interval(1000).subscribe(_ => {
-        seconds--;
-        if (seconds < 0) this.subscription.unsubscribe();
+	ngOnInit(): void {
+		let seconds = 600;
+		this.subscription.add(
+			interval(1000).subscribe((_) => {
+				seconds--;
+				if (seconds < 0) this.subscription.unsubscribe();
 
-        const m = Math.floor(seconds / 60);
-        let s = seconds % 60;
-        this.timeLapse = `0${m}:${s < 9 ? '0' + s : s}`;
-        this.cdr.markForCheck();
-      })
-    );
-  }
+				const m = Math.floor(seconds / 60);
+				let s = seconds % 60;
+				this.timeLapse = `0${m}:${s < 9 ? '0' + s : s}`;
+				this.cdr.markForCheck();
+			})
+		);
+	}
 
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
-  }
+	ngOnDestroy(): void {
+		this.subscription?.unsubscribe();
+	}
 
-	onAccept() { }
+	onAccept() {}
 
 	createShipment() {
 		console.log('completed');
-		this.store.dispatch(ParcelActions.createShipment()); 
+		this.store.dispatch(ParcelActions.createShipment());
 	}
 }
