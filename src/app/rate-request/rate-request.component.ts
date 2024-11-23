@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { parcelSelector, rateResponseSelector, addressbooksSelector, shipperAddressbooksSelector, destinationSelector, stepNumSelector } from '../state/selectors';
 import { RateRequestFormComponent } from '../components/rate-request-form/rate-request-form.component';
+import { RateBoxComponent } from '../components/rate-box.component';
 import { Parcel } from '../models/parcel';
 import { Observable } from 'rxjs';
 import { ParcelActions } from '../state/actions';
@@ -14,13 +15,12 @@ import { AddressBook, AddressSearchRequest, DestinationEnum } from '../models/sh
 @Component({
   selector: 'app-rate-request',
   standalone: true,
-  imports: [HeaderComponent, CommonModule, RateRequestFormComponent],
+  imports: [HeaderComponent, RateBoxComponent, CommonModule, RateRequestFormComponent],
   templateUrl: './rate-request.component.html',
-  styleUrls: ['./rate-request.component.scss'],
+  // styleUrls: ['./rate-request.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RateRequestComponent implements OnInit{
-  title = 'Get a Shipping Rate';
   parcel$: Observable<Parcel | null>;
   destination$: Observable<DestinationEnum>;
   rateResponse$: Observable<RateResponse | null>;
@@ -47,7 +47,6 @@ export class RateRequestComponent implements OnInit{
   }
   onSubmit(parcel: Parcel) {
     this.store.dispatch(ParcelActions.rateRequest({ parcel }));
-    this.title = 'Shipping Rate';
   }
 
   onReset() {

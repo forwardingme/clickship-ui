@@ -35,7 +35,7 @@ import { ModalComponent } from '../components/modal/modal.component';
             <span class="text">ENGLISH</span>
           </button>
           <button class="button" (click)="selectLang('fr')">
-            <span class="text">FRANCAIS</span>
+            <span class="text">FRANÇAIS</span>
           </button>
         </div>
       </div>

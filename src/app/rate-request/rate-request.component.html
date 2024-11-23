@@ -13,18 +13,11 @@
       (countryChange)="onCountryChange()"
     ></app-rate-request-form>
     <div class="row mb-3 mt-2" *ngIf="rateResponse$ | async">
-      <div class="col-md-4 offset-md-4 rate text-center ">
-        <div>
-          <img class="logo_dhl" src="assets/images/dhl-log.svg" />
-        </div>
-        <div class="rate-details" (click)="createShipment()">
-          <!-- <h4>Express Worldwide</h4> -->
-          <h1>${{ (rateResponse$ | async)?.rate || 245.47}}</h1>
-          <div>Estimated Transit Time</div>
-          <h5>{{ (rateResponse$ | async)?.estimatedTransitDays }} Days Shipping</h5>
-          <!-- <h4>Tap here to Accept & Continue</h4> -->
-        </div>
-      </div>
+      <app-rate-box
+        class="col-md-4 offset-md-4 text-center"
+        [rate]="(rateResponse$ | async)?.rate"
+        [estimatedTransitDays]="(rateResponse$ | async)?.estimatedTransitDays" />
+
       <div class="col-md-2 offset-md-2 d-flex align-items-end">
         <button type="button" class="btn btn-danger btn-lg" (click)="onReset()">
           Reset
