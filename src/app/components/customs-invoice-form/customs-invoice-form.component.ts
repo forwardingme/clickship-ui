@@ -13,10 +13,11 @@ import { LineItem, reasons } from "../../models/invoice";
 import { DropdownComponent } from "../dropdown.component";
 import { countryOptions } from "../../models/country";
 import { initLineItem } from "../../state/reducer";
+import { TermsComponent } from "../terms.component";
 
 @Component({
 	standalone: true,
-	imports: [ReactiveFormsModule, NgFor, NgIf, DropdownComponent],
+	imports: [ReactiveFormsModule, NgFor, NgIf, DropdownComponent, TermsComponent],
 	selector: "app-customs-invoice-form",
 	templateUrl: "./customs-invoice-form.component.html",
 	changeDetection: ChangeDetectionStrategy.OnPush
@@ -40,6 +41,7 @@ export class CustomsInvoiceFormComponent implements OnInit {
 
 	constructor(formBuilder: FormBuilder) {
 		this.form = formBuilder.group({
+			accept: new FormControl(false, Validators.requiredTrue),
 			lineItems: formBuilder.array([]),
 		});
 		this.itemFa = this.form.controls['lineItems'] as FormArray;

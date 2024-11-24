@@ -6,18 +6,19 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from "@angular/forms";
-import { NgIf } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Parcel } from "../../models/parcel";
 import { DestinationHeaderComponent } from "../destination-header.component";
 import { TrimTextDirective } from "../trim-text.directive";
 import { MaskDirective } from "../mask.directive";
-import { CANADA_CODE } from "../../models/shared.models";
+import { CANADA_CODE, ParcelType } from "../../models/shared.models";
 import { countryOptions } from "../../models/country";
 import { DropdownComponent } from "../dropdown.component";
+import { TermsComponent } from "../terms.component";
 
 @Component({
 	standalone: true,
-	imports: [ReactiveFormsModule, NgIf, DestinationHeaderComponent, TrimTextDirective, MaskDirective, DropdownComponent],
+	imports: [ReactiveFormsModule, CommonModule, DestinationHeaderComponent, TermsComponent, TrimTextDirective, MaskDirective, DropdownComponent],
 	selector: "app-shipping-details-form",
 	templateUrl: "./shipping-details-form.component.html",
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -91,7 +92,9 @@ export class ShipperDetailsFormComponent implements OnInit {
 		});
 	}
 	ngOnInit(): void {}
-
+	get isParcelPackage() {
+		return this._parcel?.parcelType === ParcelType.PACKAGE;
+	}
 	onSubmit() {
 		this.submitForm.emit({...this.form.value, parcelType: this._parcel?.parcelType});
 	}

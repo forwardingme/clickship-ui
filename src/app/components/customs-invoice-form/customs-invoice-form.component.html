@@ -69,8 +69,8 @@
 					</select>
 				</div>
 			</div>
-      <div class="col-md-4 d-flex text-end align-items-end" *ngIf="!isLast">
-				<div class="col-12">
+      <div class="col-md-3 d-flex text-end align-items-end">
+				<div class="col-12" *ngIf="!isLast">
 					<button
 						type="button"
 						class="btn btn-danger btn-lg"
@@ -79,9 +79,7 @@
 						<span>Remove </span><span>-</span>
 					</button>
 				</div>
-			</div>
-			<div class="col-md-4 d-flex text-end align-items-end" *ngIf="isLast">
-				<div class="col-12">
+				<div class="col-12" *ngIf="isLast">
 					<button
 						type="button"
 						class="btn btn-danger btn-lg"
@@ -94,34 +92,16 @@
 		</div>
 	</div>
 	<div class="row px-4">
-		<label>* Required Information</label>
-	</div>
-	<div class="row g-1 p-3 mt-1 align-items-end">
-		<div class="col-md-12 px-2">
+		<div class="col-md-6"><label>* Required Information</label></div>
+		<div class="offset-md-2 col-md-3 text-end px-2">
 			<span class="fs-4">Total Value: {{ totalValue }}$</span>
 		</div>
-    <div class="col-md-12">
-      <div class="col-md-12 d-flex p-3 g-2 terms">
-        <div class="link">
-          <img src="assets/images/link.svg" alt="link" />
-        </div>
-        <div>
-          <h5>Press the Button Bellow</h5>
-          <div class="form-check d-flex align-items-center">
-            <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="accept">
-            <label class="form-check-label" for="flexCheckDefault">
-              I confirm I have read and understood the both Terms & Conditions.
-            </label>
-          </div>
-          <br>
-          <a href="https://www.dhl.com/ca-en/home/footer/terms-of-use.html">DHL Terms & Conditions</a>
-          &nbsp;&nbsp;
-          <a href="https://www.dhl.com/content/dam/dhl/local/se/dhl-freight/documents/pdf/price-increase-documents/se-freight-general-terms-and-conditions-en-01112019.pdf">Klickship Terms & Conditions</a>
-        </div>
-      </div>
-      
+	</div>
+	<div class="row g-1 px-3 mt-2 align-items-end">
+    <div class="col-md-6">
+      <app-terms formControlName="accept" />
     </div>
-		<div class="offset-md-8 col-md-3 text-end">
+		<div class="offset-md-2 col-md-3 text-end">
 			<button
 				type="submit"
 				class="btn btn-danger rounded-pill w-100"

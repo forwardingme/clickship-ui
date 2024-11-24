@@ -15,7 +15,6 @@ import { ParcelType } from '../models/shared.models';
   standalone: true,
   imports: [HeaderComponent, CommonModule, ShipperDetailsFormComponent],
   templateUrl: './shipping-details.component.html',
-  styleUrls: ['./shipping-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShippingDetailsComponent implements OnInit{
