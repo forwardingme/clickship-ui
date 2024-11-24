@@ -93,18 +93,18 @@
 	</div>
 	<div class="row px-4">
 		<div class="col-md-6"><label>* Required Information</label></div>
-		<div class="offset-md-2 col-md-3 text-end px-2">
+		<div class="offset-md-2 col-md-3 text-end px-0 pt-2">
 			<span class="fs-4">Total Value: {{ totalValue }}$</span>
 		</div>
 	</div>
-	<div class="row g-1 px-3 mt-2 align-items-end">
+	<div class="row g-1 px-3 align-items-end">
     <div class="col-md-6">
       <app-terms formControlName="accept" />
     </div>
 		<div class="offset-md-2 col-md-3 text-end">
 			<button
 				type="submit"
-				class="btn btn-danger rounded-pill w-100"
+				class="btn btn-danger rounded-pill w-50 btn-lg"
 				[disabled]="!form.valid"
 			>
 				Next

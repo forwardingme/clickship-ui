@@ -39,6 +39,7 @@ export class ShipperDetailsFormComponent implements OnInit {
 	isUsOrCa = false;
 	domestic = false;
 	countries = countryOptions;
+	isParcelPackage = false;
 	@Input()
 	set parcel(data: Parcel | null) {
 		this._parcel = data;
@@ -46,10 +47,14 @@ export class ShipperDetailsFormComponent implements OnInit {
       const {shipperDetails, receiverDetails} = data;
 			this.domestic = receiverDetails.countryCode === CANADA_CODE;
 			this.isUsOrCa = ['US', 'CA'].includes(receiverDetails.countryCode);
+			this.isParcelPackage = this.parcel?.parcelType === ParcelType.PACKAGE;
 			this.form.patchValue({
         shipperDetails,
         receiverDetails
       });
+			if (!this.isParcelPackage) {
+				this.form.get('accept')?.addValidators(Validators.requiredTrue);
+			}
 			if(this.isUsOrCa) {
 				const phoneCtrl = (this.form.controls['receiverDetails'] as FormGroup).controls['phone'];
 				phoneCtrl.addValidators([Validators.minLength(10), Validators.maxLength(10)]);
@@ -88,13 +93,11 @@ export class ShipperDetailsFormComponent implements OnInit {
 				provinceName: new FormControl('', Validators.minLength(2)),
 				countryCode: new FormControl('', [Validators.minLength(2), Validators.maxLength(2)]),
 			}),
-			accept: new FormControl(false, Validators.requiredTrue)
+			accept: new FormControl(false)
 		});
 	}
 	ngOnInit(): void {}
-	get isParcelPackage() {
-		return this._parcel?.parcelType === ParcelType.PACKAGE;
-	}
+
 	onSubmit() {
 		this.submitForm.emit({...this.form.value, parcelType: this._parcel?.parcelType});
 	}
